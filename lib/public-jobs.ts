@@ -433,7 +433,11 @@ export async function getPublicJob(jobId: string): Promise<PublicJobDetail | nul
     minExperience,
     maxExperience,
     openings: formatOpenings(job.no_of_openings ?? 0),
-    salary: formatSalary(job.min_salary ?? 0, job.max_salary ?? 0, job.salary_mode || ""),
+    salary: formatSalary(
+      typeof job.min_salary === "number" ? job.min_salary : Number.NaN,
+      typeof job.max_salary === "number" ? job.max_salary : Number.NaN,
+      job.salary_mode || "",
+    ),
     skills: asStringList(job.skills),
     qualification: asStringList(job.qualification),
     keywords: keywordLabels(job.keywords),
