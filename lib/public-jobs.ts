@@ -65,33 +65,57 @@ function trimNumber(value: number) {
 }
 
 function money(amount: number) {
+  if (!Number.isFinite(amount)) return "—";
   if (amount >= 10_000_000) return `₹${trimNumber(amount / 10_000_000)} Cr`;
   if (amount >= 100_000) return `₹${trimNumber(amount / 100_000)} L`;
   return `₹${amount.toLocaleString("en-IN")}`;
 }
 
 function normalizeSalaryMode(frequency: string) {
-  return frequency.toLowerCase().replace(/\s+/g, " ").trim();
+  return (frequency || "").toLowerCase().replace(/\s+/g, " ").trim();
 }
 
 function formatSalary(min: number, max: number, frequency: string) {
+  const safeMin = Number.isFinite(min) ? min : NaN;
+  const safeMax = Number.isFinite(max) ? max : NaN;
+  if (!Number.isFinite(safeMin) && !Number.isFinite(safeMax)) return "Not disclosed";
+
   const mode = normalizeSalaryMode(frequency);
-  if ((mode === "yearly" || mode === "annual" || mode === "per annum") && min >= 100_000 && max >= 100_000 && max < 10_000_000) {
-    return `₹${trimNumber(min / 100_000)}–${trimNumber(max / 100_000)} LPA`;
+  const low = Number.isFinite(safeMin) ? safeMin : safeMax;
+  const high = Number.isFinite(safeMax) ? safeMax : safeMin;
+
+  if (
+    (mode === "yearly" || mode === "annual" || mode === "per annum") &&
+    low >= 100_000 &&
+    high >= 100_000 &&
+    high < 10_000_000
+  ) {
+    return `₹${trimNumber(low / 100_000)}–${trimNumber(high / 100_000)} LPA`;
   }
 
-  const suffix = mode === "monthly" ? " /mo" : mode === "yearly" || mode === "annual" || mode === "per annum" ? " /yr" : "";
-  return `${money(min)}–${money(max)}${suffix}`;
+  const suffix =
+    mode === "monthly"
+      ? " /mo"
+      : mode === "yearly" || mode === "annual" || mode === "per annum"
+        ? " /yr"
+        : mode === "day" || mode === "daily"
+          ? " /day"
+          : "";
+  if (low === high) return `${money(low)}${suffix}`;
+  return `${money(low)}–${money(high)}${suffix}`;
 }
 
 function formatExperience(min: number, max: number) {
-  if (min === 0 && max === 0) return "Fresher";
-  if (min === max) return min === 1 ? "1 yr" : `${min} yrs`;
-  return `${min}–${max} yrs`;
+  const safeMin = Number.isFinite(min) ? min : 0;
+  const safeMax = Number.isFinite(max) ? max : safeMin;
+  if (safeMin === 0 && safeMax === 0) return "Fresher";
+  if (safeMin === safeMax) return safeMin === 1 ? "1 yr" : `${safeMin} yrs`;
+  return `${safeMin}–${safeMax} yrs`;
 }
 
 function formatOpenings(count: number) {
-  return count === 1 ? "1 opening" : `${count} openings`;
+  const safe = Number.isFinite(count) ? count : 0;
+  return safe === 1 ? "1 opening" : `${safe} openings`;
 }
 
 function summarySalary(min: number | null, max: number | null, mode: string) {
@@ -109,6 +133,7 @@ function summaryExperience(min: number, max: number) {
 }
 
 function formatWorkType(workType: string) {
+  if (!workType) return "";
   return workType
     .split("-")
     .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
@@ -116,7 +141,9 @@ function formatWorkType(workType: string) {
 }
 
 function postedLabel(createdAt: string) {
-  const days = Math.floor((Date.now() - new Date(createdAt).getTime()) / 86_400_000);
+  const then = createdAt ? new Date(createdAt).getTime() : NaN;
+  if (!Number.isFinite(then)) return "";
+  const days = Math.floor((Date.now() - then) / 86_400_000);
   if (days <= 0) return "Today";
   if (days === 1) return "1d ago";
   if (days < 7) return `${days}d ago`;
@@ -127,18 +154,20 @@ function postedLabel(createdAt: string) {
 }
 
 function toListing(job: PublicJob): JobListing {
+  const minExperience = Number.isFinite(job.minExperience) ? job.minExperience : 0;
+  const maxExperience = Number.isFinite(job.maxExperience) ? job.maxExperience : minExperience;
   return {
     id: job._id || job.jobId,
     jobId: job.jobId,
     title: job.title,
-    company: job.brandName || job.companyName,
+    company: job.brandName || job.companyName || "",
     logoUrl: job.companyLogoUrl,
-    location: job.location,
-    type: job.employmentType,
+    location: job.location || "",
+    type: job.employmentType || "",
     mode: formatWorkType(job.workType),
-    experience: formatExperience(job.minExperience, job.maxExperience),
-    minExperience: job.minExperience,
-    maxExperience: job.maxExperience,
+    experience: formatExperience(minExperience, maxExperience),
+    minExperience,
+    maxExperience,
     openings: formatOpenings(job.noOfOpenings),
     salary: formatSalary(job.minSalary, job.maxSalary, job.paymentFrequency),
     posted: postedLabel(job.createdAt),
@@ -404,7 +433,11 @@ export async function getPublicJob(jobId: string): Promise<PublicJobDetail | nul
     minExperience,
     maxExperience,
     openings: formatOpenings(job.no_of_openings ?? 0),
-    salary: formatSalary(job.min_salary ?? 0, job.max_salary ?? 0, job.salary_mode || ""),
+    salary: formatSalary(
+      typeof job.min_salary === "number" ? job.min_salary : Number.NaN,
+      typeof job.max_salary === "number" ? job.max_salary : Number.NaN,
+      job.salary_mode || "",
+    ),
     skills: asStringList(job.skills),
     qualification: asStringList(job.qualification),
     keywords: keywordLabels(job.keywords),
@@ -447,8 +480,18 @@ export async function getPublishedJobs(page = 1, filters?: JobQuery): Promise<Pu
     throw new Error("Jobs response was empty");
   }
 
+  const jobs: JobListing[] = [];
+  for (const job of body.data.jobs) {
+    if (!job?.jobId || !job.title) continue;
+    try {
+      jobs.push(toListing(job));
+    } catch {
+      // Skip malformed rows so one bad salary/field cannot blank the whole page.
+    }
+  }
+
   return {
-    jobs: body.data.jobs.map(toListing),
+    jobs,
     page: body.page,
     pageSize: body.limit,
     totalPages: body.totalPages,
