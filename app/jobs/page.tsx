@@ -64,7 +64,7 @@ export default async function JobsPage({
   const jobs = result?.jobs ?? [];
 
   return (
-    <main className="lg:h-[calc(100dvh-var(--header-h))]">
+    <main className="lg:grid lg:grid-cols-[17.75rem_minmax(0,1fr)] lg:items-start lg:gap-4 lg:px-6">
       <JsonLd data={schema} />
       <JobsNavProvider>
         <JobFilters filters={filters} />

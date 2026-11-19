@@ -189,7 +189,7 @@ export default async function JobPage({
           </ul>
         ) : null}
       </article>
-      <div className="filters-scroll flex flex-col gap-3 p-[5px] lg:fixed lg:top-[112px] lg:right-[max(1.5rem,calc((100vw-72rem)/2+1.5rem))] lg:z-20 lg:max-h-[calc(100vh-128px)] lg:w-[17rem] lg:overflow-y-auto">
+      <div className="filters-scroll flex flex-col gap-3 p-[5px] lg:sticky lg:top-[calc(var(--header-h)+1rem)] lg:z-20 lg:max-h-[calc(100dvh-var(--header-h)-2rem)] lg:self-start lg:overflow-y-auto">
       <aside className="rounded-2xl bg-white p-3 shadow-[0_10px_40px_rgba(23,23,23,0.06)] ring-1 ring-black/[0.05]">
         {job.updates === "linkedin" ? (
           <a

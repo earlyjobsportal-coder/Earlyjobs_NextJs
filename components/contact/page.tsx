@@ -3,12 +3,14 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useId, useState, type FormEvent, type ReactNode } from "react";
+import { EnquiryPhoneField } from "@/components/contact/phone-field";
 import { Reveal } from "@/components/ui/reveal";
 import {
   earlyJobsContact,
   enquiryTopics,
   gigKaroContact,
   huntloContact,
+  rojMitraContact,
   isValidEmail,
 } from "@/lib/contact";
 
@@ -58,6 +60,8 @@ type FormState = {
   firstName: string;
   lastName: string;
   email: string;
+  phoneCountry: string;
+  phoneCode: string;
   phone: string;
   topic: string;
   company: string;
@@ -70,6 +74,8 @@ const emptyForm: FormState = {
   firstName: "",
   lastName: "",
   email: "",
+  phoneCountry: "IN",
+  phoneCode: "+91",
   phone: "",
   topic: "",
   company: "",
@@ -92,6 +98,9 @@ function validate(form: FormState): FormErrors {
   if (!form.lastName.trim()) errors.lastName = "Enter your last name.";
   if (!form.email.trim()) errors.email = "Enter your work email.";
   else if (!isValidEmail(form.email)) errors.email = "Enter a valid email address.";
+  if (form.phone && !/^\d{1,10}$/.test(form.phone)) {
+    errors.phone = "Enter up to 10 digits.";
+  }
   if (!form.topic) errors.topic = "Select what you are contacting us about.";
   if (!form.message.trim()) errors.message = "Tell us how we can help.";
   else if (form.message.trim().length < 10) {
@@ -150,7 +159,8 @@ export function ContactPage() {
           firstName: form.firstName.trim(),
           lastName: form.lastName.trim(),
           email: form.email.trim(),
-          phone: form.phone.trim() || undefined,
+          phone: form.phone || undefined,
+          phoneCode: form.phone ? form.phoneCode : undefined,
           topic: form.topic,
           company: form.company.trim() || undefined,
           message: form.message.trim(),
@@ -286,6 +296,32 @@ export function ContactPage() {
               </Reveal>
               <Reveal className="space-y-1 leading-snug transition-opacity duration-300 hover:opacity-90">
                 <a
+                  href={rojMitraContact.site}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex"
+                  aria-label="RojMitra"
+                >
+                  <Image
+                    src="/icons/rojmitra-logo.png"
+                    alt="RojMitra"
+                    width={941}
+                    height={280}
+                    className="h-5 w-auto object-contain object-left"
+                  />
+                </a>
+                <p className="text-[12px] leading-4 text-neutral-500">
+                  Village-level workforce intelligence
+                </p>
+                <a
+                  href={`mailto:${rojMitraContact.email}`}
+                  className="block text-[13px] leading-4 font-medium text-brand hover:underline"
+                >
+                  {rojMitraContact.email}
+                </a>
+              </Reveal>
+              <Reveal className="space-y-1 leading-snug transition-opacity duration-300 hover:opacity-90">
+                <a
                   href={huntloContact.site}
                   target="_blank"
                   rel="noreferrer"
@@ -407,17 +443,19 @@ export function ContactPage() {
                     id={formIds.phone}
                     label="Phone number"
                     hint="Optional"
+                    error={errors.phone}
                     className="sm:col-span-2"
                   >
-                    <input
+                    <EnquiryPhoneField
                       id={formIds.phone}
-                      name="phone"
-                      type="tel"
-                      autoComplete="tel"
-                      placeholder="Phone number"
-                      value={form.phone}
-                      onChange={(e) => update("phone", e.target.value)}
-                      className={fieldClass}
+                      country={form.phoneCountry}
+                      phone={form.phone}
+                      invalid={Boolean(errors.phone)}
+                      onCountryChange={(phoneCountry, phoneCode) => {
+                        setForm((prev) => ({ ...prev, phoneCountry, phoneCode }));
+                        if (submitError) setSubmitError(null);
+                      }}
+                      onPhoneChange={(phone) => update("phone", phone)}
                     />
                   </Field>
                   <Field
