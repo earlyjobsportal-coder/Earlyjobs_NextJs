@@ -28,6 +28,11 @@ export const huntloContact = {
   site: "https://www.huntlo.ai",
 } as const;
 
+export const rojMitraContact = {
+  email: "info@earlyjobs.in",
+  site: "https://rojmitra.in",
+} as const;
+
 export const enquiryTopics = [
   "Hiring for my company",
   "Recruitment consultancy partnership",
@@ -45,6 +50,7 @@ export type ContactEnquiryPayload = {
   lastName: string;
   email: string;
   phone?: string;
+  phoneCode?: string;
   topic: EnquiryTopic | string;
   company?: string;
   message: string;
@@ -59,7 +65,9 @@ export function buildEnquiryMailto(payload: ContactEnquiryPayload) {
   const lines = [
     `Name: ${payload.firstName.trim()} ${payload.lastName.trim()}`,
     `Work email: ${payload.email.trim()}`,
-    payload.phone?.trim() ? `Phone: ${payload.phone.trim()}` : null,
+    payload.phone?.trim()
+      ? `Phone: ${[payload.phoneCode?.trim(), payload.phone.trim()].filter(Boolean).join(" ")}`
+      : null,
     `Topic: ${payload.topic}`,
     payload.company?.trim() ? `Company: ${payload.company.trim()}` : null,
     "",

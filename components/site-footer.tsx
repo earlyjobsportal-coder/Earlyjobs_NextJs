@@ -357,54 +357,52 @@ export function SiteFooter() {
             </a>
           </div>
 
-          <div className="mt-8 flex flex-col gap-6 sm:mt-6 sm:flex-row sm:items-end sm:justify-between">
-            <div className="flex flex-wrap items-start gap-x-8 gap-y-5">
-              <div className="flex flex-col items-start">
-                <p className="text-base font-semibold leading-5 text-white">Ask AI about us</p>
-                <div className="mt-2 flex flex-wrap items-center gap-2 sm:gap-3">
-                  {aiAssistantLinks.map((item) => (
-                    <a
-                      key={item.name}
-                      href={item.href}
-                      className="shrink-0 text-white transition-transform duration-200 hover:scale-105 active:scale-95"
-                      rel="noreferrer"
-                      target="_blank"
-                      aria-label={item.name}
-                      title={item.name}
-                    >
-                      {item.image ? (
-                        // SVG is served directly. The image optimizer rejects this file type.
-                        // eslint-disable-next-line @next/next/no-img-element
-                        <img
-                          src={item.image}
-                          alt=""
-                          width={20}
-                          height={20}
-                          className="size-5 object-contain sm:size-6"
-                        />
-                      ) : item.Icon ? (
-                        <item.Icon className="text-xl sm:text-2xl" />
-                      ) : null}
-                    </a>
-                  ))}
-                </div>
+          <div className="mt-8 grid gap-6 sm:mt-6 sm:grid-cols-3 sm:items-end">
+            <div className="flex flex-col items-start">
+              <p className="text-base font-semibold leading-5 text-white">Ask AI about us</p>
+              <div className="mt-2 flex flex-wrap items-center gap-2 sm:gap-3">
+                {aiAssistantLinks.map((item) => (
+                  <a
+                    key={item.name}
+                    href={item.href}
+                    className="shrink-0 text-white transition-transform duration-200 hover:scale-105 active:scale-95"
+                    rel="noreferrer"
+                    target="_blank"
+                    aria-label={item.name}
+                    title={item.name}
+                  >
+                    {item.image ? (
+                      // SVG is served directly. The image optimizer rejects this file type.
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img
+                        src={item.image}
+                        alt=""
+                        width={20}
+                        height={20}
+                        className="size-5 object-contain sm:size-6"
+                      />
+                    ) : item.Icon ? (
+                      <item.Icon className="text-xl sm:text-2xl" />
+                    ) : null}
+                  </a>
+                ))}
               </div>
-              <div className="flex flex-col items-start">
-                <p className="text-base font-semibold leading-5 text-white">Follow us</p>
-                <div className="mt-2 flex items-center">
-                  {social.map(({ label, href, Icon, className }) => (
-                    <a
-                      key={label}
-                      href={href}
-                      className="mr-5 last:mr-0 no-underline"
-                      rel="noreferrer"
-                      target="_blank"
-                      aria-label={label}
-                    >
-                      <Icon className={className ?? "text-2xl text-white"} />
-                    </a>
-                  ))}
-                </div>
+            </div>
+            <div className="flex flex-col items-center text-center">
+              <p className="text-base font-semibold leading-5 text-white">Follow us</p>
+              <div className="mt-2 flex items-center justify-center">
+                {social.map(({ label, href, Icon, className }) => (
+                  <a
+                    key={label}
+                    href={href}
+                    className="mr-5 last:mr-0 no-underline"
+                    rel="noreferrer"
+                    target="_blank"
+                    aria-label={label}
+                  >
+                    <Icon className={className ?? "text-2xl text-white"} />
+                  </a>
+                ))}
               </div>
             </div>
 

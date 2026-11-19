@@ -25,6 +25,7 @@ export async function POST(request: Request) {
   const lastName = String(body.lastName ?? "").trim();
   const email = String(body.email ?? "").trim();
   const phone = String(body.phone ?? "").trim();
+  const phoneCode = String(body.phoneCode ?? "").trim();
   const topic = String(body.topic ?? "").trim();
   const company = String(body.company ?? "").trim();
   const message = String(body.message ?? "").trim();
@@ -41,12 +42,22 @@ export async function POST(request: Request) {
   if (message.length > 5000) {
     return NextResponse.json({ ok: false, error: "Message is too long." }, { status: 400 });
   }
+  if (phone && !/^\d{1,10}$/.test(phone)) {
+    return NextResponse.json(
+      { ok: false, error: "Phone number must be up to 10 digits." },
+      { status: 400 },
+    );
+  }
+  if (phone && phoneCode && !/^\+\d{1,4}(?: \d{1,4})?$/.test(phoneCode)) {
+    return NextResponse.json({ ok: false, error: "Invalid country code." }, { status: 400 });
+  }
 
   const payload: ContactEnquiryPayload = {
     firstName,
     lastName,
     email,
     phone: phone || undefined,
+    phoneCode: phone ? phoneCode || undefined : undefined,
     topic,
     company: company || undefined,
     message,
