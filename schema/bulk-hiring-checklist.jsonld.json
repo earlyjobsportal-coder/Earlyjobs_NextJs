@@ -1,0 +1,68 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://www.earlyjobs.ai/resources/bulk-hiring-checklist#webpage",
+      "url": "https://www.earlyjobs.ai/resources/bulk-hiring-checklist",
+      "name": "Free Bulk Hiring Checklist & Recruitment Plan | EarlyJobs",
+      "description": "Download a bulk hiring checklist for employers. Plan vacancies, candidate sourcing, interviews, selection and joining coordination across locations.",
+      "isPartOf": {
+        "@id": "https://www.earlyjobs.ai/#website"
+      },
+      "about": {
+        "@id": "https://www.earlyjobs.ai/#organization"
+      },
+      "breadcrumb": {
+        "@id": "https://www.earlyjobs.ai/resources/bulk-hiring-checklist#breadcrumb"
+      },
+      "mainEntity": {
+        "@id": "https://www.earlyjobs.ai/resources/bulk-hiring-checklist#resource"
+      },
+      "speakable": {
+        "@type": "SpeakableSpecification",
+        "cssSelector": ["h1", "h2"]
+      },
+      "inLanguage": "en-IN",
+      "dateModified": "2026-11-20"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://www.earlyjobs.ai/resources/bulk-hiring-checklist#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.earlyjobs.ai/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Resources",
+          "item": "https://www.earlyjobs.ai/resources"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Bulk Hiring Checklist",
+          "item": "https://www.earlyjobs.ai/resources/bulk-hiring-checklist"
+        }
+      ]
+    },
+    {
+      "@type": "CreativeWork",
+      "@id": "https://www.earlyjobs.ai/resources/bulk-hiring-checklist#resource",
+      "name": "EarlyJobs Bulk Hiring Checklist",
+      "description": "Six-phase bulk hiring planning checklist covering requirements, sourcing, interviews, candidate tracking, joining coordination and drive review.",
+      "provider": {
+        "@id": "https://www.earlyjobs.ai/#organization"
+      },
+      "url": "https://www.earlyjobs.ai/resources/bulk-hiring-checklist",
+      "encodingFormat": [
+        "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+        "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+      ]
+    }
+  ]
+}

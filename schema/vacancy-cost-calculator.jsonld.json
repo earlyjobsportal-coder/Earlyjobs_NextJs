@@ -1,0 +1,71 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://www.earlyjobs.ai/tools/vacancy-cost-calculator#webpage",
+      "url": "https://www.earlyjobs.ai/tools/vacancy-cost-calculator",
+      "name": "Free Vacancy Cost Calculator for Employers | EarlyJobs",
+      "description": "Estimate the cost of unfilled positions using vacancy days, daily operational impact and temporary coverage expenses. Free hiring calculator.",
+      "isPartOf": {
+        "@id": "https://www.earlyjobs.ai/#website"
+      },
+      "about": {
+        "@id": "https://www.earlyjobs.ai/#organization"
+      },
+      "breadcrumb": {
+        "@id": "https://www.earlyjobs.ai/tools/vacancy-cost-calculator#breadcrumb"
+      },
+      "mainEntity": {
+        "@id": "https://www.earlyjobs.ai/tools/vacancy-cost-calculator#tool"
+      },
+      "speakable": {
+        "@type": "SpeakableSpecification",
+        "cssSelector": ["h1", "h2"]
+      },
+      "inLanguage": "en-IN",
+      "dateModified": "2026-11-20"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://www.earlyjobs.ai/tools/vacancy-cost-calculator#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.earlyjobs.ai/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Tools",
+          "item": "https://www.earlyjobs.ai/tools/vacancy-cost-calculator"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Vacancy Cost Calculator",
+          "item": "https://www.earlyjobs.ai/tools/vacancy-cost-calculator"
+        }
+      ]
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://www.earlyjobs.ai/tools/vacancy-cost-calculator#tool",
+      "name": "EarlyJobs Vacancy Cost Calculator",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Web",
+      "description": "Interactive calculator that estimates vacancy cost from vacant positions, vacancy days, daily operational impact and temporary coverage expenses in Indian rupees.",
+      "provider": {
+        "@id": "https://www.earlyjobs.ai/#organization"
+      },
+      "url": "https://www.earlyjobs.ai/tools/vacancy-cost-calculator",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "INR"
+      }
+    }
+  ]
+}

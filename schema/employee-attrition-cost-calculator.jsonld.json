@@ -1,0 +1,110 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://www.earlyjobs.ai/tools/employee-attrition-cost-calculator#webpage",
+      "url": "https://www.earlyjobs.ai/tools/employee-attrition-cost-calculator",
+      "name": "Free Employee Attrition Cost Calculator India | EarlyJobs",
+      "description": "Estimate employee attrition costs using replacement recruitment expenses, vacancy days, training costs and productivity assumptions. Free calculator for employers.",
+      "isPartOf": {
+        "@id": "https://www.earlyjobs.ai/#website"
+      },
+      "about": {
+        "@id": "https://www.earlyjobs.ai/#organization"
+      },
+      "breadcrumb": {
+        "@id": "https://www.earlyjobs.ai/tools/employee-attrition-cost-calculator#breadcrumb"
+      },
+      "mainEntity": {
+        "@id": "https://www.earlyjobs.ai/tools/employee-attrition-cost-calculator#tool"
+      },
+      "speakable": {
+        "@type": "SpeakableSpecification",
+        "cssSelector": ["h1", "h2"]
+      },
+      "inLanguage": "en-IN",
+      "dateModified": "2026-11-20"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://www.earlyjobs.ai/tools/employee-attrition-cost-calculator#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.earlyjobs.ai/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Tools",
+          "item": "https://www.earlyjobs.ai/tools/employee-attrition-cost-calculator"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Employee Attrition Cost Calculator",
+          "item": "https://www.earlyjobs.ai/tools/employee-attrition-cost-calculator"
+        }
+      ]
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://www.earlyjobs.ai/tools/employee-attrition-cost-calculator#tool",
+      "name": "EarlyJobs Employee Attrition Cost Calculator",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Web",
+      "description": "Interactive calculator that estimates employee attrition cost from recruitment, training, vacancy duration and other direct replacement expenses in Indian rupees.",
+      "provider": {
+        "@id": "https://www.earlyjobs.ai/#organization"
+      },
+      "url": "https://www.earlyjobs.ai/tools/employee-attrition-cost-calculator",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "INR"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://www.earlyjobs.ai/tools/employee-attrition-cost-calculator#faq",
+      "url": "https://www.earlyjobs.ai/tools/employee-attrition-cost-calculator",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is the cost of employee attrition?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "It is the estimated financial cost associated with departures and replacement, including recruitment, training and relevant vacancy expenses."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is attrition cost the same as recruitment cost?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. Recruitment cost is one component of the broader attrition cost estimate."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can the calculator be used for factory workers?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Employers can enter assumptions relevant to their workforce and operational environment."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does the result represent an exact financial loss?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. It is a model based on user-provided inputs and assumptions."
+          }
+        }
+      ]
+    }
+  ]
+}

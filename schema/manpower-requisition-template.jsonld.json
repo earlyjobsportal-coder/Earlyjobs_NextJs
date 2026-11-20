@@ -1,0 +1,65 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://www.earlyjobs.ai/resources/manpower-requisition-template#webpage",
+      "url": "https://www.earlyjobs.ai/resources/manpower-requisition-template",
+      "name": "Free Manpower Requisition Form & Hiring Template | EarlyJobs",
+      "description": "Download a manpower requisition template for HR teams. Plan vacancies, shifts, salaries, locations and joining timelines before starting recruitment.",
+      "isPartOf": {
+        "@id": "https://www.earlyjobs.ai/#website"
+      },
+      "about": {
+        "@id": "https://www.earlyjobs.ai/#organization"
+      },
+      "breadcrumb": {
+        "@id": "https://www.earlyjobs.ai/resources/manpower-requisition-template#breadcrumb"
+      },
+      "mainEntity": {
+        "@id": "https://www.earlyjobs.ai/resources/manpower-requisition-template#resource"
+      },
+      "speakable": {
+        "@type": "SpeakableSpecification",
+        "cssSelector": ["h1", "h2"]
+      },
+      "inLanguage": "en-IN",
+      "dateModified": "2026-11-20"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://www.earlyjobs.ai/resources/manpower-requisition-template#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.earlyjobs.ai/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Resources",
+          "item": "https://www.earlyjobs.ai/resources"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Manpower Requisition Template",
+          "item": "https://www.earlyjobs.ai/resources/manpower-requisition-template"
+        }
+      ]
+    },
+    {
+      "@type": "CreativeWork",
+      "@id": "https://www.earlyjobs.ai/resources/manpower-requisition-template#resource",
+      "name": "EarlyJobs Manpower Requisition Template",
+      "description": "Structured manpower requisition form for documenting vacancies, eligibility, compensation, justification and approvals before recruitment begins.",
+      "provider": {
+        "@id": "https://www.earlyjobs.ai/#organization"
+      },
+      "url": "https://www.earlyjobs.ai/resources/manpower-requisition-template",
+      "encodingFormat": ["application/vnd.openxmlformats-officedocument.wordprocessingml.document", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"]
+    }
+  ]
+}

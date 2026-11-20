@@ -1,0 +1,84 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://www.earlyjobs.ai/pharmaceutical-manufacturing-recruitment#webpage",
+      "url": "https://www.earlyjobs.ai/pharmaceutical-manufacturing-recruitment",
+      "name": "Pharmaceutical Manufacturing Recruitment in India | EarlyJobs",
+      "description": "Hire production operators, packaging staff, junior QC talent and plant support workers for pharmaceutical manufacturing operations in India.",
+      "isPartOf": {
+        "@id": "https://www.earlyjobs.ai/#website"
+      },
+      "about": {
+        "@id": "https://www.earlyjobs.ai/#organization"
+      },
+      "breadcrumb": {
+        "@id": "https://www.earlyjobs.ai/pharmaceutical-manufacturing-recruitment#breadcrumb"
+      },
+      "speakable": {
+        "@type": "SpeakableSpecification",
+        "cssSelector": ["h1", "h2"]
+      },
+      "inLanguage": "en-IN",
+      "dateModified": "2026-11-20"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://www.earlyjobs.ai/pharmaceutical-manufacturing-recruitment#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.earlyjobs.ai/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Pharmaceutical Manufacturing Recruitment",
+          "item": "https://www.earlyjobs.ai/pharmaceutical-manufacturing-recruitment"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://www.earlyjobs.ai/pharmaceutical-manufacturing-recruitment#faq",
+      "url": "https://www.earlyjobs.ai/pharmaceutical-manufacturing-recruitment",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Can EarlyJobs help with entry-level pharmaceutical manufacturing recruitment?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "EarlyJobs can assess requirements for production trainees, packaging staff, warehouse associates and other relevant entry-level positions."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can pharmaceutical companies hire diploma and science graduates?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Eligibility depends on the position, the employer's qualification criteria and the nature of the work."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does EarlyJobs verify pharmaceutical compliance certifications?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Employers remain responsible for mandatory credential verification, regulatory compliance and final hiring decisions unless a specific service is separately agreed."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can manufacturers discuss bulk hiring requirements?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Employers can share their hiring volumes, plant locations, role specifications and joining timelines for assessment."
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,96 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://www.earlyjobs.ai/salary-benchmark-tool#webpage",
+      "url": "https://www.earlyjobs.ai/salary-benchmark-tool",
+      "name": "Salary Benchmarking Tool for Employers | EarlyJobs",
+      "description": "Find fair market rates for roles in high-growth sectors with our Salary Benchmarking Tool. Compare entry-level and mid-level salaries by industry and location to attract the right talent.",
+      "isPartOf": {
+        "@id": "https://www.earlyjobs.ai/#website"
+      },
+      "about": {
+        "@id": "https://www.earlyjobs.ai/#organization"
+      },
+      "breadcrumb": {
+        "@id": "https://www.earlyjobs.ai/salary-benchmark-tool#breadcrumb"
+      },
+      "mainEntity": {
+        "@id": "https://www.earlyjobs.ai/salary-benchmark-tool#tool"
+      },
+      "speakable": {
+        "@type": "SpeakableSpecification",
+        "cssSelector": ["h1", "h2"]
+      },
+      "inLanguage": "en-IN",
+      "dateModified": "2026-11-20"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://www.earlyjobs.ai/salary-benchmark-tool#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.earlyjobs.ai/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Salary Benchmarking Tool",
+          "item": "https://www.earlyjobs.ai/salary-benchmark-tool"
+        }
+      ]
+    },
+    {
+      "@type": "WebApplication",
+      "@id": "https://www.earlyjobs.ai/salary-benchmark-tool#tool",
+      "name": "Salary Benchmarking Tool",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Web",
+      "description": "Employer-facing tool to explore illustrative salary ranges by role, level, industry, and location for high-growth hiring markets.",
+      "provider": {
+        "@id": "https://www.earlyjobs.ai/#organization"
+      },
+      "url": "https://www.earlyjobs.ai/salary-benchmark-tool",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://www.earlyjobs.ai/salary-benchmark-tool#faq",
+      "url": "https://www.earlyjobs.ai/salary-benchmark-tool",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What data does the tool use?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "It aggregates salary survey data from reputable sources, labor statistics, and employer submissions. All figures represent actual paid salaries, not just advertised ranges."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I use this for entry-level roles?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Absolutely. The tool includes entry-level positions and can break out graduate or junior roles separately. This helps budget for new hires fresh out of school."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How often is the data updated?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "We update the database quarterly to reflect market changes (inflation, new regulations, etc.) so you always see current pay ranges."
+          }
+        }
+      ]
+    }
+  ]
+}

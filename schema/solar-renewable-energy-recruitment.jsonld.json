@@ -1,0 +1,45 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://www.earlyjobs.ai/solar-renewable-energy-recruitment#webpage",
+      "url": "https://www.earlyjobs.ai/solar-renewable-energy-recruitment",
+      "name": "Solar & Renewable Energy Recruitment in India | EarlyJobs",
+      "description": "Explore workforce recruitment for solar projects, renewable energy operations, installation support and entry-level technical roles across India.",
+      "isPartOf": {
+        "@id": "https://www.earlyjobs.ai/#website"
+      },
+      "about": {
+        "@id": "https://www.earlyjobs.ai/#organization"
+      },
+      "breadcrumb": {
+        "@id": "https://www.earlyjobs.ai/solar-renewable-energy-recruitment#breadcrumb"
+      },
+      "speakable": {
+        "@type": "SpeakableSpecification",
+        "cssSelector": ["h1", "h2"]
+      },
+      "inLanguage": "en-IN",
+      "dateModified": "2026-11-20"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://www.earlyjobs.ai/solar-renewable-energy-recruitment#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.earlyjobs.ai/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Solar & Renewable Energy Recruitment",
+          "item": "https://www.earlyjobs.ai/solar-renewable-energy-recruitment"
+        }
+      ]
+    }
+  ]
+}

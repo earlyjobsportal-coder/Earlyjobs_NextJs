@@ -1,0 +1,51 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://www.earlyjobs.ai/compare/recruitment-agency-vs-in-house-hiring#webpage",
+      "url": "https://www.earlyjobs.ai/compare/recruitment-agency-vs-in-house-hiring",
+      "name": "Recruitment Agency vs In-House Hiring | Employer Guide",
+      "description": "Compare recruitment agencies and in-house hiring teams across cost, control, candidate sourcing and scalability. Choose the right hiring model for your business.",
+      "isPartOf": {
+        "@id": "https://www.earlyjobs.ai/#website"
+      },
+      "about": {
+        "@id": "https://www.earlyjobs.ai/#organization"
+      },
+      "breadcrumb": {
+        "@id": "https://www.earlyjobs.ai/compare/recruitment-agency-vs-in-house-hiring#breadcrumb"
+      },
+      "speakable": {
+        "@type": "SpeakableSpecification",
+        "cssSelector": ["h1", "h2"]
+      },
+      "inLanguage": "en-IN",
+      "dateModified": "2026-11-20"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://www.earlyjobs.ai/compare/recruitment-agency-vs-in-house-hiring#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.earlyjobs.ai/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Compare",
+          "item": "https://www.earlyjobs.ai/compare/recruitment-agency-vs-in-house-hiring"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Recruitment Agency vs In-House Hiring",
+          "item": "https://www.earlyjobs.ai/compare/recruitment-agency-vs-in-house-hiring"
+        }
+      ]
+    }
+  ]
+}

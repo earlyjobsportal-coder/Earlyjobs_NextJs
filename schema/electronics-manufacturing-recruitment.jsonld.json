@@ -1,0 +1,45 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://www.earlyjobs.ai/electronics-manufacturing-recruitment#webpage",
+      "url": "https://www.earlyjobs.ai/electronics-manufacturing-recruitment",
+      "name": "Electronics Manufacturing Recruitment & EMS Hiring | EarlyJobs",
+      "description": "Explore entry-level recruitment for electronics and EMS manufacturing. Hire assembly operators, production trainees and quality support staff in India.",
+      "isPartOf": {
+        "@id": "https://www.earlyjobs.ai/#website"
+      },
+      "about": {
+        "@id": "https://www.earlyjobs.ai/#organization"
+      },
+      "breadcrumb": {
+        "@id": "https://www.earlyjobs.ai/electronics-manufacturing-recruitment#breadcrumb"
+      },
+      "speakable": {
+        "@type": "SpeakableSpecification",
+        "cssSelector": ["h1", "h2"]
+      },
+      "inLanguage": "en-IN",
+      "dateModified": "2026-11-20"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://www.earlyjobs.ai/electronics-manufacturing-recruitment#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.earlyjobs.ai/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Electronics Manufacturing Recruitment",
+          "item": "https://www.earlyjobs.ai/electronics-manufacturing-recruitment"
+        }
+      ]
+    }
+  ]
+}
