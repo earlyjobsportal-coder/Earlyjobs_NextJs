@@ -5,19 +5,19 @@ import { useState } from "react";
 const faqs = [
   {
     q: "Can EarlyJobs support EV manufacturing recruitment?",
-    a: "Employers can discuss entry-level production, assembly and support requirements for assessment.",
+    a: "EarlyJobs helps automotive and EV plant employers assess entry-level vehicle assembly, trim, materials and quality support hiring. Share OEM line briefs, shift plans and plant locations so candidates match shop-floor expectations—not battery cell roles.",
   },
   {
     q: "Which qualifications are suitable for automotive production roles?",
-    a: "Requirements depend on the position and may include ITI, diploma, engineering or other employer-approved qualifications.",
+    a: "Requirements depend on the station and may include ITI, diploma or employer-approved training paths. Employers typically confirm aptitude for rotational shifts, plant commuting and structured assembly work before selection.",
   },
   {
     q: "Can manufacturers discuss bulk hiring?",
-    a: "Yes. Hiring volumes, plant locations and joining timelines can be shared for assessment.",
+    a: "Yes. Manufacturers can share vacancy counts across body, paint, trim or EV assembly lines, plus target joining dates for ramp or model changeovers. Clear station mapping speeds bulk coordination with plant HR.",
   },
   {
     q: "Who handles technical and safety verification?",
-    a: "Employers remain responsible for mandatory qualifications, assessments and workplace safety requirements.",
+    a: "Employers remain responsible for mandatory trade assessments, PPE training and workplace safety authorisation on the production floor. EarlyJobs supports sourcing and coordination—not final technical certification.",
   },
 ] as const;
 

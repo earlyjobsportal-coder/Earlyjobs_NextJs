@@ -6,17 +6,17 @@ import schema from "@/schema/diagnostic-centre-lab-recruitment.jsonld.json";
 
 export const metadata: Metadata = pageMetadata({
   path: "/diagnostic-centre-lab-recruitment",
-  title: "Diagnostic Centre & Medical Lab Recruitment | EarlyJobs",
+  title: "Diagnostic Centre & Lab Recruitment | EarlyJobs",
   description:
-    "Explore entry-level recruitment for diagnostic centres and medical laboratories. Hire lab assistants, sample collection staff and healthcare operations talent.",
-  ogTitle: "Diagnostic Centre & Medical Lab Recruitment | EarlyJobs",
+    "Hire phlebotomists, lab assistants and shift-lab support for diagnostic chains and medical laboratories across India with EarlyJobs.",
+  ogTitle: "Diagnostic Centre & Lab Recruitment | EarlyJobs",
   ogDescription:
-    "Explore entry-level recruitment for diagnostic centres and medical laboratories. Hire lab assistants, sample collection staff and healthcare operations talent.",
+    "Hire phlebotomists, lab assistants and shift-lab support for diagnostic chains and medical laboratories across India with EarlyJobs.",
   image: "/images/logo.png",
   imageAlt: "EarlyJobs diagnostic centre and medical lab recruitment",
   twitterTitle: "Diagnostic Centre & Medical Lab Recruitment",
   twitterDescription:
-    "Entry-level diagnostic hiring — lab assistants, sample collection and healthcare operations talent.",
+    "Diagnostic hiring — phlebotomy, lab assistants and shift-lab support across India.",
   twitterCard: "summary",
 });
 

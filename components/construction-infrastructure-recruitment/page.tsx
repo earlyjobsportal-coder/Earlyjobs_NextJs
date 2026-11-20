@@ -5,6 +5,7 @@ import { ConstructionFaq } from "@/components/construction-infrastructure-recrui
 import { ConstructionHeroVisual } from "@/components/construction-infrastructure-recruitment/hero-visual";
 import { ConstructionHiringFlow } from "@/components/construction-infrastructure-recruitment/hiring-flow";
 import { ConstructionWorkforceMap } from "@/components/construction-infrastructure-recruitment/workforce-map";
+import { AboutEarlyJobs } from "@/components/seo/about-earlyjobs";
 
 const challenges = [
   "Recruiting near remote project locations.",
@@ -97,21 +98,13 @@ export function ConstructionInfrastructureRecruitmentPage() {
               EarlyJobs · Construction & infrastructure
             </p>
             <h1 className="mt-4 max-w-xl text-[2.35rem] leading-[1.05] font-semibold tracking-[-0.045em] text-neutral-950 sm:text-[3.15rem]">
-              Build the Workforce Behind India&apos;s Infrastructure Projects
+              Construction & Infrastructure Workforce Recruitment
             </h1>
             <p className="mt-5 max-w-xl text-[15px] leading-7 text-neutral-600">
-              Every infrastructure project depends on people working across construction, site
-              coordination, materials handling, equipment operations and administration.
-            </p>
-            <p className="mt-4 max-w-xl text-[15px] leading-7 text-neutral-600">
-              Whether developing industrial facilities, transport infrastructure or commercial
-              buildings, employers must coordinate workforce requirements with project schedules.
-              Hiring challenges become more complex when project locations change, work is
-              distributed across multiple sites or specific technical qualifications are required.
-            </p>
-            <p className="mt-4 max-w-xl text-[15px] leading-7 text-neutral-600">
-              EarlyJobs helps construction and infrastructure employers explore recruitment for
-              relevant entry-level, technical support and project workforce positions.
+              EarlyJobs helps EPC contractors and infrastructure developers in India recruit site
+              support, trades and project administration staff across moving project locations. HR and
+              site leaders use this page to plan temporary peaks, share mobilisation dates and align
+              candidates with on-site safety—not fixed plant roles.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <SolidLink href="#enquiry">Discuss Infrastructure Hiring Requirements</SolidLink>
@@ -132,7 +125,7 @@ export function ConstructionInfrastructureRecruitmentPage() {
             Location-based planning
           </p>
           <h2 className="mt-3 max-w-3xl text-[1.85rem] font-semibold leading-[1.1] tracking-[-0.04em] sm:text-[2.35rem]">
-            Why Infrastructure Recruitment Requires Location-Based Planning
+            What Is Unique About Construction and Infrastructure Hiring?
           </h2>
           <p className="mt-4 max-w-3xl text-[15px] leading-7 text-neutral-600">
             Construction recruitment is closely connected to project geography. A candidate who is
@@ -305,6 +298,8 @@ export function ConstructionInfrastructureRecruitmentPage() {
           </div>
         </div>
       </section>
+
+      <AboutEarlyJobs focus="We support construction and infrastructure employers hiring site workforce and trade roles." />
 
       <section className="border-b border-black/10">
         <div className="page-shell page-section">

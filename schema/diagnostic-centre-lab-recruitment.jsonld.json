@@ -5,8 +5,8 @@
       "@type": "WebPage",
       "@id": "https://www.earlyjobs.ai/diagnostic-centre-lab-recruitment#webpage",
       "url": "https://www.earlyjobs.ai/diagnostic-centre-lab-recruitment",
-      "name": "Diagnostic Centre & Medical Lab Recruitment | EarlyJobs",
-      "description": "Explore entry-level recruitment for diagnostic centres and medical laboratories. Hire lab assistants, sample collection staff and healthcare operations talent.",
+      "name": "Diagnostic Centre & Lab Recruitment | EarlyJobs",
+      "description": "Hire phlebotomists, lab assistants and shift-lab support for diagnostic chains and medical laboratories across India with EarlyJobs.",
       "isPartOf": {
         "@id": "https://www.earlyjobs.ai/#website"
       },
@@ -18,7 +18,10 @@
       },
       "speakable": {
         "@type": "SpeakableSpecification",
-        "cssSelector": ["h1", "h2"]
+        "cssSelector": [
+          "h1",
+          "h2"
+        ]
       },
       "inLanguage": "en-IN",
       "dateModified": "2026-11-20"
@@ -51,7 +54,7 @@
           "name": "Can EarlyJobs help recruit diagnostic centre staff?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Employers can discuss relevant technical, administrative and support vacancies for recruitment assessment."
+            "text": "EarlyJobs helps diagnostic chains and standalone labs assess hiring for phlebotomists, lab assistants, registration staff and branch operations roles. Share shift-lab hours, branch list and credential expectations before sourcing begins."
           }
         },
         {
@@ -59,7 +62,7 @@
           "name": "Can fresh graduates work in diagnostic centres?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Yes, for positions where their qualifications meet the employer's requirements. Clinical roles may require specific credentials."
+            "text": "Graduates may be considered for administrative and some technical support roles when qualifications match employer criteria. Patient-facing or specimen-handling positions typically require employer-verified credentials and training."
           }
         },
         {
@@ -67,7 +70,7 @@
           "name": "Can diagnostic chains discuss hiring across branches?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Yes. Employers can share branch-wise requirements and timelines."
+            "text": "Yes. Multi-city chains can share branch-wise vacancies, early-morning collection needs and joining timelines. Consistent role briefs reduce rework when the same profile is hired across locations."
           }
         },
         {
@@ -75,7 +78,7 @@
           "name": "Does EarlyJobs certify laboratory technicians?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "No certification service should be assumed. Employers must verify all mandatory qualifications."
+            "text": "No certification should be assumed through recruitment. Employers must verify mandatory lab qualifications, registration requirements and clinical training before staff handle specimens or patients."
           }
         }
       ]

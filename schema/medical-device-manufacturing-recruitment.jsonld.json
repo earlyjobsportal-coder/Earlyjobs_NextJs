@@ -5,8 +5,8 @@
       "@type": "WebPage",
       "@id": "https://www.earlyjobs.ai/medical-device-manufacturing-recruitment#webpage",
       "url": "https://www.earlyjobs.ai/medical-device-manufacturing-recruitment",
-      "name": "Medical Device Manufacturing Recruitment India | EarlyJobs",
-      "description": "Explore recruitment for medical device manufacturing, including assembly trainees, production operators, quality support and plant administration roles.",
+      "name": "Medical Device Plant Recruitment India | EarlyJobs",
+      "description": "Hire precision assembly, packaging and quality-documentation staff for medical device manufacturing plants in India through EarlyJobs.",
       "isPartOf": {
         "@id": "https://www.earlyjobs.ai/#website"
       },
@@ -18,7 +18,10 @@
       },
       "speakable": {
         "@type": "SpeakableSpecification",
-        "cssSelector": ["h1", "h2"]
+        "cssSelector": [
+          "h1",
+          "h2"
+        ]
       },
       "inLanguage": "en-IN",
       "dateModified": "2026-11-20"
@@ -51,7 +54,7 @@
           "name": "Can EarlyJobs help recruit medical device production workers?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Employers can discuss suitable assembly, production, packaging and support vacancies."
+            "text": "EarlyJobs helps device manufacturers assess precision assembly, packaging, labelling and quality-documentation hiring. Share clean-area requirements, batch traceability expectations and shift plans before sourcing begins."
           }
         },
         {
@@ -59,7 +62,7 @@
           "name": "Can freshers apply for medical device manufacturing roles?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Some entry-level positions may consider freshers, depending on employer-defined qualifications and training requirements."
+            "text": "Some assembly and packaging trainee roles may consider freshers when employers provide documented work instructions and in-process checks. Roles touching sterilization or validated equipment need employer-defined technical gates."
           }
         },
         {
@@ -67,7 +70,7 @@
           "name": "Can manufacturers discuss bulk hiring?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Yes. Companies can share hiring volumes and expected joining timelines."
+            "text": "Yes. Manufacturers can share SKU ramp schedules, UDI labelling needs and joining targets across consumables or equipment lines. Clear station mapping separates high-volume packaging from specialized assembly."
           }
         },
         {
@@ -75,7 +78,7 @@
           "name": "Who verifies regulated manufacturing qualifications?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Employers remain responsible for mandatory technical assessments, training and regulatory compliance."
+            "text": "Employers remain responsible for technical assessments, quality record training and regulatory documentation discipline. EarlyJobs coordinates hiring discussions—not final compliance verification for regulated device roles."
           }
         }
       ]

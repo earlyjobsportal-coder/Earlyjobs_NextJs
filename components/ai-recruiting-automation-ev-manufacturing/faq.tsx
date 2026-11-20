@@ -5,15 +5,19 @@ import { useState } from "react";
 const faqs = [
   {
     q: "How does AI help hire for EV factories?",
-    a: "AI workflows coordinate high-volume technical hiring by matching candidate skills to specific EV roles, managing shift availability, and automating interview scheduling. This reduces the manual coordination when building teams for new plants.",
+    a: "AI workflows coordinate high-volume EV plant hiring by matching battery, power-electronics, and assembly skills to open roles, capturing shift availability, and scheduling technical interviews. For India's expanding EV and cell manufacturing capacity, automation keeps ramp timelines visible while recruiters focus on safety credentials and hands-on assessments.",
   },
   {
-    q: "Can AI handle international EV hiring?",
-    a: "Yes. Workflows can be configured per location. For example, a candidate not available for Plant A might be routed to Plant B in the same region. Multi-site rules ensure each facility’s requirements are applied.",
+    q: "Can AI handle multiple EV plant locations?",
+    a: "Yes. Workflows can treat each greenfield or expansion site separately — location preferences, relocation willingness, and shift patterns — while applying shared messaging about roles and onboarding. Candidates not suited to one battery or assembly site can be routed to another qualified opening instead of leaving the pipeline.",
   },
   {
     q: "What should EV recruiters automate first?",
-    a: "Start with engagement and screening for hard-to-fill roles (e.g. battery specialists). Automate outreach to passive candidates with relevant backgrounds, and use automated follow-ups for lab test scheduling. This addresses the longest lead-time parts of EV hiring.",
+    a: "Prioritise outreach and screening for bottleneck roles: pack-line technicians, BMS or power-electronics specialists, and quality inspectors tied to go-live dates. Automate status updates for technical tests and plant tours, then add shift scheduling. Keep human sign-off on safety training and equipment-specific qualifications.",
+  },
+  {
+    q: "How is EV manufacturing automation different from general automotive hiring?",
+    a: "EV ramp hiring stresses new battery and e-drive skills, tighter production start dates, and often 24/7 pilot lines — not legacy ICE service roles. Automation should filter for EV-relevant certifications, support multi-skill assessments, and align interview load with cell or module line readiness rather than generic dealership hiring flows.",
   },
 ] as const;
 

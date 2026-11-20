@@ -21,7 +21,10 @@
       },
       "speakable": {
         "@type": "SpeakableSpecification",
-        "cssSelector": ["h1", "h2"]
+        "cssSelector": [
+          "h1",
+          "h2"
+        ]
       },
       "inLanguage": "en-IN",
       "dateModified": "2026-11-20"
@@ -66,6 +69,45 @@
         "price": "0",
         "priceCurrency": "INR"
       }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://www.earlyjobs.ai/tools/job-description-generator#faq",
+      "url": "https://www.earlyjobs.ai/tools/job-description-generator",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is a job description generator?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A job description generator is a free writing tool that turns role details you provide — title, location, responsibilities, and qualifications — into a structured job description draft. EarlyJobs helps Indian employers publish clearer posts faster before sourcing on job boards or WhatsApp hiring channels."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can the generator create descriptions for freshers?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Include entry-level requirements, training provided, and shift or plant details for fresher manufacturing, warehouse, or healthcare support roles. Review statutory wage and contract language with your HR or legal team before posting."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Should generated job descriptions be reviewed?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Always. Verify duties, mandatory certifications, compensation bands, and equal-opportunity statements match your actual role and local rules. Generated text is a starting draft — recruiters should edit tone, benefits, and compliance clauses before publication."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is the Job Description Generator free?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. The EarlyJobs Job Description Generator is free to use online. Edit the draft, then copy or download it for your ATS, careers page, or agency briefing — no account required for basic generation."
+          }
+        }
+      ]
     }
   ]
 }

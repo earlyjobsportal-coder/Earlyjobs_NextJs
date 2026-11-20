@@ -124,12 +124,13 @@ export function HealthcareStaffingAutomationPage() {
               EarlyJobs · Healthcare staffing
             </p>
             <h1 className="mt-4 max-w-xl text-[2.35rem] leading-[1.05] font-semibold tracking-[-0.045em] text-neutral-950 sm:text-[3.15rem]">
-              Transform Healthcare Hiring with Intelligent Automation.
+              AI Staffing Automation for Healthcare Teams
             </h1>
             <p className="mt-5 max-w-xl text-[15px] leading-7 text-neutral-600">
-              AI recruiting automation for healthcare staffing streamlines outreach, credential
-              routing, and interview coordination — so recruiters fill nursing and allied health
-              roles faster while keeping clinicians and applicants informed.
+              EarlyJobs AI recruiting automation helps hospital HR and staffing agencies source
+              nursing and allied health talent, route credential gaps, and schedule interviews —
+              with secure handling of candidate data and human oversight on clinical hiring
+              decisions.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <SolidLink href={ctaHref}>Explore Healthcare Staffing Automation</SolidLink>
@@ -141,6 +142,21 @@ export function HealthcareStaffingAutomationPage() {
             </p>
           </div>
           <HealthcareHeroDashboard />
+        </div>
+      </section>
+
+      <section className="border-b border-black/10 bg-[#f7f8fa]">
+        <div className="page-shell page-section">
+          <h2 className="max-w-3xl text-[1.85rem] font-semibold leading-[1.1] tracking-[-0.04em] sm:text-[2.35rem]">
+            What is AI recruiting automation for healthcare staffing?
+          </h2>
+          <p className="mt-5 max-w-3xl text-[15px] leading-7 text-neutral-600">
+            AI recruiting automation for healthcare staffing is software that runs repeatable hiring
+            steps — outreach, shift-aware screening, credential routing, and interview scheduling —
+            while recruiters approve offers and license decisions. It helps Indian hospitals and
+            staffing firms fill nurses, technicians, and allied roles faster without losing control
+            of sensitive candidate data.
+          </p>
         </div>
       </section>
 
@@ -205,10 +221,10 @@ export function HealthcareStaffingAutomationPage() {
       <section id="automation" className="scroll-mt-24 border-b border-black/10">
         <div className="page-shell page-section">
           <p className="text-[11px] font-semibold tracking-[0.16em] text-brand uppercase">
-            What is AI healthcare staffing automation?
+            Capabilities
           </p>
           <h2 className="mt-3 max-w-3xl text-[1.85rem] font-semibold leading-[1.1] tracking-[-0.04em] sm:text-[2.35rem]">
-            Software workflows that support recurring hiring activities in medical environments.
+            What workflows can healthcare staffing teams automate?
           </h2>
           <ul className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {capabilities.map((item, index) => (
@@ -388,10 +404,11 @@ export function HealthcareStaffingAutomationPage() {
             Fill vacancies faster. Keep communication consistent.
           </h2>
           <p className="mt-5 max-w-3xl text-[15px] leading-7 text-neutral-600">
-            Healthcare occupations are in high demand. The U.S. Bureau of Labor Statistics projects
-            about 1.9 million new healthcare job openings annually through 2034. Facilities need to
-            fill these roles quickly to avoid staffing gaps — and AI-powered recruitment helps
-            hospitals and clinics respond without losing the human care candidates expect.
+            Hospitals and diagnostic chains across India face persistent demand for nurses, lab staff,
+            and allied health roles — often on tight shift timelines. When outreach and scheduling run
+            on manual checklists, vacancies stretch and existing clinical teams carry extra load.
+            Coordinated automation helps staffing teams respond faster while keeping communication
+            professional and respectful for candidates.
           </p>
           <ul className="mt-12 grid gap-8 sm:grid-cols-3">
             {outcomes.map((item) => (
@@ -414,6 +431,20 @@ export function HealthcareStaffingAutomationPage() {
           <div className="mt-10 max-w-3xl">
             <HealthcareFaq />
           </div>
+        </div>
+      </section>
+
+      <section className="border-b border-black/10">
+        <div className="page-shell page-section">
+          <h2 className="text-[1.5rem] font-semibold tracking-[-0.03em] sm:text-[1.75rem]">
+            About EarlyJobs
+          </h2>
+          <p className="mt-4 max-w-3xl text-[15px] leading-7 text-neutral-600">
+            EarlyJobs is an India-focused recruitment platform that helps employers hire for
+            manufacturing plants, healthcare staffing, and other high-volume roles — combining
+            recruiter networks, employer tools, and workflow support for teams that need to fill
+            shifts and credentials-heavy positions reliably.
+          </p>
         </div>
       </section>
 

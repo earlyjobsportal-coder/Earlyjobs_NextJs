@@ -6,17 +6,17 @@ import schema from "@/schema/electronics-manufacturing-recruitment.jsonld.json";
 
 export const metadata: Metadata = pageMetadata({
   path: "/electronics-manufacturing-recruitment",
-  title: "Electronics Manufacturing Recruitment & EMS Hiring | EarlyJobs",
+  title: "Electronics & EMS Manufacturing Recruitment | EarlyJobs",
   description:
-    "Explore entry-level recruitment for electronics and EMS manufacturing. Hire assembly operators, production trainees and quality support staff in India.",
-  ogTitle: "Electronics Manufacturing Recruitment & EMS Hiring | EarlyJobs",
+    "Hire assembly operators, inspection trainees and ESD-aware line staff for electronics and EMS plants in India. EarlyJobs supports high-volume ramp hiring.",
+  ogTitle: "Electronics & EMS Manufacturing Recruitment | EarlyJobs",
   ogDescription:
-    "Explore entry-level recruitment for electronics and EMS manufacturing. Hire assembly operators, production trainees and quality support staff in India.",
+    "Hire assembly operators, inspection trainees and ESD-aware line staff for electronics and EMS plants in India. EarlyJobs supports high-volume ramp hiring.",
   image: "/images/logo.png",
   imageAlt: "EarlyJobs electronics manufacturing recruitment",
   twitterTitle: "Electronics Manufacturing Recruitment & EMS Hiring",
   twitterDescription:
-    "Entry-level EMS staffing — assembly operators, production trainees and quality support in India.",
+    "EMS and electronics plant hiring — assembly, inspection, ESD discipline and high-volume line staffing in India.",
   twitterCard: "summary",
 });
 

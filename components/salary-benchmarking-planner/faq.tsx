@@ -5,19 +5,19 @@ import { useState } from "react";
 const faqs = [
   {
     q: "What is salary benchmarking?",
-    a: "It is the comparison of compensation for similar roles using relevant, reliable salary information.",
+    a: "Salary benchmarking compares compensation for similar roles using consistent assumptions — base pay, location, level, and headcount. The EarlyJobs Salary Benchmarking Planner helps Indian employers model hiring budgets across teams before approvals, without relying on unverified market claims.",
   },
   {
     q: "Does the tool provide live market salary data?",
-    a: "Not in its initial version. It calculates employer-provided salary scenarios unless verified market data is added.",
+    a: "This planner uses salary scenarios and figures you enter, not a live national wage database. Pair it with the Salary Benchmarking Tool for reference ranges, then plug verified numbers from your own surveys or finance here for budget planning.",
   },
   {
     q: "Can employers compare salary budgets across locations?",
-    a: "Yes. Users can enter separate assumptions for different locations.",
+    a: "Yes. Enter separate pay assumptions for metros, tier-2 cities, or multiple plants. The planner rolls up totals so workforce planning and TA leaders see how location mix affects annual hiring spend.",
   },
   {
-    q: "Does the calculator include statutory employment costs?",
-    a: "Only costs explicitly entered or supported by verified calculation logic should be included.",
+    q: "Is the Salary Benchmarking Planner free?",
+    a: "Yes. EarlyJobs offers the Salary Benchmarking Planner free online. Use it with the free Salary Benchmarking Tool when preparing compensation bands for manufacturing, healthcare, or high-volume hiring programs.",
   },
 ] as const;
 

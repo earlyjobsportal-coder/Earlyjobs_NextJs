@@ -5,23 +5,23 @@ import { useState } from "react";
 const faqs = [
   {
     q: "What is the purpose of a manpower requisition form?",
-    a: "It documents a hiring requirement and supports internal approval before recruitment begins.",
+    a: "It documents an approved hiring need—headcount, budget and justification—before recruiters source candidates. The EarlyJobs template keeps department, HR and finance aligned on one record for India-based plant and corporate hiring.",
   },
   {
     q: "Who prepares a manpower requisition?",
-    a: "Usually the requesting department or hiring manager, with HR involvement.",
+    a: "Typically the hiring manager or department head drafts the request, while HR standardises fields and finance confirms budget. Approvers sign off before the requisition reaches talent acquisition or an external partner.",
   },
   {
     q: "Can this template be used for factory hiring?",
-    a: "Yes. It can be adapted for production, warehouse, technical and support roles.",
+    a: "Yes. Add shift patterns, plant location and safety notes for production, warehouse or maintenance roles. The same structure works across Indian manufacturing clusters when internal policy fields are appended.",
   },
   {
     q: "Is a manpower requisition the same as a job description?",
-    a: "No. A requisition requests hiring approval, while a job description explains the responsibilities and requirements of a position.",
+    a: "No. A requisition requests approval to hire and records budget; a job description explains duties and qualifications for applicants. Keep both documents linked but distinct in your workflow.",
   },
   {
     q: "Can it be used for multiple vacancies?",
-    a: "Yes. A requisition can cover multiple openings when they share appropriate role and approval requirements.",
+    a: "Yes. Record total headcount and shared eligibility when openings share one approval. Split requisitions when locations, grades or budgets differ materially.",
   },
 ] as const;
 

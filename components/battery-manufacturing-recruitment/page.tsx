@@ -4,14 +4,15 @@ import { IndustryEnquiryForm } from "@/components/industry-hiring/enquiry-form";
 import { BatteryFaq } from "@/components/battery-manufacturing-recruitment/faq";
 import { BatteryHeroVisual } from "@/components/battery-manufacturing-recruitment/hero-visual";
 import { BatteryWorkforceMap } from "@/components/battery-manufacturing-recruitment/workforce-map";
+import { AboutEarlyJobs } from "@/components/seo/about-earlyjobs";
 
 const challenges = [
-  "Identifying candidates near new industrial facilities.",
-  "Recruiting production trainees for multiple shifts.",
-  "Finding diploma and ITI-qualified applicants.",
-  "Communicating safety-sensitive job requirements.",
-  "Coordinating recruitment during plant expansion.",
-  "Managing replacement hiring alongside new headcount.",
+  "Staffing humidity-controlled dry rooms without disrupting moisture protocols.",
+  "Hiring electrode, coating and cell-assembly trainees for phased giga-factory ramps.",
+  "Finding diploma and ITI talent near emerging battery industrial corridors.",
+  "Communicating chemical, electrical and high-voltage safety expectations early.",
+  "Separating cell, module and pack vacancies to avoid mismatched applicants.",
+  "Coordinating joining dates with clean-area qualification timelines.",
 ] as const;
 
 const roleCards = [
@@ -73,14 +74,14 @@ const process = [
 
 const related = [
   {
-    href: "/semiconductor-electronics-component-recruitment",
-    title: "Semiconductor & Electronics Component Recruitment",
-    body: "Explore eligibility-led hiring for semiconductor and component manufacturing facilities.",
+    href: "/ev-automotive-manufacturing-recruitment",
+    title: "EV & Automotive Manufacturing Recruitment",
+    body: "Explore vehicle assembly and OEM line hiring—separate from cell manufacturing.",
   },
   {
     href: "/electronics-manufacturing-recruitment",
     title: "Electronics Manufacturing Recruitment",
-    body: "See how EMS and electronics plants structure production and quality workforce pipelines.",
+    body: "See EMS precision-line hiring for allied industrial employers.",
   },
   {
     href: "/resources/90-day-workforce-hiring-plan",
@@ -107,15 +108,13 @@ export function BatteryManufacturingRecruitmentPage() {
               EarlyJobs · Battery manufacturing
             </p>
             <h1 className="mt-4 max-w-xl text-[2.35rem] leading-[1.05] font-semibold tracking-[-0.045em] text-neutral-950 sm:text-[3.15rem]">
-              Build the Workforce Behind India&apos;s Battery Manufacturing Industry
+              Battery Cell & Pack Manufacturing Recruitment
             </h1>
             <p className="mt-5 max-w-xl text-[15px] leading-7 text-neutral-600">
-              Battery manufacturing brings together industrial production, precision assembly,
-              materials management and strict workplace safety requirements.
-            </p>
-            <p className="mt-4 max-w-xl text-[15px] leading-7 text-neutral-600">
-              EarlyJobs helps battery manufacturing employers explore recruitment for relevant
-              entry-level production, operational and plant support roles.
+              EarlyJobs helps battery cell and pack plants in India recruit electrode, assembly and
+              dry-room support staff—not vehicle trim lines. Operations and HR teams use this page to
+              plan phased hiring, clarify moisture-control areas and align candidates with cell
+              manufacturing safety expectations.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <SolidLink href="#enquiry">Discuss Battery Plant Hiring</SolidLink>
@@ -134,22 +133,15 @@ export function BatteryManufacturingRecruitmentPage() {
         <div className="page-shell page-section grid gap-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-16">
           <div>
             <h2 className="max-w-md text-[1.85rem] font-semibold leading-[1.1] tracking-[-0.04em] sm:text-[2.35rem]">
-              New lines and expansions need people who can join on schedule.
+              What Is Unique About Battery Manufacturing Hiring?
             </h2>
           </div>
           <div className="space-y-5 text-[15px] leading-7 text-neutral-600">
             <p>
-              For manufacturers establishing new facilities or expanding existing production lines,
-              workforce availability is an important part of operational planning.
-            </p>
-            <p>
-              A production line may require assembly trainees, materials personnel, quality support
-              workers and technically qualified staff. Each position has different responsibilities
-              and eligibility requirements.
-            </p>
-            <p>
-              The objective is to connect clearly defined workforce requirements with candidates
-              whose qualifications, availability and career interests match the opportunity.
+              Battery hiring centres on cell chemistry lines, electrode coating and dry-room
+              discipline—not automotive final assembly. Employers must staff moisture-sensitive areas,
+              communicate chemical and HV safety, and phase headcount with giga-factory commissioning.
+              EarlyJobs sources against those cell-plant constraints, distinct from EV vehicle roles.
             </p>
           </div>
         </div>
@@ -350,6 +342,8 @@ export function BatteryManufacturingRecruitmentPage() {
           </div>
         </div>
       </section>
+
+      <AboutEarlyJobs focus="We support battery cell and module plants hiring production and dry-room support roles." />
 
       <section className="border-b border-black/10 bg-[#f7f8fa]">
         <div className="page-shell page-section">

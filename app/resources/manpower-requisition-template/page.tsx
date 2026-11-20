@@ -8,10 +8,10 @@ export const metadata: Metadata = pageMetadata({
   path: "/resources/manpower-requisition-template",
   title: "Free Manpower Requisition Form & Hiring Template | EarlyJobs",
   description:
-    "Download a manpower requisition template for HR teams. Plan vacancies, shifts, salaries, locations and joining timelines before starting recruitment.",
+    "Download the free EarlyJobs manpower requisition template for Indian HR teams. Document vacancies, shifts, budgets, locations and approvals before recruitment starts.",
   ogTitle: "Free Manpower Requisition Form & Hiring Template | EarlyJobs",
   ogDescription:
-    "Download a manpower requisition template for HR teams. Plan vacancies, shifts, salaries, locations and joining timelines before starting recruitment.",
+    "Download the free EarlyJobs manpower requisition template for Indian HR teams. Document vacancies, shifts, budgets, locations and approvals before recruitment starts.",
   image: "/images/logo.png",
   imageAlt: "EarlyJobs Manpower Requisition Template",
   twitterTitle: "Free Manpower Requisition Form",

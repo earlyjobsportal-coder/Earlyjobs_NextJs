@@ -128,12 +128,13 @@ export function ManufacturingAutomationPage() {
               EarlyJobs · Manufacturing hiring
             </p>
             <h1 className="mt-4 max-w-xl text-[2.35rem] leading-[1.05] font-semibold tracking-[-0.045em] text-neutral-950 sm:text-[3.15rem]">
-              Keep Your Plant Running with Smarter Hiring Workflows.
+              AI-Driven Recruitment for Manufacturing Plants
             </h1>
             <p className="mt-5 max-w-xl text-[15px] leading-7 text-neutral-600">
-              AI recruiting automation for manufacturing helps teams coordinate candidate engagement,
-              shift matching, and handoffs across plants — so factories fill roles more consistently
-              and avoid production slowdowns.
+              EarlyJobs AI recruiting automation helps plant HR and operations teams run high-volume
+              hiring — shift-aware outreach, skill and certification routing, and interview scheduling
+              across multiple factories — so production lines staff up without recruiters drowning in
+              spreadsheets.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <SolidLink href={ctaHref}>Explore Manufacturing Recruiting Automation</SolidLink>
@@ -144,6 +145,21 @@ export function ManufacturingAutomationPage() {
             </p>
           </div>
           <ManufacturingHeroDashboard />
+        </div>
+      </section>
+
+      <section className="border-b border-black/10 bg-[#f7f8fa]">
+        <div className="page-shell page-section">
+          <h2 className="max-w-3xl text-[1.85rem] font-semibold leading-[1.1] tracking-[-0.04em] sm:text-[2.35rem]">
+            What is AI recruiting automation for manufacturing?
+          </h2>
+          <p className="mt-5 max-w-3xl text-[15px] leading-7 text-neutral-600">
+            AI recruiting automation for manufacturing is software that coordinates high-volume plant
+            hiring — collecting applications, matching shift preferences, flagging missing safety or
+            trade certifications, and scheduling interviews — while recruiters own final selection and
+            compliance. It helps Indian factories and staffing partners fill operator, technician, and
+            assembly roles on aggressive production timelines.
+          </p>
         </div>
       </section>
 
@@ -203,10 +219,10 @@ export function ManufacturingAutomationPage() {
       <section id="automation" className="scroll-mt-24 border-b border-black/10">
         <div className="page-shell page-section">
           <p className="text-[11px] font-semibold tracking-[0.16em] text-brand uppercase">
-            What is manufacturing recruiting automation?
+            Capabilities
           </p>
           <h2 className="mt-3 max-w-3xl text-[1.85rem] font-semibold leading-[1.1] tracking-[-0.04em] sm:text-[2.35rem]">
-            Software and AI-enhanced workflows built for industrial hiring.
+            What workflows can manufacturing hiring teams automate?
           </h2>
           <ul className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {capabilities.map((item, index) => (
@@ -401,6 +417,20 @@ export function ManufacturingAutomationPage() {
           <div className="mt-10 max-w-3xl">
             <ManufacturingFaq />
           </div>
+        </div>
+      </section>
+
+      <section className="border-b border-black/10">
+        <div className="page-shell page-section">
+          <h2 className="text-[1.5rem] font-semibold tracking-[-0.03em] sm:text-[1.75rem]">
+            About EarlyJobs
+          </h2>
+          <p className="mt-4 max-w-3xl text-[15px] leading-7 text-neutral-600">
+            EarlyJobs is an India-focused recruitment platform that helps employers hire for
+            manufacturing plants, healthcare staffing, and other high-volume roles — combining
+            recruiter networks, employer tools, and workflow support for shift-based and multi-site
+            hiring programs.
+          </p>
         </div>
       </section>
 

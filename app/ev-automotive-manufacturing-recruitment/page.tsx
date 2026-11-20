@@ -6,17 +6,17 @@ import schema from "@/schema/ev-automotive-manufacturing-recruitment.jsonld.json
 
 export const metadata: Metadata = pageMetadata({
   path: "/ev-automotive-manufacturing-recruitment",
-  title: "EV & Automotive Manufacturing Recruitment in India | EarlyJobs",
+  title: "EV & Automotive Plant Recruitment India | EarlyJobs",
   description:
-    "Hire entry-level talent for EV and automotive manufacturing. Explore recruitment for assembly operators, production trainees, quality assistants and plant support roles.",
-  ogTitle: "EV & Automotive Manufacturing Recruitment in India | EarlyJobs",
+    "Hire vehicle assembly operators, production trainees and plant support staff for EV and automotive plants in India through EarlyJobs.",
+  ogTitle: "EV & Automotive Plant Recruitment India | EarlyJobs",
   ogDescription:
-    "Hire entry-level talent for EV and automotive manufacturing. Explore recruitment for assembly operators, production trainees, quality assistants and plant support roles.",
+    "Hire vehicle assembly operators, production trainees and plant support staff for EV and automotive plants in India through EarlyJobs.",
   image: "/images/logo.png",
   imageAlt: "EarlyJobs EV and automotive manufacturing recruitment",
   twitterTitle: "EV & Automotive Manufacturing Recruitment in India",
   twitterDescription:
-    "Entry-level automotive plant hiring — assembly, quality, materials and EV production support.",
+    "EV and automotive plant hiring — assembly, quality and materials support across India.",
   twitterCard: "summary",
 });
 

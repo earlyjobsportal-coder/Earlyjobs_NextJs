@@ -117,12 +117,13 @@ export function SalaryBenchmarkToolPage() {
               EarlyJobs · Compensation
             </p>
             <h1 className="mt-4 max-w-xl text-[2.35rem] leading-[1.05] font-semibold tracking-[-0.045em] text-neutral-950 sm:text-[3.15rem]">
-              Stay Competitive with Real-Time Salary Data.
+              Salary Benchmarking Tool
             </h1>
             <p className="mt-5 max-w-xl text-[15px] leading-7 text-neutral-600">
-              Find fair market rates for roles in high-growth sectors with our Salary Benchmarking
-              Tool. Compare entry-level and mid-level salaries by industry and location to attract
-              the right talent.
+              The EarlyJobs Salary Benchmarking Tool is a free browser tool that shows illustrative
+              pay ranges by role, industry, and location — so HR and recruiting teams in India can
+              set competitive offers for manufacturing, healthcare, EV, and technology hiring without
+              guessing compensation bands.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <SolidLink href={ctaHref}>Explore the Salary Benchmarking Tool</SolidLink>
@@ -134,6 +135,20 @@ export function SalaryBenchmarkToolPage() {
             </p>
           </div>
           <SalaryHeroMockup />
+        </div>
+      </section>
+
+      <section className="border-b border-black/10 bg-[#f7f8fa]">
+        <div className="page-shell page-section">
+          <h2 className="max-w-3xl text-[1.85rem] font-semibold leading-[1.1] tracking-[-0.04em] sm:text-[2.35rem]">
+            What is salary benchmarking?
+          </h2>
+          <p className="mt-5 max-w-3xl text-[15px] leading-7 text-neutral-600">
+            Salary benchmarking compares pay for similar roles using role, level, industry, and
+            location inputs. This tool surfaces low, median, and high illustrative bands for
+            planning — you should still validate offers against your budget and trusted compensation
+            sources before extending them to candidates.
+          </p>
         </div>
       </section>
 
@@ -279,6 +294,19 @@ export function SalaryBenchmarkToolPage() {
           <div className="mt-10 max-w-3xl">
             <SalaryFaq />
           </div>
+        </div>
+      </section>
+
+      <section className="border-b border-black/10">
+        <div className="page-shell page-section">
+          <h2 className="text-[1.5rem] font-semibold tracking-[-0.03em] sm:text-[1.75rem]">
+            About EarlyJobs
+          </h2>
+          <p className="mt-4 max-w-3xl text-[15px] leading-7 text-neutral-600">
+            EarlyJobs is an India-focused recruitment platform that helps employers hire for
+            manufacturing plants, healthcare staffing, and other high-volume roles — with free salary
+            and ROI tools plus recruiter support when you need to move faster.
+          </p>
         </div>
       </section>
 

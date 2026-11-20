@@ -5,19 +5,19 @@ import { useState } from "react";
 const faqs = [
   {
     q: "What is a 90-day recruitment plan?",
-    a: "It is a three-month framework for organizing vacancies, recruitment activities and hiring milestones.",
+    a: "It is a three-month framework that ties approved headcount to sourcing, interview milestones and joining targets. The EarlyJobs template helps Indian HR teams phase work instead of treating hiring as a continuous emergency.",
   },
   {
     q: "Who should prepare the plan?",
-    a: "HR teams typically coordinate it with department heads, finance and relevant hiring managers.",
+    a: "HR usually owns the document, with input from department heads, finance and hiring managers. Plant or branch leaders add location-specific volumes and shift coverage before week one.",
   },
   {
     q: "Can it support bulk recruitment?",
-    a: "Yes. The template can be adapted for multiple vacancies and locations.",
+    a: "Yes. Map multiple vacancies and sites across the same 90-day calendar, with owners per phase. Pair the plan with the Bulk Hiring Checklist when volumes spike in a single month.",
   },
   {
     q: "Does the plan guarantee hiring targets?",
-    a: "No. It is a planning framework, and outcomes depend on candidate availability, employer decisions and other factors.",
+    a: "No. It is a planning tool only. Outcomes depend on candidate supply, employer selection speed, compensation decisions and operational readiness—not on the template itself.",
   },
 ] as const;
 

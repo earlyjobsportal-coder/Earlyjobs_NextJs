@@ -4,6 +4,7 @@ import { IndustryEnquiryForm } from "@/components/industry-hiring/enquiry-form";
 import { AutomotiveFaq } from "@/components/ev-automotive-manufacturing-recruitment/faq";
 import { AutomotiveHeroVisual } from "@/components/ev-automotive-manufacturing-recruitment/hero-visual";
 import { AutomotiveProductionLineMap } from "@/components/ev-automotive-manufacturing-recruitment/production-line-map";
+import { AboutEarlyJobs } from "@/components/seo/about-earlyjobs";
 
 const challenges = [
   "Finding entry-level candidates near industrial locations.",
@@ -28,8 +29,8 @@ const roleCards = [
     body: "Inventory assistants, material handlers, warehouse associates and dispatch support.",
   },
   {
-    title: "EV and battery operations",
-    body: "Entry-level technical support and production trainee positions, subject to qualifications, safety training and experience required by each employer.",
+    title: "Trim and chassis support",
+    body: "Entry-level technical support on vehicle assembly and trim lines—distinct from battery cell plants—subject to qualifications, safety training and employer assessments.",
   },
 ] as const;
 
@@ -107,15 +108,13 @@ export function EvAutomotiveManufacturingRecruitmentPage() {
               EarlyJobs · EV & automotive manufacturing
             </p>
             <h1 className="mt-4 max-w-xl text-[2.35rem] leading-[1.05] font-semibold tracking-[-0.045em] text-neutral-950 sm:text-[3.15rem]">
-              Build the Workforce Behind the Next Generation of Automotive Manufacturing
+              EV & Automotive Manufacturing Recruitment for Plant Employers
             </h1>
             <p className="mt-5 max-w-xl text-[15px] leading-7 text-neutral-600">
-              Every vehicle that leaves a manufacturing facility depends on people working across
-              assembly, production, inspection, materials and plant operations.
-            </p>
-            <p className="mt-4 max-w-xl text-[15px] leading-7 text-neutral-600">
-              EarlyJobs helps automotive and EV manufacturers explore structured recruitment for
-              entry-level production and plant support positions.
+              EarlyJobs helps automotive and EV plant employers in India recruit vehicle assembly
+              operators, production trainees and materials support on OEM lines. Plant HR teams use
+              this page to plan shift hiring, clarify station briefs and staff ramp-ups—not cell
+              manufacturing or dry-room battery roles.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <SolidLink href="#enquiry">Discuss Automotive Hiring Requirements</SolidLink>
@@ -134,19 +133,15 @@ export function EvAutomotiveManufacturingRecruitmentPage() {
         <div className="page-shell page-section grid gap-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-16">
           <div>
             <h2 className="max-w-md text-[1.85rem] font-semibold leading-[1.1] tracking-[-0.04em] sm:text-[2.35rem]">
-              Capacity expansion needs people who can join the line.
+              What Is Unique About EV and Automotive Plant Hiring?
             </h2>
           </div>
           <div className="space-y-5 text-[15px] leading-7 text-neutral-600">
             <p>
-              As automotive manufacturers expand capacity, introduce new vehicle platforms or
-              establish electric vehicle production lines, workforce requirements evolve alongside
-              their operations.
-            </p>
-            <p>
-              Recruitment teams must identify candidates who meet educational requirements,
-              understand factory working conditions and can join within the expected production
-              timeline.
+              Auto plant hiring is takt-driven assembly work—body, paint, trim and final EV lines—not
+              electrode or dry-room production. Employers need operators who accept rotational shifts,
+              commute to industrial corridors and join before model or platform ramp dates. EarlyJobs
+              matches sourcing to those vehicle-assembly constraints.
             </p>
           </div>
         </div>
@@ -342,6 +337,8 @@ export function EvAutomotiveManufacturingRecruitmentPage() {
           </div>
         </div>
       </section>
+
+      <AboutEarlyJobs focus="We support EV and automotive plants hiring for vehicle assembly and related plant roles." />
 
       <section className="border-b border-black/10 bg-[#f7f8fa]">
         <div className="page-shell page-section">

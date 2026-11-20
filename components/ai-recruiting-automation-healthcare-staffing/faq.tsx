@@ -5,15 +5,19 @@ import { useState } from "react";
 const faqs = [
   {
     q: "How does AI recruiting automation help healthcare staffing?",
-    a: "AI automation manages recurring tasks like outreach, scheduling, and follow-ups. It ensures candidates hear back quickly and consistently, while routing complex decisions — license checks and interview decisions — to human recruiters. This keeps hiring moving efficiently without cutting corners on patient-care standards.",
+    a: "AI automation handles repeatable tasks — first-response outreach, interview scheduling, credential reminders, and status updates — so candidates hear back quickly. Complex decisions such as license verification, clinical fit, and offer approval stay with recruiters and credentialing teams, helping Indian hospitals and staffing firms move pipelines without cutting corners on patient-care standards.",
   },
   {
     q: "Can AI check nurse licenses automatically?",
-    a: "It depends on integrations. Some systems can verify licenses against official databases and flag missing credentials. However, final verification and compliance approval should remain with trained staff.",
+    a: "Some workflows can flag missing or expired licenses when integrated with official registries or document uploads, but outcomes depend on your data sources and region. Final verification, compliance sign-off, and any offer tied to clinical practice should remain with trained HR or credentialing staff — automation should surface gaps early, not replace professional judgment.",
   },
   {
     q: "What should healthcare recruiters automate first?",
-    a: "Start with the most repetitive, time-consuming tasks. For example, automate interview scheduling and basic candidate communications — these have clear rules and big time savings. Then progressively automate follow-ups and notifications. Always keep recruiters in the loop for any decision affecting patient care.",
+    a: "Start with high-volume, rule-based steps: interview scheduling, acknowledgement messages, shift-availability questions, and follow-ups on pending paperwork. These save recruiter hours quickly. Add credential routing next. Keep human review on any step that affects patient safety, compensation, or regulated employment data.",
+  },
+  {
+    q: "How is candidate data handled in healthcare recruiting workflows?",
+    a: "Healthcare hiring involves sensitive employment and sometimes health-related information. EarlyJobs workflows are designed for secure handling of candidate data — access controls, audited messaging, and human checkpoints before offers. Automation should limit what is collected to what hiring requires and route sensitive questions to trained recruiters.",
   },
 ] as const;
 

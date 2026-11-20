@@ -5,19 +5,19 @@ import { useState } from "react";
 const faqs = [
   {
     q: "Can EarlyJobs help recruit diagnostic centre staff?",
-    a: "Employers can discuss relevant technical, administrative and support vacancies for recruitment assessment.",
+    a: "EarlyJobs helps diagnostic chains and standalone labs assess hiring for phlebotomists, lab assistants, registration staff and branch operations roles. Share shift-lab hours, branch list and credential expectations before sourcing begins.",
   },
   {
     q: "Can fresh graduates work in diagnostic centres?",
-    a: "Yes, for positions where their qualifications meet the employer's requirements. Clinical roles may require specific credentials.",
+    a: "Graduates may be considered for administrative and some technical support roles when qualifications match employer criteria. Patient-facing or specimen-handling positions typically require employer-verified credentials and training.",
   },
   {
     q: "Can diagnostic chains discuss hiring across branches?",
-    a: "Yes. Employers can share branch-wise requirements and timelines.",
+    a: "Yes. Multi-city chains can share branch-wise vacancies, early-morning collection needs and joining timelines. Consistent role briefs reduce rework when the same profile is hired across locations.",
   },
   {
     q: "Does EarlyJobs certify laboratory technicians?",
-    a: "No certification service should be assumed. Employers must verify all mandatory qualifications.",
+    a: "No certification should be assumed through recruitment. Employers must verify mandatory lab qualifications, registration requirements and clinical training before staff handle specimens or patients.",
   },
 ] as const;
 

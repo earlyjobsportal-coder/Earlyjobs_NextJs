@@ -5,19 +5,19 @@ import { useState } from "react";
 const faqs = [
   {
     q: "What is a job description generator?",
-    a: "It is a tool that turns employer-provided role details into an organised job description draft.",
+    a: "A job description generator is a free writing tool that turns role details you provide — title, location, responsibilities, and qualifications — into a structured job description draft. EarlyJobs helps Indian employers publish clearer posts faster before sourcing on job boards or WhatsApp hiring channels.",
   },
   {
     q: "Can the generator create descriptions for freshers?",
-    a: "Yes. It can support entry-level roles when the employer supplies appropriate requirements.",
+    a: "Yes. Include entry-level requirements, training provided, and shift or plant details for fresher manufacturing, warehouse, or healthcare support roles. Review statutory wage and contract language with your HR or legal team before posting.",
   },
   {
     q: "Should generated job descriptions be reviewed?",
-    a: "Yes. Employers should verify responsibilities, qualifications, compensation and legal compliance.",
+    a: "Always. Verify duties, mandatory certifications, compensation bands, and equal-opportunity statements match your actual role and local rules. Generated text is a starting draft — recruiters should edit tone, benefits, and compliance clauses before publication.",
   },
   {
-    q: "Can the job description be edited?",
-    a: "Yes. You can edit the draft before copying or downloading the result.",
+    q: "Is the Job Description Generator free?",
+    a: "Yes. The EarlyJobs Job Description Generator is free to use online. Edit the draft, then copy or download it for your ATS, careers page, or agency briefing — no account required for basic generation.",
   },
 ] as const;
 

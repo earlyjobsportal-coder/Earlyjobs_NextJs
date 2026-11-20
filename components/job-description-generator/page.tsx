@@ -98,16 +98,13 @@ export function JobDescriptionGeneratorPage() {
             EarlyJobs · Employer tools
           </p>
           <h1 className="mt-4 max-w-3xl text-[2.35rem] leading-[1.05] font-semibold tracking-[-0.045em] text-neutral-950 sm:text-[3.15rem]">
-            Create Clearer Job Descriptions Before You Start Hiring
+            Job Description Generator
           </h1>
           <p className="mt-5 max-w-2xl text-[15px] leading-7 text-neutral-600">
-            A job description is often the first detailed explanation a candidate receives about an
-            opportunity. When it is vague, incomplete or unrealistic, employers may attract
-            applicants who misunderstand the position.
-          </p>
-          <p className="mt-4 max-w-2xl text-[15px] leading-7 text-neutral-600">
-            The EarlyJobs Job Description Generator helps employers prepare editable job
-            descriptions for entry-level and junior positions.
+            The EarlyJobs Job Description Generator is a free tool that turns your role title,
+            industry, responsibilities, and qualifications into an editable job description draft —
+            so Indian employers can publish clearer posts for plant, warehouse, healthcare support,
+            and junior roles before sourcing begins.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <SolidLink href="#generator">Create a Job Description</SolidLink>
@@ -297,6 +294,19 @@ export function JobDescriptionGeneratorPage() {
           <div className="mt-10 max-w-3xl">
             <JobDescriptionFaq />
           </div>
+        </div>
+      </section>
+
+      <section className="border-b border-black/10">
+        <div className="page-shell page-section">
+          <h2 className="text-[1.5rem] font-semibold tracking-[-0.03em] sm:text-[1.75rem]">
+            About EarlyJobs
+          </h2>
+          <p className="mt-4 max-w-3xl text-[15px] leading-7 text-neutral-600">
+            EarlyJobs is an India-focused recruitment platform that helps employers hire for
+            manufacturing plants, healthcare staffing, and other high-volume roles — with free job
+            description and planning tools plus recruiter networks when you are ready to source.
+          </p>
         </div>
       </section>
 

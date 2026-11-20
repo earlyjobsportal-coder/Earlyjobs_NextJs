@@ -4,6 +4,7 @@ import { IndustryEnquiryForm } from "@/components/industry-hiring/enquiry-form";
 import { WarehouseFaq } from "@/components/warehouse-distribution-centre-recruitment/faq";
 import { WarehouseHeroVisual } from "@/components/warehouse-distribution-centre-recruitment/hero-visual";
 import { WarehouseWorkflow } from "@/components/warehouse-distribution-centre-recruitment/workflow";
+import { AboutEarlyJobs } from "@/components/seo/about-earlyjobs";
 
 const challenges = [
   "Recruiting near warehouses outside major city centres.",
@@ -116,21 +117,13 @@ export function WarehouseDistributionCentreRecruitmentPage() {
               EarlyJobs · Warehouse & distribution
             </p>
             <h1 className="mt-4 max-w-xl text-[2.35rem] leading-[1.05] font-semibold tracking-[-0.045em] text-neutral-950 sm:text-[3.15rem]">
-              Keep Warehouse Operations Moving with the Right Workforce
+              Warehouse & Distribution Centre Recruitment in India
             </h1>
             <p className="mt-5 max-w-xl text-[15px] leading-7 text-neutral-600">
-              Warehouse operations depend on people working across receiving, storage, picking,
-              packing, inventory and dispatch.
-            </p>
-            <p className="mt-4 max-w-xl text-[15px] leading-7 text-neutral-600">
-              When workforce availability falls below operational requirements, existing teams may
-              face additional pressure. For logistics and distribution employers, recruitment must
-              account for shift patterns, facility locations, physical job requirements and expected
-              joining timelines.
-            </p>
-            <p className="mt-4 max-w-xl text-[15px] leading-7 text-neutral-600">
-              EarlyJobs helps employers explore entry-level recruitment for warehouse and
-              distribution centre operations.
+              EarlyJobs helps logistics and fulfilment employers in India recruit pickers, packers,
+              inventory assistants and dispatch staff for warehouses and distribution centres. Operations
+              and HR teams use this page to plan shift coverage, seasonal peaks and multi-facility hiring
+              near industrial and e-commerce corridors.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <SolidLink href="#enquiry">Discuss Warehouse Hiring Requirements</SolidLink>
@@ -142,6 +135,24 @@ export function WarehouseDistributionCentreRecruitmentPage() {
             </p>
           </div>
           <WarehouseHeroVisual />
+        </div>
+      </section>
+
+      <section className="border-b border-black/10">
+        <div className="page-shell page-section grid gap-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-16">
+          <div>
+            <h2 className="max-w-md text-[1.85rem] font-semibold leading-[1.1] tracking-[-0.04em] sm:text-[2.35rem]">
+              What Is Unique About Warehouse and DC Hiring?
+            </h2>
+          </div>
+          <div className="space-y-5 text-[15px] leading-7 text-neutral-600">
+            <p>
+              Warehouse hiring is shift-led fulfilment—pick, pack, count and dispatch—not desk roles.
+              Employers juggle night shifts, seasonal spikes and multi-DC coverage while keeping
+              attendance reliable on the floor. EarlyJobs aligns sourcing with those distribution-centre
+              realities across India&apos;s logistics hubs.
+            </p>
+          </div>
         </div>
       </section>
 
@@ -338,6 +349,8 @@ export function WarehouseDistributionCentreRecruitmentPage() {
           </div>
         </div>
       </section>
+
+      <AboutEarlyJobs focus="We support warehouses and DCs hiring pickers, packers, inventory and dispatch teams." />
 
       <section className="border-b border-black/10">
         <div className="page-shell page-section">

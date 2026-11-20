@@ -5,19 +5,19 @@ import { useState } from "react";
 const faqs = [
   {
     q: "Can EarlyJobs help recruit medical device production workers?",
-    a: "Employers can discuss suitable assembly, production, packaging and support vacancies.",
+    a: "EarlyJobs helps device manufacturers assess precision assembly, packaging, labelling and quality-documentation hiring. Share clean-area requirements, batch traceability expectations and shift plans before sourcing begins.",
   },
   {
     q: "Can freshers apply for medical device manufacturing roles?",
-    a: "Some entry-level positions may consider freshers, depending on employer-defined qualifications and training requirements.",
+    a: "Some assembly and packaging trainee roles may consider freshers when employers provide documented work instructions and in-process checks. Roles touching sterilization or validated equipment need employer-defined technical gates.",
   },
   {
     q: "Can manufacturers discuss bulk hiring?",
-    a: "Yes. Companies can share hiring volumes and expected joining timelines.",
+    a: "Yes. Manufacturers can share SKU ramp schedules, UDI labelling needs and joining targets across consumables or equipment lines. Clear station mapping separates high-volume packaging from specialized assembly.",
   },
   {
     q: "Who verifies regulated manufacturing qualifications?",
-    a: "Employers remain responsible for mandatory technical assessments, training and regulatory compliance.",
+    a: "Employers remain responsible for technical assessments, quality record training and regulatory documentation discipline. EarlyJobs coordinates hiring discussions—not final compliance verification for regulated device roles.",
   },
 ] as const;
 

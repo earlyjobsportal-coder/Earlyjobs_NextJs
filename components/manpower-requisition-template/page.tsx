@@ -62,19 +62,19 @@ const steps = [
 
 const related = [
   {
-    href: "/ai-recruiting-automation-manufacturing",
-    title: "Manufacturing Recruitment",
-    body: "See how manufacturers organise high-volume production hiring.",
+    href: "/resources/bulk-hiring-checklist",
+    title: "Bulk Hiring Checklist",
+    body: "Plan high-volume hiring after requisitions are approved.",
   },
   {
-    href: "/tools/cost-per-hire-calculator",
-    title: "Cost-per-Hire Calculator",
-    body: "Estimate average recruitment spend once requisitions convert into hires.",
+    href: "/resources/90-day-workforce-hiring-plan",
+    title: "90-Day Workforce Hiring Plan",
+    body: "Phase approved headcount and joining targets across a quarter.",
   },
   {
-    href: "/tools/recruitment-funnel-calculator",
-    title: "Recruitment Funnel Calculator",
-    body: "Measure stage conversions from applications through to joinings.",
+    href: "/pharmaceutical-manufacturing-recruitment",
+    title: "Pharmaceutical Manufacturing Recruitment",
+    body: "Explore regulated plant hiring once requisitions are documented.",
   },
 ] as const;
 
@@ -103,16 +103,12 @@ export function ManpowerRequisitionTemplatePage() {
               EarlyJobs · Hiring resources
             </p>
             <h1 className="mt-4 max-w-xl text-[2.35rem] leading-[1.05] font-semibold tracking-[-0.045em] text-neutral-950 sm:text-[3.15rem]">
-              Turn Workforce Requirements into a Clear Hiring Plan
+              Free Manpower Requisition Template for Employers
             </h1>
             <p className="mt-5 max-w-xl text-[15px] leading-7 text-neutral-600">
-              A recruitment process becomes harder when the original hiring requirement is
-              incomplete. Recruiters then spend time clarifying information instead of identifying
-              suitable candidates.
-            </p>
-            <p className="mt-4 max-w-xl text-[15px] leading-7 text-neutral-600">
-              The EarlyJobs Manpower Requisition Template helps employers organise hiring
-              requirements before recruitment begins.
+              EarlyJobs offers a free manpower requisition template so HR teams in India can document
+              vacancies, shifts, budgets and approvals before sourcing starts. Use it to align
+              department heads, finance and TA on one approved hiring record—not scattered emails.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <SolidLink href="#template">Download the Free Requisition Template</SolidLink>
@@ -159,14 +155,10 @@ export function ManpowerRequisitionTemplatePage() {
           </div>
           <div className="space-y-5 text-[15px] leading-7 text-neutral-600">
             <p>
-              A manpower requisition form is an internal document used to request approval for hiring
-              employees. It typically records the department, position, number of vacancies,
-              employment type, required qualifications, compensation budget and reason for hiring.
-            </p>
-            <p>
-              The form creates a shared reference between the requesting department, HR and the
-              approving authority. It can be used for new positions, replacement hiring, seasonal
-              workforce requirements and project-based recruitment.
+              A manpower requisition form is an internal approval document—not a job description—that
+              records department, headcount, qualifications, compensation budget and justification. The
+              EarlyJobs template standardises those fields so recruiters in India start sourcing with a
+              complete brief for replacement, expansion or project hiring.
             </p>
           </div>
         </div>
@@ -326,6 +318,23 @@ export function ManpowerRequisitionTemplatePage() {
       </section>
 
       <section className="border-b border-black/10">
+        <div className="page-shell page-section">
+          <h2 className="text-[1.5rem] font-semibold tracking-[-0.03em] sm:text-[1.75rem]">
+            About EarlyJobs
+          </h2>
+          <p className="mt-4 max-w-3xl text-[15px] leading-7 text-neutral-600">
+            EarlyJobs is an India-focused recruitment platform at{" "}
+            <a href="https://www.earlyjobs.ai" className="text-brand underline-offset-2 hover:underline">
+              earlyjobs.ai
+            </a>{" "}
+            that helps employers hire for manufacturing plants, healthcare operations and other
+            high-volume roles—combining recruiter networks, employer tools and workflow support for
+            shift-based and multi-site programs.
+          </p>
+        </div>
+      </section>
+
+      <section className="border-b border-black/10 bg-[#f7f8fa]">
         <div className="page-shell page-section">
           <h2 className="text-[1.5rem] font-semibold tracking-[-0.03em] sm:text-[1.75rem]">
             Related hiring resources

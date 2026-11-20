@@ -6,7 +6,7 @@
       "@id": "https://www.earlyjobs.ai/salary-benchmark-tool#webpage",
       "url": "https://www.earlyjobs.ai/salary-benchmark-tool",
       "name": "Salary Benchmarking Tool for Employers | EarlyJobs",
-      "description": "Find fair market rates for roles in high-growth sectors with our Salary Benchmarking Tool. Compare entry-level and mid-level salaries by industry and location to attract the right talent.",
+      "description": "Free Salary Benchmarking Tool — compare illustrative pay ranges by role, industry & location. Plan competitive offers for India hiring teams.",
       "isPartOf": {
         "@id": "https://www.earlyjobs.ai/#website"
       },
@@ -21,7 +21,10 @@
       },
       "speakable": {
         "@type": "SpeakableSpecification",
-        "cssSelector": ["h1", "h2"]
+        "cssSelector": [
+          "h1",
+          "h2"
+        ]
       },
       "inLanguage": "en-IN",
       "dateModified": "2026-11-20"
@@ -45,7 +48,7 @@
       ]
     },
     {
-      "@type": "WebApplication",
+      "@type": "SoftwareApplication",
       "@id": "https://www.earlyjobs.ai/salary-benchmark-tool#tool",
       "name": "Salary Benchmarking Tool",
       "applicationCategory": "BusinessApplication",
@@ -58,7 +61,7 @@
       "offers": {
         "@type": "Offer",
         "price": "0",
-        "priceCurrency": "USD"
+        "priceCurrency": "INR"
       }
     },
     {
@@ -68,10 +71,10 @@
       "mainEntity": [
         {
           "@type": "Question",
-          "name": "What data does the tool use?",
+          "name": "What data does the Salary Benchmarking Tool use?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "It aggregates salary survey data from reputable sources, labor statistics, and employer submissions. All figures represent actual paid salaries, not just advertised ranges."
+            "text": "The tool shows illustrative pay ranges for selected roles, industries, and locations to support offer planning. Figures are reference samples for discussion — not a live feed of every employer in India. Validate final offers against your budget, internal grades, and any compensation surveys you already trust."
           }
         },
         {
@@ -79,15 +82,23 @@
           "name": "Can I use this for entry-level roles?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Absolutely. The tool includes entry-level positions and can break out graduate or junior roles separately. This helps budget for new hires fresh out of school."
+            "text": "Yes. Choose entry, mid, or senior levels for roles such as production technicians, junior nurses, or battery assembly staff. Use the output as a starting band for job posts and approvals, then adjust for your city, shift premiums, and statutory benefits."
           }
         },
         {
           "@type": "Question",
-          "name": "How often is the data updated?",
+          "name": "How should I interpret the percentile ranges?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "We update the database quarterly to reflect market changes (inflation, new regulations, etc.) so you always see current pay ranges."
+            "text": "Lower and upper bands help you see spread around the median — useful when candidates negotiate or when you compare plants in different states. They are modelling aids, not guarantees of what every competitor pays. Combine them with your attrition and time-to-fill data."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is the Salary Benchmarking Tool free?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. EarlyJobs provides this salary benchmarking tool free in the browser with no signup. Use it alongside the Salary Benchmarking Planner or Recruiting ROI Calculator when building hiring budgets for manufacturing, healthcare, or EV teams."
           }
         }
       ]

@@ -5,8 +5,8 @@
       "@type": "WebPage",
       "@id": "https://www.earlyjobs.ai/ev-automotive-manufacturing-recruitment#webpage",
       "url": "https://www.earlyjobs.ai/ev-automotive-manufacturing-recruitment",
-      "name": "EV & Automotive Manufacturing Recruitment in India | EarlyJobs",
-      "description": "Hire entry-level talent for EV and automotive manufacturing. Explore recruitment for assembly operators, production trainees, quality assistants and plant support roles.",
+      "name": "EV & Automotive Plant Recruitment India | EarlyJobs",
+      "description": "Hire vehicle assembly operators, production trainees and plant support staff for EV and automotive plants in India through EarlyJobs.",
       "isPartOf": {
         "@id": "https://www.earlyjobs.ai/#website"
       },
@@ -18,7 +18,10 @@
       },
       "speakable": {
         "@type": "SpeakableSpecification",
-        "cssSelector": ["h1", "h2"]
+        "cssSelector": [
+          "h1",
+          "h2"
+        ]
       },
       "inLanguage": "en-IN",
       "dateModified": "2026-11-20"
@@ -51,7 +54,7 @@
           "name": "Can EarlyJobs support EV manufacturing recruitment?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Employers can discuss entry-level production, assembly and support requirements for assessment."
+            "text": "EarlyJobs helps automotive and EV plant employers assess entry-level vehicle assembly, trim, materials and quality support hiring. Share OEM line briefs, shift plans and plant locations so candidates match shop-floor expectations—not battery cell roles."
           }
         },
         {
@@ -59,7 +62,7 @@
           "name": "Which qualifications are suitable for automotive production roles?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Requirements depend on the position and may include ITI, diploma, engineering or other employer-approved qualifications."
+            "text": "Requirements depend on the station and may include ITI, diploma or employer-approved training paths. Employers typically confirm aptitude for rotational shifts, plant commuting and structured assembly work before selection."
           }
         },
         {
@@ -67,7 +70,7 @@
           "name": "Can manufacturers discuss bulk hiring?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Yes. Hiring volumes, plant locations and joining timelines can be shared for assessment."
+            "text": "Yes. Manufacturers can share vacancy counts across body, paint, trim or EV assembly lines, plus target joining dates for ramp or model changeovers. Clear station mapping speeds bulk coordination with plant HR."
           }
         },
         {
@@ -75,7 +78,7 @@
           "name": "Who handles technical and safety verification?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Employers remain responsible for mandatory qualifications, assessments and workplace safety requirements."
+            "text": "Employers remain responsible for mandatory trade assessments, PPE training and workplace safety authorisation on the production floor. EarlyJobs supports sourcing and coordination—not final technical certification."
           }
         }
       ]

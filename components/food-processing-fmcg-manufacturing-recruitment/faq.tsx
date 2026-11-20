@@ -5,19 +5,19 @@ import { useState } from "react";
 const faqs = [
   {
     q: "Can EarlyJobs help recruit food processing workers?",
-    a: "Employers can share suitable production, packaging, warehouse and support vacancies for assessment.",
+    a: "EarlyJobs helps food and FMCG plant employers assess production, packaging, quality support and warehouse hiring. Share hygiene protocols, line speeds and seasonal peaks so candidates understand shop-floor expectations.",
   },
   {
     q: "Can companies discuss seasonal hiring?",
-    a: "Yes. Employers should specify hiring volumes, employment duration and joining timelines.",
+    a: "Yes. Employers should specify contract length, volume spikes around festivals or harvest windows, and joining dates. EarlyJobs uses that context to plan sourcing without over-promising permanent headcount.",
   },
   {
     q: "Are freshers eligible for food manufacturing roles?",
-    a: "Some entry-level positions may consider freshers, depending on qualifications and job requirements.",
+    a: "Some entry-level packaging and material-handling roles may consider freshers when employers provide hygiene induction and PPE training. Production stations with allergen or temperature controls may need additional criteria.",
   },
   {
     q: "Who handles food-safety compliance?",
-    a: "Employers are responsible for applicable training, hygiene procedures and regulatory compliance.",
+    a: "Employers remain responsible for FSSAI-aligned hygiene training, hair-net and glove discipline, and documented GMP practices on the line. EarlyJobs supports hiring coordination—not regulatory sign-off.",
   },
 ] as const;
 

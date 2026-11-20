@@ -5,19 +5,19 @@ import { useState } from "react";
 const faqs = [
   {
     q: "Can EarlyJobs support construction workforce recruitment?",
-    a: "Employers can discuss suitable construction support, technical and administrative vacancies for assessment.",
+    a: "EarlyJobs helps EPC and infrastructure employers assess site assistants, trades, equipment support and project admin hiring. Share project belts, mobilisation dates and accommodation context so candidates understand on-site conditions.",
   },
   {
     q: "Can companies request hiring across project sites?",
-    a: "Yes. Multi-location requirements can be shared with separate role and location details.",
+    a: "Yes. Multi-site employers can provide location-wise vacancies, trade mixes and peak manpower windows. Separating civil, MEP and finishing trades avoids mismatched applicant pools.",
   },
   {
     q: "What information is needed for project hiring?",
-    a: "Vacancy numbers, job locations, eligibility, compensation, work conditions and joining timelines.",
+    a: "Vacancy numbers, site GPS or district, trade certifications required, compensation, work rotation and reporting dates help scope recruitment. Employers remain accountable for site safety briefing and statutory compliance.",
   },
   {
     q: "Who handles construction safety compliance?",
-    a: "Employers remain responsible for applicable safety training, site procedures and legal requirements.",
+    a: "Employers must deliver site induction, PPE allocation and trade-specific safety authorization. EarlyJobs does not replace contractor obligations under applicable construction safety regulations.",
   },
 ] as const;
 

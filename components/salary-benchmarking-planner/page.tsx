@@ -77,15 +77,13 @@ export function SalaryBenchmarkingPlannerPage() {
             EarlyJobs · Employer tools
           </p>
           <h1 className="mt-4 max-w-3xl text-[2.35rem] leading-[1.05] font-semibold tracking-[-0.045em] text-neutral-950 sm:text-[3.15rem]">
-            Plan Competitive Hiring Budgets with Clear Salary Comparisons
+            Salary Benchmarking Planner
           </h1>
           <p className="mt-5 max-w-2xl text-[15px] leading-7 text-neutral-600">
-            Compensation is an important consideration when employers plan new positions, replace
-            departing employees or expand their workforce.
-          </p>
-          <p className="mt-4 max-w-2xl text-[15px] leading-7 text-neutral-600">
-            The EarlyJobs Salary Benchmarking &amp; Compensation Planning Tool helps employers
-            compare their own salary inputs and calculate hiring budgets across different scenarios.
+            The EarlyJobs Salary Benchmarking Planner is a free compensation planning tool that rolls
+            up salary assumptions and headcount across roles and locations — so HR and finance teams in
+            India can compare hiring budget scenarios before approving manufacturing, healthcare, or
+            logistics recruitment drives.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <SolidLink href="#planner">Start Salary Planning</SolidLink>
@@ -121,6 +119,11 @@ export function SalaryBenchmarkingPlannerPage() {
             <p>
               Without reliable market data, a tool can calculate salary scenarios but cannot
               establish whether a salary is above or below the market.
+            </p>
+            <p className="text-[15px] leading-7 text-neutral-600">
+              <code className="block rounded-xl border border-black/10 bg-[#f8fafc] px-4 py-3 font-medium text-neutral-950">
+                Hiring Salary Budget = Σ (Proposed Salary × Planned Headcount) per role or location
+              </code>
             </p>
           </div>
         </div>
@@ -292,6 +295,19 @@ export function SalaryBenchmarkingPlannerPage() {
           <div className="mt-10 max-w-3xl">
             <SalaryBenchmarkingFaq />
           </div>
+        </div>
+      </section>
+
+      <section className="border-b border-black/10">
+        <div className="page-shell page-section">
+          <h2 className="text-[1.5rem] font-semibold tracking-[-0.03em] sm:text-[1.75rem]">
+            About EarlyJobs
+          </h2>
+          <p className="mt-4 max-w-3xl text-[15px] leading-7 text-neutral-600">
+            EarlyJobs is an India-focused recruitment platform that helps employers hire for
+            manufacturing plants, healthcare staffing, and other high-volume roles — with free salary
+            planning tools and recruiter support when budgets turn into live hiring.
+          </p>
         </div>
       </section>
 

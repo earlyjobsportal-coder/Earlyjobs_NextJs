@@ -6,17 +6,17 @@ import schema from "@/schema/battery-manufacturing-recruitment.jsonld.json";
 
 export const metadata: Metadata = pageMetadata({
   path: "/battery-manufacturing-recruitment",
-  title: "Battery Manufacturing Recruitment in India | EarlyJobs",
+  title: "Battery Cell Plant Recruitment India | EarlyJobs",
   description:
-    "Explore entry-level recruitment for battery manufacturing plants, including production trainees, assembly operators, quality assistants and warehouse staff.",
-  ogTitle: "Battery Manufacturing Recruitment in India | EarlyJobs",
+    "Hire cell assembly, electrode and dry-room operators for battery manufacturing plants in India. EarlyJobs supports entry-level plant workforce planning.",
+  ogTitle: "Battery Cell Plant Recruitment India | EarlyJobs",
   ogDescription:
-    "Explore entry-level recruitment for battery manufacturing plants, including production trainees, assembly operators, quality assistants and warehouse staff.",
+    "Hire cell assembly, electrode and dry-room operators for battery manufacturing plants in India. EarlyJobs supports entry-level plant workforce planning.",
   image: "/images/logo.png",
   imageAlt: "EarlyJobs battery manufacturing recruitment",
   twitterTitle: "Battery Manufacturing Recruitment in India",
   twitterDescription:
-    "Entry-level battery plant hiring — production, assembly, quality and warehouse support.",
+    "Battery cell plant hiring — assembly, electrode and dry-room ops across India.",
   twitterCard: "summary",
 });
 

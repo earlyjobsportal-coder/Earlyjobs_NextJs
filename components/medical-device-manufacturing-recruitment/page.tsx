@@ -4,6 +4,7 @@ import { IndustryEnquiryForm } from "@/components/industry-hiring/enquiry-form";
 import { MedicalDeviceFaq } from "@/components/medical-device-manufacturing-recruitment/faq";
 import { MedicalDeviceHeroVisual } from "@/components/medical-device-manufacturing-recruitment/hero-visual";
 import { MedicalDeviceWorkflow } from "@/components/medical-device-manufacturing-recruitment/workflow";
+import { AboutEarlyJobs } from "@/components/seo/about-earlyjobs";
 
 const planning = [
   "Educational qualifications.",
@@ -108,21 +109,13 @@ export function MedicalDeviceManufacturingRecruitmentPage() {
               EarlyJobs · Medical device manufacturing
             </p>
             <h1 className="mt-4 max-w-xl text-[2.35rem] leading-[1.05] font-semibold tracking-[-0.045em] text-neutral-950 sm:text-[3.15rem]">
-              Build the Workforce Behind Medical Device Manufacturing
+              Medical Device Manufacturing Recruitment for Plants
             </h1>
             <p className="mt-5 max-w-xl text-[15px] leading-7 text-neutral-600">
-              Medical device manufacturing combines industrial production with carefully controlled
-              product and quality requirements.
-            </p>
-            <p className="mt-4 max-w-xl text-[15px] leading-7 text-neutral-600">
-              From assembly and packaging to inspection and materials management, each stage depends
-              on employees who understand their responsibilities. As manufacturers expand facilities
-              or introduce additional product lines, recruitment teams must plan for both entry-level
-              workforce demand and specialized technical requirements.
-            </p>
-            <p className="mt-4 max-w-xl text-[15px] leading-7 text-neutral-600">
-              EarlyJobs helps medical device manufacturers explore recruitment for suitable
-              production, assembly and plant support roles.
+              EarlyJobs helps medical device manufacturers in India recruit precision assembly,
+              packaging and quality-documentation staff for regulated plants. Plant HR teams use this
+              page to plan clean-area hiring, clarify batch-traceability expectations and staff line
+              expansions without confusing roles with pharma API manufacturing.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <SolidLink href="#enquiry">Discuss Medical Device Manufacturing Hiring</SolidLink>
@@ -143,13 +136,13 @@ export function MedicalDeviceManufacturingRecruitmentPage() {
             Role-specific planning
           </p>
           <h2 className="mt-3 max-w-3xl text-[1.85rem] font-semibold leading-[1.1] tracking-[-0.04em] sm:text-[2.35rem]">
-            Why Medical Device Recruitment Needs Role-Specific Planning
+            What Is Unique About Medical Device Manufacturing Hiring?
           </h2>
           <p className="mt-4 max-w-3xl text-[15px] leading-7 text-neutral-600">
-            Medical device manufacturing can involve precision assembly, controlled environments,
-            documented procedures and specialized equipment. Employers must distinguish between
-            positions suitable for entry-level trainees and roles requiring prior technical
-            experience.
+            Device hiring demands precision assembly, UDI labelling discipline and quality records—not
+            high-volume commodity packaging alone. Employers separate consumables lines from validated
+            equipment builds and verify that trainees can follow documented work instructions before
+            batch release. EarlyJobs aligns sourcing with those regulated plant expectations.
           </p>
           <ul className="mt-10 grid gap-3 sm:grid-cols-2">
             {planning.map((item) => (
@@ -318,6 +311,8 @@ export function MedicalDeviceManufacturingRecruitmentPage() {
           </div>
         </div>
       </section>
+
+      <AboutEarlyJobs focus="We support medical device manufacturers hiring precision assembly and quality-support roles." />
 
       <section className="border-b border-black/10">
         <div className="page-shell page-section">

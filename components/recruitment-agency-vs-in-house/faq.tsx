@@ -5,19 +5,19 @@ import { useState } from "react";
 const faqs = [
   {
     q: "Is an agency cheaper than in-house recruitment?",
-    a: "Not necessarily. Costs depend on hiring volume, internal resources and agreed agency fees.",
+    a: "Neither model is cheaper by default. In-house teams carry payroll, tools and management overhead; agencies often charge placement fees or project fees tied to scope. Compare your hiring mix, volume and internal capacity—not headline rates alone.",
   },
   {
     q: "Can companies use both recruitment models?",
-    a: "Yes. A hybrid approach combines internal hiring ownership with external recruitment support.",
+    a: "Yes. Many Indian employers keep core roles in-house and use agencies for spikes, niche skills or new locations. A hybrid model works when responsibilities, SLAs and commercial terms are documented before sourcing begins.",
   },
   {
     q: "Who makes the final hiring decision?",
-    a: "The employer ordinarily retains final selection authority unless a different lawful arrangement is explicitly agreed.",
+    a: "The employer ordinarily retains final selection authority unless a different lawful arrangement is explicitly agreed. Agencies may shortlist and coordinate, but culture fit, compensation approval and offer release typically stay internal.",
   },
   {
     q: "When should a company consider an agency?",
-    a: "When additional sourcing capacity, specialist support or hiring flexibility is required.",
+    a: "Consider an agency when internal TA lacks bandwidth, specialist networks or geographic reach for a hiring burst. Agencies add sourcing capacity and flexibility, scoped by agreed services and fees—not guaranteed headcount outcomes.",
   },
 ] as const;
 

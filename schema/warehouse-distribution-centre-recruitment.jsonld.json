@@ -5,8 +5,8 @@
       "@type": "WebPage",
       "@id": "https://www.earlyjobs.ai/warehouse-distribution-centre-recruitment#webpage",
       "url": "https://www.earlyjobs.ai/warehouse-distribution-centre-recruitment",
-      "name": "Warehouse & Distribution Centre Recruitment India | EarlyJobs",
-      "description": "Explore warehouse recruitment for pickers, packers, inventory assistants, dispatch staff and distribution centre operations across India.",
+      "name": "Warehouse & DC Recruitment India | EarlyJobs",
+      "description": "Hire pickers, packers, inventory assistants and dispatch staff for warehouses and distribution centres across India with EarlyJobs.",
       "isPartOf": {
         "@id": "https://www.earlyjobs.ai/#website"
       },
@@ -18,7 +18,10 @@
       },
       "speakable": {
         "@type": "SpeakableSpecification",
-        "cssSelector": ["h1", "h2"]
+        "cssSelector": [
+          "h1",
+          "h2"
+        ]
       },
       "inLanguage": "en-IN",
       "dateModified": "2026-11-20"
@@ -51,7 +54,7 @@
           "name": "Can EarlyJobs support warehouse staff recruitment?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Employers can share requirements for pickers, packers, inventory assistants and other relevant roles."
+            "text": "EarlyJobs helps logistics and fulfilment employers assess hiring for pickers, packers, inventory assistants and dispatch coordinators. Share DC locations, shift patterns and peak-season volumes so sourcing matches floor reality."
           }
         },
         {
@@ -59,7 +62,7 @@
           "name": "Can companies discuss bulk warehouse hiring?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Yes. Hiring volumes, locations and joining timelines can be assessed."
+            "text": "Yes. Employers can outline multi-shift headcount, seasonal spikes and facility clusters for assessment. Clear pick-rate and mobility expectations help align candidates before interview scheduling."
           }
         },
         {
@@ -67,7 +70,7 @@
           "name": "What information is needed to start warehouse recruitment?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Role descriptions, vacancy numbers, facility locations, shift patterns, compensation and eligibility criteria."
+            "text": "Start with role descriptions, vacancy counts, facility addresses, shift rotation, compensation bands and physical job requirements. EarlyJobs uses this to scope sourcing—not to set operational SLAs for the warehouse."
           }
         },
         {
@@ -75,7 +78,7 @@
           "name": "Does EarlyJobs provide forklift certification?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Certification or equipment training should not be assumed. Employers must ensure workers meet applicable requirements."
+            "text": "Equipment certification and MHE authorisation remain employer responsibilities. Recruitment should not be read as guaranteeing licensed forklift or reach-truck operation until the employer completes training."
           }
         }
       ]

@@ -5,19 +5,23 @@ import { useState } from "react";
 const faqs = [
   {
     q: "What is a recruitment funnel conversion rate?",
-    a: "It is the percentage of candidates who progress from one hiring stage to another.",
+    a: "A recruitment funnel conversion rate is the percentage of candidates who move from one stage to the next — applications to screens, screens to interviews, interviews to offers, and offers to joinings. Tracking these rates helps Indian employers see where candidates drop off in high-volume hiring.",
   },
   {
     q: "How do you calculate offer-to-joining conversion?",
-    a: "Divide the number of candidates who joined by the number who received offers, then multiply by 100.",
+    a: "Divide joinings by offers extended in the same period, then multiply by 100. For example, 40 joinings from 50 offers is 80% offer-to-joining conversion. The calculator applies this logic across each funnel stage you enter.",
   },
   {
     q: "What is a good recruitment conversion rate?",
-    a: "There is no universal rate. Results vary by role, industry, hiring channel and selection requirements.",
+    a: "There is no single benchmark that fits every role. Plant hiring, nursing staffing, and tech roles differ widely by channel, salary, and location. Use your own historical funnel data as the baseline, then measure whether process changes improve the weakest stage.",
   },
   {
     q: "Can employers use the calculator for bulk hiring?",
-    a: "Yes. It can help analyze recruitment stages for high-volume hiring campaigns.",
+    a: "Yes. Enter volume at each stage for campus drives, seasonal manufacturing hiring, or multi-city campaigns. The output highlights bottlenecks so coordinators can fix scheduling, offers, or documentation before the next wave.",
+  },
+  {
+    q: "Is the Recruitment Funnel Calculator free?",
+    a: "Yes. EarlyJobs provides this recruitment funnel calculator free in your browser. Use it with vacancy cost and cost-per-hire tools when reporting hiring efficiency to operations and finance leaders.",
   },
 ] as const;
 

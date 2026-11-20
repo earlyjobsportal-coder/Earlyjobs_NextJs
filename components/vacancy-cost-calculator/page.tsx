@@ -80,17 +80,13 @@ export function VacancyCostCalculatorPage() {
             EarlyJobs · Employer tools
           </p>
           <h1 className="mt-4 max-w-3xl text-[2.35rem] leading-[1.05] font-semibold tracking-[-0.045em] text-neutral-950 sm:text-[3.15rem]">
-            Calculate What an Unfilled Position Could Cost Your Business
+            Vacancy Cost Calculator
           </h1>
           <p className="mt-5 max-w-2xl text-[15px] leading-7 text-neutral-600">
-            An open position is more than an unfilled line in a hiring report. Depending on the role,
-            vacancies can affect staffing capacity, overtime expenses, customer service or production
-            planning.
-          </p>
-          <p className="mt-4 max-w-2xl text-[15px] leading-7 text-neutral-600">
-            Not every vacancy creates the same financial impact. The EarlyJobs Vacancy Cost
-            Calculator helps employers estimate the potential financial impact of unfilled positions
-            using their own assumptions.
+            The EarlyJobs Vacancy Cost Calculator is a free tool that estimates what open roles may
+            cost your business — vacancy days, daily operational impact, and temporary coverage — using
+            assumptions you control. Built for HR, plant, and finance teams prioritising manufacturing
+            and high-volume hiring in India.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <SolidLink href="#calculator">Calculate Vacancy Cost</SolidLink>
@@ -137,9 +133,11 @@ export function VacancyCostCalculatorPage() {
             </h2>
           </div>
           <div className="space-y-5 text-[15px] leading-7 text-neutral-600">
-            <p className="rounded-xl border border-black/10 bg-white px-4 py-4 font-medium text-neutral-950">
-              Estimated Vacancy Cost = Vacancy Days × Daily Vacancy Impact + Additional Direct
-              Coverage Costs
+            <p className="text-[15px] leading-7 text-neutral-600">
+              <code className="block rounded-xl border border-black/10 bg-white px-4 py-4 font-medium text-neutral-950">
+                Estimated Vacancy Cost = Vacancy Days × Daily Vacancy Impact + Additional Direct
+                Coverage Costs
+              </code>
             </p>
             <p>
               For multiple positions: Total Vacancy Cost = Sum of Estimated Costs Across Vacant
@@ -250,6 +248,19 @@ export function VacancyCostCalculatorPage() {
           <div className="mt-10 max-w-3xl">
             <VacancyCostFaq />
           </div>
+        </div>
+      </section>
+
+      <section className="border-b border-black/10">
+        <div className="page-shell page-section">
+          <h2 className="text-[1.5rem] font-semibold tracking-[-0.03em] sm:text-[1.75rem]">
+            About EarlyJobs
+          </h2>
+          <p className="mt-4 max-w-3xl text-[15px] leading-7 text-neutral-600">
+            EarlyJobs is an India-focused recruitment platform that helps employers hire for
+            manufacturing plants, healthcare staffing, and other high-volume roles — with free vacancy
+            and ROI calculators plus recruiter support when roles cannot stay open long.
+          </p>
         </div>
       </section>
 

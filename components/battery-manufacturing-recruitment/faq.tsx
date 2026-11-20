@@ -5,19 +5,19 @@ import { useState } from "react";
 const faqs = [
   {
     q: "Can EarlyJobs support battery manufacturing recruitment?",
-    a: "Employers can discuss suitable entry-level production, assembly and support requirements for recruitment assessment.",
+    a: "EarlyJobs helps cell and pack plant employers assess hiring for electrode, assembly and dry-room support roles—not vehicle trim lines. Share facility type, humidity-controlled areas and shift volumes for accurate sourcing.",
   },
   {
     q: "Which qualifications are relevant?",
-    a: "Requirements vary by position and may include ITI, diploma, engineering or employer-approved training.",
+    a: "Entry-level roles may consider ITI, diploma or science backgrounds depending on the station. Positions in electrode coating, cell assembly or dry rooms often need employer-led moisture-control and electrical safety training before start.",
   },
   {
     q: "Can battery manufacturers discuss bulk hiring?",
-    a: "Yes. Employers can share expected vacancies, locations and joining timelines.",
+    a: "Yes. Employers can share line ramp schedules, clean-room staffing needs and joining targets across giga-factory phases. Separating cell, module and pack vacancies avoids mismatched candidate pools.",
   },
   {
     q: "Who is responsible for battery safety training?",
-    a: "The employer must ensure personnel receive the necessary training, authorization and supervision.",
+    a: "Employers must provide training, authorization and supervision for chemical handling, high-voltage zones and dry-room protocols. EarlyJobs does not replace plant safety compliance or technical sign-off.",
   },
 ] as const;
 

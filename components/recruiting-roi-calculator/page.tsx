@@ -131,12 +131,13 @@ export function RecruitingRoiCalculatorPage() {
               EarlyJobs · Recruiting ROI
             </p>
             <h1 className="mt-4 max-w-xl text-[2.35rem] leading-[1.05] font-semibold tracking-[-0.045em] text-neutral-950 sm:text-[3.15rem]">
-              Quantify the Value of Your Hiring Investments.
+              Recruiting ROI Calculator
             </h1>
             <p className="mt-5 max-w-xl text-[15px] leading-7 text-neutral-600">
-              Use our Recruiting ROI Calculator to estimate the return on investment of hiring
-              campaigns and recruiting tools — factoring in time saved, cost per hire, and revenue
-              impact.
+              The EarlyJobs Recruiting ROI Calculator is a free browser tool that converts your
+              time-to-fill, daily vacancy cost, cost per hire, and hiring volume into an estimated
+              return on recruiting programs — so HR and finance leaders in India can justify budgets
+              with transparent math.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <SolidLink href={ctaHref}>Try the Recruiting ROI Calculator</SolidLink>
@@ -148,6 +149,25 @@ export function RecruitingRoiCalculatorPage() {
             </p>
           </div>
           <RoiHeroMockup />
+        </div>
+      </section>
+
+      <section className="border-b border-black/10 bg-[#f7f8fa]">
+        <div className="page-shell page-section">
+          <h2 className="max-w-3xl text-[1.85rem] font-semibold leading-[1.1] tracking-[-0.04em] sm:text-[2.35rem]">
+            What is recruiting ROI?
+          </h2>
+          <p className="mt-5 max-w-3xl text-[15px] leading-7 text-neutral-600">
+            Recruiting ROI measures whether a hiring program or tool returns more value than it costs,
+            usually through fewer vacant days and lower recruiting spend. This calculator combines
+            vacancy savings and recruiting efficiency gains, then compares them to your annual
+            investment.
+          </p>
+          <p className="mt-4 max-w-3xl text-[15px] leading-7 text-neutral-600">
+            <code className="rounded bg-white px-1.5 py-0.5 text-[14px] text-neutral-950">
+              ROI % = (Total Savings − Annual Investment) ÷ Annual Investment × 100
+            </code>
+          </p>
         </div>
       </section>
 
@@ -324,6 +344,19 @@ export function RecruitingRoiCalculatorPage() {
           <div className="mt-10 max-w-3xl">
             <RoiFaq />
           </div>
+        </div>
+      </section>
+
+      <section className="border-b border-black/10">
+        <div className="page-shell page-section">
+          <h2 className="text-[1.5rem] font-semibold tracking-[-0.03em] sm:text-[1.75rem]">
+            About EarlyJobs
+          </h2>
+          <p className="mt-4 max-w-3xl text-[15px] leading-7 text-neutral-600">
+            EarlyJobs is an India-focused recruitment platform that helps employers hire for
+            manufacturing plants, healthcare staffing, and other high-volume roles — with free
+            calculators, recruiter support, and tools built for talent and finance teams.
+          </p>
         </div>
       </section>
 

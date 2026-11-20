@@ -76,17 +76,13 @@ export function RecruitmentFunnelCalculatorPage() {
             EarlyJobs · Employer tools
           </p>
           <h1 className="mt-4 max-w-3xl text-[2.35rem] leading-[1.05] font-semibold tracking-[-0.045em] text-neutral-950 sm:text-[3.15rem]">
-            Find Out Where Your Recruitment Funnel Loses Candidates
+            Recruitment Funnel Calculator
           </h1>
           <p className="mt-5 max-w-2xl text-[15px] leading-7 text-neutral-600">
-            A recruitment process can attract many applications without producing the number of
-            joinings an employer needs. Candidates may drop out before interviews, decline offers or
-            fail to join after accepting a position.
-          </p>
-          <p className="mt-4 max-w-2xl text-[15px] leading-7 text-neutral-600">
-            Without clear conversion metrics, it becomes difficult to identify where the hiring
-            process needs attention. The EarlyJobs Recruitment Funnel Calculator helps employers
-            measure candidate movement through major recruitment stages.
+            The EarlyJobs Recruitment Funnel Calculator is a free tool that measures conversion between
+            applications, shortlists, interviews, offers, and joinings — so talent teams in India can
+            see where bulk or plant hiring loses candidates and fix scheduling, offers, or sourcing
+            before the next hiring wave.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <SolidLink href="#calculator">Analyze Your Hiring Funnel</SolidLink>
@@ -120,8 +116,10 @@ export function RecruitmentFunnelCalculatorPage() {
               A recruitment funnel represents the stages candidates move through between applying
               for a job and joining an organization.
             </p>
-            <p className="rounded-xl border border-black/10 bg-[#f8fafc] px-4 py-4 font-medium text-neutral-950">
-              Applications → Shortlisted → Interviewed → Offered → Joined
+            <p className="text-[15px] leading-7 text-neutral-600">
+              <code className="block rounded-xl border border-black/10 bg-[#f8fafc] px-4 py-4 font-medium text-neutral-950">
+                Stage Conversion % = (Candidates at Next Stage ÷ Candidates at Current Stage) × 100
+              </code>
             </p>
             <p>
               Each stage represents a different recruitment milestone. By comparing candidate counts
@@ -325,6 +323,19 @@ export function RecruitmentFunnelCalculatorPage() {
           <div className="mt-10 max-w-3xl">
             <RecruitmentFunnelFaq />
           </div>
+        </div>
+      </section>
+
+      <section className="border-b border-black/10">
+        <div className="page-shell page-section">
+          <h2 className="text-[1.5rem] font-semibold tracking-[-0.03em] sm:text-[1.75rem]">
+            About EarlyJobs
+          </h2>
+          <p className="mt-4 max-w-3xl text-[15px] leading-7 text-neutral-600">
+            EarlyJobs is an India-focused recruitment platform that helps employers hire for
+            manufacturing plants, healthcare staffing, and other high-volume roles — with free funnel
+            and cost calculators plus recruiters when conversion drops on critical roles.
+          </p>
         </div>
       </section>
 

@@ -6,17 +6,17 @@ import schema from "@/schema/solar-renewable-energy-recruitment.jsonld.json";
 
 export const metadata: Metadata = pageMetadata({
   path: "/solar-renewable-energy-recruitment",
-  title: "Solar & Renewable Energy Recruitment in India | EarlyJobs",
+  title: "Solar & Renewable Energy Recruitment India | EarlyJobs",
   description:
-    "Explore workforce recruitment for solar projects, renewable energy operations, installation support and entry-level technical roles across India.",
-  ogTitle: "Solar & Renewable Energy Recruitment in India | EarlyJobs",
+    "Hire solar technicians, installation helpers and multi-site project staff across India. EarlyJobs supports workforce planning for renewable energy employers.",
+  ogTitle: "Solar & Renewable Energy Recruitment India | EarlyJobs",
   ogDescription:
-    "Explore workforce recruitment for solar projects, renewable energy operations, installation support and entry-level technical roles across India.",
+    "Hire solar technicians, installation helpers and multi-site project staff across India. EarlyJobs supports workforce planning for renewable energy employers.",
   image: "/images/logo.png",
   imageAlt: "EarlyJobs solar and renewable energy recruitment",
   twitterTitle: "Solar & Renewable Energy Recruitment in India",
   twitterDescription:
-    "Solar workforce recruitment — installation support, technicians and project manpower across India.",
+    "Solar project hiring — technicians, installation support and multi-site manpower across India.",
   twitterCard: "summary",
 });
 

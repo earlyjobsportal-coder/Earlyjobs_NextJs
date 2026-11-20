@@ -8,7 +8,7 @@ export const metadata: Metadata = pageMetadata({
   path: "/tools/cost-per-hire-calculator",
   title: "Free Cost Per Hire Calculator for Employers | EarlyJobs",
   description:
-    "Calculate your recruitment cost per hire using advertising, agency fees, recruiter time and hiring expenses. Free employer calculator with formulas.",
+    "Free Cost Per Hire Calculator — add internal & external recruiting costs, divide by hires. See average cost per hire in INR. Try it now.",
   ogTitle: "Free Cost Per Hire Calculator for Employers | EarlyJobs",
   ogDescription:
     "Calculate your recruitment cost per hire using advertising, agency fees, recruiter time and hiring expenses.",

@@ -8,10 +8,10 @@ export const metadata: Metadata = pageMetadata({
   path: "/resources/bulk-hiring-checklist",
   title: "Free Bulk Hiring Checklist & Recruitment Plan | EarlyJobs",
   description:
-    "Download a bulk hiring checklist for employers. Plan vacancies, candidate sourcing, interviews, selection and joining coordination across locations.",
+    "Download the free EarlyJobs bulk hiring checklist for Indian employers. Plan vacancies, sourcing, interviews, selection and joining across high-volume drives.",
   ogTitle: "Free Bulk Hiring Checklist & Recruitment Plan | EarlyJobs",
   ogDescription:
-    "Download a bulk hiring checklist for employers. Plan vacancies, sourcing, interviews, selection and joining across locations.",
+    "Download the free EarlyJobs bulk hiring checklist for Indian employers. Plan vacancies, sourcing, interviews, selection and joining across high-volume drives.",
   image: "/images/logo.png",
   imageAlt: "EarlyJobs Bulk Hiring Checklist",
   twitterTitle: "Free Bulk Hiring Checklist",

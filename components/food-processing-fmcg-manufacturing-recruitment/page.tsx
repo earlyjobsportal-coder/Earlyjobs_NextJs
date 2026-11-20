@@ -4,6 +4,7 @@ import { IndustryEnquiryForm } from "@/components/industry-hiring/enquiry-form";
 import { FoodManufacturingFaq } from "@/components/food-processing-fmcg-manufacturing-recruitment/faq";
 import { FoodManufacturingFlowMap } from "@/components/food-processing-fmcg-manufacturing-recruitment/flow-map";
 import { FoodManufacturingHeroVisual } from "@/components/food-processing-fmcg-manufacturing-recruitment/hero-visual";
+import { AboutEarlyJobs } from "@/components/seo/about-earlyjobs";
 
 const planningPoints = [
   "Production shift requirements.",
@@ -97,15 +98,12 @@ export function FoodProcessingFmcgManufacturingRecruitmentPage() {
               EarlyJobs · Food processing & FMCG
             </p>
             <h1 className="mt-4 max-w-xl text-[2.35rem] leading-[1.05] font-semibold tracking-[-0.045em] text-neutral-950 sm:text-[3.15rem]">
-              Build Production Teams That Support Everyday Consumer Demand
+              Food Processing & FMCG Manufacturing Recruitment
             </h1>
             <p className="mt-5 max-w-xl text-[15px] leading-7 text-neutral-600">
-              Food processing and FMCG manufacturing facilities rely on people working across
-              production, packaging, inspection, storage and dispatch.
-            </p>
-            <p className="mt-4 max-w-xl text-[15px] leading-7 text-neutral-600">
-              EarlyJobs helps food processing and FMCG employers explore recruitment for relevant
-              production, packaging and plant support roles.
+              EarlyJobs helps food and FMCG plant employers in India recruit hygiene-aware production,
+              packaging and warehouse staff. Plant HR teams use this page to plan line hiring, manage
+              festival-season spikes and align candidates with FSSAI-aligned shop-floor expectations.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <SolidLink href="#enquiry">Discuss Food Manufacturing Hiring</SolidLink>
@@ -123,18 +121,15 @@ export function FoodProcessingFmcgManufacturingRecruitmentPage() {
         <div className="page-shell page-section grid gap-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-16">
           <div>
             <h2 className="max-w-md text-[1.85rem] font-semibold leading-[1.1] tracking-[-0.04em] sm:text-[2.35rem]">
-              Schedules and seasons change — readiness should not.
+              What Is Unique About Food and FMCG Plant Hiring?
             </h2>
           </div>
           <div className="space-y-5 text-[15px] leading-7 text-neutral-600">
             <p>
-              Whether a business operates a packaged food plant, beverage facility or consumer goods
-              production unit, workforce requirements can change with production schedules and
-              seasonal demand.
-            </p>
-            <p>
-              Hiring suitable entry-level employees is an important part of maintaining operational
-              readiness.
+              FMCG hiring pairs hygiene discipline with packaging-line speed and predictable seasonal
+              spikes—not static factory staffing. Employers need workers comfortable with hair-net
+              protocols, rapid SKU changeovers and extra shifts before demand peaks. EarlyJobs matches
+              sourcing to those food-plant rhythms across India.
             </p>
           </div>
         </div>
@@ -330,6 +325,8 @@ export function FoodProcessingFmcgManufacturingRecruitmentPage() {
           </div>
         </div>
       </section>
+
+      <AboutEarlyJobs focus="We support food and FMCG plants hiring for packaging lines and hygiene-critical roles." />
 
       <section className="border-b border-black/10">
         <div className="page-shell page-section">

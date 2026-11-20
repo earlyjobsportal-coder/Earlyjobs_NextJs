@@ -6,17 +6,17 @@ import schema from "@/schema/warehouse-distribution-centre-recruitment.jsonld.js
 
 export const metadata: Metadata = pageMetadata({
   path: "/warehouse-distribution-centre-recruitment",
-  title: "Warehouse & Distribution Centre Recruitment India | EarlyJobs",
+  title: "Warehouse & DC Recruitment India | EarlyJobs",
   description:
-    "Explore warehouse recruitment for pickers, packers, inventory assistants, dispatch staff and distribution centre operations across India.",
-  ogTitle: "Warehouse & Distribution Centre Recruitment India | EarlyJobs",
+    "Hire pickers, packers, inventory assistants and dispatch staff for warehouses and distribution centres across India with EarlyJobs.",
+  ogTitle: "Warehouse & DC Recruitment India | EarlyJobs",
   ogDescription:
-    "Explore warehouse recruitment for pickers, packers, inventory assistants, dispatch staff and distribution centre operations across India.",
+    "Hire pickers, packers, inventory assistants and dispatch staff for warehouses and distribution centres across India with EarlyJobs.",
   image: "/images/logo.png",
   imageAlt: "EarlyJobs warehouse and distribution centre recruitment",
   twitterTitle: "Warehouse & Distribution Centre Recruitment",
   twitterDescription:
-    "Entry-level warehouse hiring — pickers, packers, inventory and dispatch staff across India.",
+    "Warehouse and DC hiring — pickers, packers, inventory and dispatch across India.",
   twitterCard: "summary",
 });
 

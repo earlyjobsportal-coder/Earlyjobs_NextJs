@@ -4,13 +4,14 @@ import { IndustryEnquiryForm } from "@/components/industry-hiring/enquiry-form";
 import { PharmaFaq } from "@/components/pharmaceutical-manufacturing-recruitment/faq";
 import { PharmaHeroVisual } from "@/components/pharmaceutical-manufacturing-recruitment/hero-visual";
 import { PharmaProcessTimeline } from "@/components/pharmaceutical-manufacturing-recruitment/process-timeline";
+import { AboutEarlyJobs } from "@/components/seo/about-earlyjobs";
 
 const challenges = [
-  "Finding candidates willing to work rotational shifts.",
-  "Attracting diploma and science graduates for entry-level positions.",
-  "Managing hiring demand across production and packaging departments.",
-  "Identifying candidates within commuting distance of industrial facilities.",
-  "Coordinating interviews and joining dates around operational requirements.",
+  "Sourcing candidates comfortable with GMP discipline and rotational plant shifts.",
+  "Filling packaging-line and junior QC roles without slowing batch release.",
+  "Attracting diploma and science graduates for regulated shop-floor positions.",
+  "Managing hiring spikes when new lines start or contract packaging ramps up.",
+  "Coordinating interviews and joining dates around validation and production schedules.",
 ] as const;
 
 const roleCategories = [
@@ -34,19 +35,19 @@ const roleCategories = [
 
 const related = [
   {
-    href: "/food-processing-fmcg-manufacturing-recruitment",
-    title: "Food Processing & FMCG Recruitment",
-    body: "Explore production, packaging and plant support hiring for food and FMCG facilities.",
+    href: "/medical-device-manufacturing-recruitment",
+    title: "Medical Device Manufacturing Recruitment",
+    body: "Explore precision assembly and quality-documentation hiring for regulated device plants.",
   },
   {
-    href: "/ai-recruiting-automation-manufacturing",
-    title: "Manufacturing Recruitment",
-    body: "Explore coordinated hiring workflows for multi-plant manufacturing operations.",
+    href: "/resources/bulk-hiring-checklist",
+    title: "Bulk Hiring Checklist",
+    body: "Plan high-volume plant hiring across sourcing, interviews and joining.",
   },
   {
-    href: "/recruiting-roi-calculator",
-    title: "Cost-per-Hire Calculator",
-    body: "Model time-to-fill and cost-per-hire impact before you scale plant hiring.",
+    href: "/resources/manpower-requisition-template",
+    title: "Manpower Requisition Template",
+    body: "Document approved pharma vacancies, shifts and joining timelines before sourcing.",
   },
 ] as const;
 
@@ -68,18 +69,13 @@ export function PharmaceuticalManufacturingRecruitmentPage() {
               EarlyJobs · Pharmaceutical manufacturing
             </p>
             <h1 className="mt-4 max-w-xl text-[2.35rem] leading-[1.05] font-semibold tracking-[-0.045em] text-neutral-950 sm:text-[3.15rem]">
-              Build the Workforce Behind Pharmaceutical Manufacturing
+              Pharmaceutical Manufacturing Recruitment for Regulated Plants
             </h1>
             <p className="mt-5 max-w-xl text-[15px] leading-7 text-neutral-600">
-              Pharmaceutical manufacturing depends on more than equipment, production capacity and
-              quality systems. Every production line needs people who understand their
-              responsibilities, work within defined procedures and are available when operations
-              require them.
-            </p>
-            <p className="mt-4 max-w-xl text-[15px] leading-7 text-neutral-600">
-              For pharmaceutical manufacturers expanding production, adding shifts or replacing
-              departing employees, hiring entry-level workers can become a recurring operational
-              challenge.
+              EarlyJobs helps pharmaceutical manufacturers in India recruit entry-level production,
+              packaging and junior QC staff for GMP-regulated plants. Plant HR and operations teams
+              use this page to plan shift-based hiring, clarify role eligibility and build a pipeline
+              when lines expand or vacancies need filling.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <SolidLink href="#enquiry">Discuss Your Pharma Hiring Requirements</SolidLink>
@@ -97,18 +93,15 @@ export function PharmaceuticalManufacturingRecruitmentPage() {
         <div className="page-shell page-section grid gap-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-16">
           <div>
             <h2 className="max-w-md text-[1.85rem] font-semibold leading-[1.1] tracking-[-0.04em] sm:text-[2.35rem]">
-              A dependable candidate pipeline for your plant.
+              What Is Unique About Pharmaceutical Manufacturing Hiring?
             </h2>
           </div>
           <div className="space-y-5 text-[15px] leading-7 text-neutral-600">
             <p>
-              EarlyJobs helps employers connect their pharmaceutical hiring requirements with
-              relevant entry-level talent through its recruitment network and hiring infrastructure.
-            </p>
-            <p>
-              Whether you are hiring production trainees, packaging associates or junior plant
-              support staff, the objective is straightforward: build a dependable candidate pipeline
-              aligned with your plant&apos;s requirements.
+              Pharma hiring centres on GMP discipline, batch accountability and packaging-line
+              reliability—not generic factory staffing. Employers need people who follow SOPs, accept
+              rotational shifts and fit junior QC or materials roles without disrupting release
+              timelines. EarlyJobs aligns sourcing with those regulated plant expectations.
             </p>
           </div>
         </div>
@@ -260,6 +253,8 @@ export function PharmaceuticalManufacturingRecruitmentPage() {
           </div>
         </div>
       </section>
+
+      <AboutEarlyJobs focus="We support pharma plants hiring for GMP-aware production, packaging and junior QC roles." />
 
       <section className="border-b border-black/10 bg-[#f7f8fa]">
         <div className="page-shell page-section">

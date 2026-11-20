@@ -6,17 +6,17 @@ import schema from "@/schema/pharmaceutical-manufacturing-recruitment.jsonld.jso
 
 export const metadata: Metadata = pageMetadata({
   path: "/pharmaceutical-manufacturing-recruitment",
-  title: "Pharmaceutical Manufacturing Recruitment in India | EarlyJobs",
+  title: "Pharma Plant Recruitment & GMP Hiring India | EarlyJobs",
   description:
-    "Hire production operators, packaging staff, junior QC talent and plant support workers for pharmaceutical manufacturing operations in India.",
-  ogTitle: "Pharmaceutical Manufacturing Recruitment in India | EarlyJobs",
+    "Hire GMP-aware production operators, packaging staff and junior QC support for pharmaceutical plants across India. EarlyJobs helps plant HR build regulated hiring pipelines.",
+  ogTitle: "Pharma Plant Recruitment & GMP Hiring India | EarlyJobs",
   ogDescription:
-    "Hire production operators, packaging staff, junior QC talent and plant support workers for pharmaceutical manufacturing operations in India.",
+    "Hire GMP-aware production operators, packaging staff and junior QC support for pharmaceutical plants across India. EarlyJobs helps plant HR build regulated hiring pipelines.",
   image: "/images/logo.png",
   imageAlt: "EarlyJobs pharmaceutical manufacturing recruitment",
-  twitterTitle: "Pharmaceutical Manufacturing Recruitment in India",
+  twitterTitle: "Pharma Plant Recruitment & GMP Hiring India",
   twitterDescription:
-    "Entry-level pharma plant staffing — production, packaging, QC support and warehouse roles.",
+    "GMP-aware pharma plant staffing — production, packaging, junior QC and warehouse roles across India.",
   twitterCard: "summary",
 });
 

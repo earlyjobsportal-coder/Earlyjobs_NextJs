@@ -95,15 +95,12 @@ export function NinetyDayWorkforceHiringPlanPage() {
               EarlyJobs · Hiring resources
             </p>
             <h1 className="mt-4 max-w-xl text-[2.35rem] leading-[1.05] font-semibold tracking-[-0.045em] text-neutral-950 sm:text-[3.15rem]">
-              Turn Your Next 90 Days of Hiring into a Structured Plan
+              Free 90-Day Workforce Hiring Plan Template
             </h1>
             <p className="mt-5 max-w-xl text-[15px] leading-7 text-neutral-600">
-              Hiring requirements often emerge from business expansion, replacement vacancies, new
-              facilities or changes in operational demand.
-            </p>
-            <p className="mt-4 max-w-xl text-[15px] leading-7 text-neutral-600">
-              The EarlyJobs 90-Day Workforce Hiring Plan Template helps employers organize hiring
-              requirements into a practical three-month framework.
+              EarlyJobs offers a free 90-day workforce hiring plan so employers in India can phase
+              headcount, sourcing and joinings across a quarter. HR leaders use it to align finance,
+              department heads and TA on milestones—not ad hoc weekly firefighting.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <SolidLink href="#template">Download the 90-Day Hiring Plan</SolidLink>
@@ -150,13 +147,10 @@ export function NinetyDayWorkforceHiringPlanPage() {
           </div>
           <div className="space-y-5 text-[15px] leading-7 text-neutral-600">
             <p>
-              A 90-day hiring plan is a structured document outlining the positions an organization
-              intends to fill over approximately three months.
-            </p>
-            <p>
-              It connects workforce requirements with recruitment activities, responsible teams and
-              expected milestones. The plan can be used for regular recruitment, business expansion,
-              new facility hiring or high-volume workforce requirements.
+              A 90-day hiring plan is a quarter-level roadmap that links approved headcount to sourcing,
+              interview milestones and joining targets. The EarlyJobs template gives Indian employers
+              numbered phases—define, source, convert—so plant, healthcare and logistics teams share one
+              timeline instead of disconnected spreadsheets.
             </p>
           </div>
         </div>
@@ -286,6 +280,23 @@ export function NinetyDayWorkforceHiringPlanPage() {
           <div className="mt-10 max-w-3xl">
             <NinetyDayHiringPlanFaq />
           </div>
+        </div>
+      </section>
+
+      <section className="border-b border-black/10">
+        <div className="page-shell page-section">
+          <h2 className="text-[1.5rem] font-semibold tracking-[-0.03em] sm:text-[1.75rem]">
+            About EarlyJobs
+          </h2>
+          <p className="mt-4 max-w-3xl text-[15px] leading-7 text-neutral-600">
+            EarlyJobs is an India-focused recruitment platform at{" "}
+            <a href="https://www.earlyjobs.ai" className="text-brand underline-offset-2 hover:underline">
+              earlyjobs.ai
+            </a>{" "}
+            that helps employers hire for manufacturing plants, healthcare operations and other
+            high-volume roles—combining recruiter networks, employer tools and workflow support for
+            shift-based and multi-site programs.
+          </p>
         </div>
       </section>
 

@@ -3,6 +3,7 @@ import { GhostLink, SolidLink } from "@/components/home/primitives";
 import { IndustryEnquiryForm } from "@/components/industry-hiring/enquiry-form";
 import { ComparisonTable } from "@/components/recruitment-agency-vs-in-house/comparison-table";
 import { RecruitmentAgencyVsInHouseFaq } from "@/components/recruitment-agency-vs-in-house/faq";
+import { AboutEarlyJobs } from "@/components/seo/about-earlyjobs";
 
 const decisionFactors = [
   {
@@ -68,16 +69,13 @@ export function RecruitmentAgencyVsInHousePage() {
               EarlyJobs · Employer guide
             </p>
             <h1 className="mt-4 max-w-xl text-[2.35rem] leading-[1.05] font-semibold tracking-[-0.045em] text-neutral-950 sm:text-[3.15rem]">
-              Recruitment Agency or In-House Hiring: Which Model Fits Your Business?
+              Recruitment Agency vs In-House Hiring for Employers
             </h1>
             <p className="mt-5 max-w-xl text-[15px] leading-7 text-neutral-600">
-              Every growing organization eventually faces a recruitment capacity question. Should
-              hiring be managed entirely by an internal team, supported by external recruitment
-              partners or handled through a combination of both?
-            </p>
-            <p className="mt-4 max-w-xl text-[15px] leading-7 text-neutral-600">
-              The answer depends on hiring volume, role complexity, internal resources and the level
-              of control the organization requires.
+              EarlyJobs helps Indian employers compare in-house TA and agency recruitment on control,
+              cost, speed and sourcing reach. Use this guide to choose a model—or a hybrid—based on
+              hiring volume, role complexity and internal capacity, without relying on unsupported
+              cost claims.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <SolidLink href="#comparison">Compare Your Hiring Options</SolidLink>
@@ -113,6 +111,24 @@ export function RecruitmentAgencyVsInHousePage() {
                 and responsibilities.
               </p>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="border-b border-black/10 bg-[#f7f8fa]">
+        <div className="page-shell page-section grid gap-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-16">
+          <div>
+            <h2 className="max-w-md text-[1.85rem] font-semibold leading-[1.1] tracking-[-0.04em] sm:text-[2.35rem]">
+              Recruitment Agency vs In-House: Which Fits Better?
+            </h2>
+          </div>
+          <div className="space-y-5 text-[15px] leading-7 text-neutral-600">
+            <p>
+              Agencies add reach and surge capacity, often with placement or project fees, while
+              in-house teams offer control, culture alignment and steady employer-brand investment—but
+              fixed overhead. Neither is universally cheaper or faster; outcomes depend on volume,
+              role rarity and how much TA bandwidth you already carry in India.
+            </p>
           </div>
         </div>
       </section>
@@ -309,6 +325,8 @@ export function RecruitmentAgencyVsInHousePage() {
           </div>
         </div>
       </section>
+
+      <AboutEarlyJobs focus="Employers use EarlyJobs to weigh agency support against in-house TA capacity for India hiring." />
 
       <section className="border-b border-black/10 bg-[#f7f8fa]">
         <div className="page-shell page-section">

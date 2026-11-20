@@ -117,12 +117,13 @@ export function EvManufacturingAutomationPage() {
               EarlyJobs · EV manufacturing
             </p>
             <h1 className="mt-4 max-w-xl text-[2.35rem] leading-[1.05] font-semibold tracking-[-0.045em] text-neutral-950 sm:text-[3.15rem]">
-              Drive Electric Vehicle Production with Smarter Hiring Workflows.
+              AI Recruitment Automation for EV Manufacturing
             </h1>
             <p className="mt-5 max-w-xl text-[15px] leading-7 text-neutral-600">
-              AI recruiting automation for EV manufacturing connects candidate communication, skill
-              matching, and scheduling into one intelligent workflow — so clean-energy factories fill
-              roles rapidly and ramp without staffing delays.
+              EarlyJobs AI recruiting automation connects EV and battery plant hiring — skill
+              matching for pack lines and power electronics, shift scheduling, and high-volume
+              candidate follow-ups — so greenfield factories ramp production teams without recruiters
+              losing track of technical assessments.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <SolidLink href={ctaHref}>Explore EV Manufacturing Automation</SolidLink>
@@ -134,6 +135,21 @@ export function EvManufacturingAutomationPage() {
             </p>
           </div>
           <EvManufacturingHeroDashboard />
+        </div>
+      </section>
+
+      <section className="border-b border-black/10 bg-[#f7f8fa]">
+        <div className="page-shell page-section">
+          <h2 className="max-w-3xl text-[1.85rem] font-semibold leading-[1.1] tracking-[-0.04em] sm:text-[2.35rem]">
+            What is AI recruiting automation for EV manufacturing?
+          </h2>
+          <p className="mt-5 max-w-3xl text-[15px] leading-7 text-neutral-600">
+            AI recruiting automation for EV manufacturing coordinates hiring for battery, module, and
+            vehicle assembly plants — filtering for EV-relevant skills, managing shift availability,
+            and scheduling technical interviews — while recruiters approve safety and equipment
+            qualifications. It supports India's growing EV supply chain without treating hiring like
+            generic automotive dealership recruitment.
+          </p>
         </div>
       </section>
 
@@ -191,10 +207,10 @@ export function EvManufacturingAutomationPage() {
       <section id="automation" className="scroll-mt-24 border-b border-black/10">
         <div className="page-shell page-section">
           <p className="text-[11px] font-semibold tracking-[0.16em] text-brand uppercase">
-            What is EV manufacturing recruiting automation?
+            Capabilities
           </p>
           <h2 className="mt-3 max-w-3xl text-[1.85rem] font-semibold leading-[1.1] tracking-[-0.04em] sm:text-[2.35rem]">
-            AI-enhanced workflows tailored to electric vehicle workforce needs.
+            What workflows can EV manufacturing teams automate?
           </h2>
           <ul className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {capabilities.map((item, index) => (
@@ -334,6 +350,19 @@ export function EvManufacturingAutomationPage() {
           <div className="mt-10 max-w-3xl">
             <EvManufacturingFaq />
           </div>
+        </div>
+      </section>
+
+      <section className="border-b border-black/10">
+        <div className="page-shell page-section">
+          <h2 className="text-[1.5rem] font-semibold tracking-[-0.03em] sm:text-[1.75rem]">
+            About EarlyJobs
+          </h2>
+          <p className="mt-4 max-w-3xl text-[15px] leading-7 text-neutral-600">
+            EarlyJobs is an India-focused recruitment platform that helps employers hire for
+            manufacturing plants, healthcare staffing, and other high-volume roles — including EV and
+            battery manufacturing ramp-ups — with recruiter networks, tools, and workflow support.
+          </p>
         </div>
       </section>
 

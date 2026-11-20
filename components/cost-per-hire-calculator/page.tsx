@@ -68,16 +68,13 @@ export function CostPerHireCalculatorPage() {
             EarlyJobs · Employer tools
           </p>
           <h1 className="mt-4 max-w-3xl text-[2.35rem] leading-[1.05] font-semibold tracking-[-0.045em] text-neutral-950 sm:text-[3.15rem]">
-            Know What Every Hire Actually Costs Your Business
+            Cost Per Hire Calculator
           </h1>
           <p className="mt-5 max-w-2xl text-[15px] leading-7 text-neutral-600">
-            Hiring costs extend beyond job advertisements and recruitment agency invoices. Every
-            vacancy can involve recruiter hours, interview coordination, assessment expenses,
-            background checks and administrative work.
-          </p>
-          <p className="mt-4 max-w-2xl text-[15px] leading-7 text-neutral-600">
-            The EarlyJobs Cost-per-Hire Calculator helps employers organise recruitment expenses and
-            calculate the average cost associated with completed hires.
+            The EarlyJobs Cost Per Hire Calculator is a free employer tool that adds internal and
+            external recruitment spending, then divides by completed hires — so HR and finance teams
+            in India can see average cost per hire in INR for budgeting, agency reviews, and
+            leadership reporting.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <SolidLink href="#calculator">Calculate Cost Per Hire</SolidLink>
@@ -104,9 +101,11 @@ export function CostPerHireCalculatorPage() {
               Cost per hire is a recruitment efficiency metric that measures the average amount spent
               to make one hire. A commonly used formula is:
             </p>
-            <p className="rounded-xl border border-black/10 bg-[#f8fafc] px-4 py-4 font-medium text-neutral-950">
-              Cost per Hire = (Internal Recruiting Costs + External Recruiting Costs) ÷ Number of
-              Hires
+            <p className="text-[15px] leading-7 text-neutral-600">
+              <code className="rounded-xl border border-black/10 bg-[#f8fafc] px-4 py-3 font-medium text-neutral-950">
+                Cost per Hire = (Internal Recruiting Costs + External Recruiting Costs) ÷ Number of
+                Hires
+              </code>
             </p>
             <p>
               For example, if an organization spends ₹3,00,000 on recruitment during a defined period
@@ -222,6 +221,19 @@ export function CostPerHireCalculatorPage() {
           <div className="mt-10 max-w-3xl">
             <CostPerHireFaq />
           </div>
+        </div>
+      </section>
+
+      <section className="border-b border-black/10">
+        <div className="page-shell page-section">
+          <h2 className="text-[1.5rem] font-semibold tracking-[-0.03em] sm:text-[1.75rem]">
+            About EarlyJobs
+          </h2>
+          <p className="mt-4 max-w-3xl text-[15px] leading-7 text-neutral-600">
+            EarlyJobs is an India-focused recruitment platform that helps employers hire for
+            manufacturing plants, healthcare staffing, and other high-volume roles — with free
+            hiring calculators and recruiter support when you need backup on high-volume drives.
+          </p>
         </div>
       </section>
 

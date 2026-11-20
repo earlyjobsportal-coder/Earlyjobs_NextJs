@@ -4,14 +4,15 @@ import { IndustryEnquiryForm } from "@/components/industry-hiring/enquiry-form";
 import { ElectronicsFaq } from "@/components/electronics-manufacturing-recruitment/faq";
 import { ElectronicsHeroVisual } from "@/components/electronics-manufacturing-recruitment/hero-visual";
 import { ElectronicsRampTimeline } from "@/components/electronics-manufacturing-recruitment/ramp-timeline";
+import { AboutEarlyJobs } from "@/components/seo/about-earlyjobs";
 
 const considerations = [
-  "Shift availability and commuting distance.",
-  "Educational qualifications and basic technical aptitude.",
-  "Candidate interest in manufacturing careers.",
-  "Production ramp-up timelines.",
-  "Interview attendance and joining coordination.",
-  "Requirements for training and workplace safety.",
+  "ESD awareness and discipline on high-volume assembly lines.",
+  "Hand skills for repetitive inspection and PCBA tasks.",
+  "Shift availability near industrial corridors and EMS parks.",
+  "Diploma and ITI qualifications matched to station briefs.",
+  "Ramp-up timelines when new customer programs start.",
+  "Joining reliability during production scale-up windows.",
 ] as const;
 
 const roleCards = [
@@ -88,16 +89,13 @@ export function ElectronicsManufacturingRecruitmentPage() {
               EarlyJobs · Electronics & EMS
             </p>
             <h1 className="mt-4 max-w-xl text-[2.35rem] leading-[1.05] font-semibold tracking-[-0.045em] text-neutral-950 sm:text-[3.15rem]">
-              Build the Teams Behind India&apos;s Electronics Manufacturing Growth
+              Electronics & EMS Manufacturing Recruitment in India
             </h1>
             <p className="mt-5 max-w-xl text-[15px] leading-7 text-neutral-600">
-              Electronics manufacturing depends on coordinated production teams, consistent staffing
-              and the ability to respond to changing output requirements.
-            </p>
-            <p className="mt-4 max-w-xl text-[15px] leading-7 text-neutral-600">
-              For electronics manufacturing services (EMS) companies, workforce demand may increase
-              when a new customer program begins, an assembly line expands or production shifts
-              change.
+              EarlyJobs helps electronics and EMS manufacturers recruit assembly operators, inspection
+              trainees and line support staff for high-volume plants in India. Operations and TA teams
+              use this page to plan ramp hiring, clarify ESD and shift expectations, and build
+              pipelines when customer programs or lines expand.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <SolidLink href="#enquiry">Discuss Electronics Manufacturing Hiring</SolidLink>
@@ -115,14 +113,15 @@ export function ElectronicsManufacturingRecruitmentPage() {
         <div className="page-shell page-section grid gap-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-16">
           <div>
             <h2 className="max-w-md text-[1.85rem] font-semibold leading-[1.1] tracking-[-0.04em] sm:text-[2.35rem]">
-              Hiring entry-level employees at the right time.
+              What Is Unique About Electronics and EMS Hiring?
             </h2>
           </div>
           <div className="space-y-5 text-[15px] leading-7 text-neutral-600">
             <p>
-              Hiring entry-level employees at the right time is an important part of operational
-              planning. EarlyJobs supports employers looking to build candidate pipelines for
-              electronics manufacturing, assembly and related entry-level industrial roles.
+              EMS hiring is about throughput on precision lines—not generic factory staffing. Employers
+              need operators who follow ESD rules, tolerate repetitive inspection work and join
+              quickly when SMT or final-assembly output scales. EarlyJobs aligns sourcing with those
+              high-volume line realities across India&apos;s electronics clusters.
             </p>
           </div>
         </div>
@@ -298,6 +297,8 @@ export function ElectronicsManufacturingRecruitmentPage() {
           </div>
         </div>
       </section>
+
+      <AboutEarlyJobs focus="We support EMS and electronics plants hiring for high-volume assembly and inspection roles." />
 
       <section className="border-b border-black/10">
         <div className="page-shell page-section">

@@ -8,10 +8,10 @@ export const metadata: Metadata = pageMetadata({
   path: "/resources/90-day-workforce-hiring-plan",
   title: "Free 90-Day Workforce Hiring Plan Template | EarlyJobs",
   description:
-    "Download a 90-day workforce hiring plan template for employers. Organize headcount, recruitment milestones, interview schedules and joining targets.",
+    "Download the free EarlyJobs 90-day workforce hiring plan for Indian employers. Phase headcount, sourcing milestones, interviews and joining targets across a quarter.",
   ogTitle: "Free 90-Day Workforce Hiring Plan Template | EarlyJobs",
   ogDescription:
-    "Download a 90-day workforce hiring plan template. Organize headcount, milestones, interviews and joining targets.",
+    "Download the free EarlyJobs 90-day workforce hiring plan for Indian employers. Phase headcount, sourcing milestones, interviews and joining targets across a quarter.",
   image: "/images/logo.png",
   imageAlt: "EarlyJobs 90-Day Workforce Hiring Plan Template",
   twitterTitle: "Free 90-Day Workforce Hiring Plan Template",

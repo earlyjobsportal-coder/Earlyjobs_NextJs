@@ -5,19 +5,19 @@ import { useState } from "react";
 const faqs = [
   {
     q: "What is bulk hiring?",
-    a: "Bulk hiring is recruitment involving multiple vacancies, often within a defined period or across related roles.",
+    a: "Bulk hiring means filling many related vacancies in a defined window—often across shifts, plants or branches. It needs more coordination than single-role recruitment because approvals, interviews and joining move in parallel.",
   },
   {
     q: "What should a bulk hiring plan include?",
-    a: "Vacancies, eligibility, sourcing channels, interviews, selection responsibilities, budget and joining timelines.",
+    a: "Cover approved vacancies, eligibility, sourcing channels, interview logistics, selection owners, budget and joining dates. The EarlyJobs checklist walks Indian employers through those steps in six phases before launch.",
   },
   {
     q: "Can the checklist be used for factory recruitment?",
-    a: "Yes. It can be adapted for production, packaging, warehouse and other relevant roles.",
+    a: "Yes. Adapt phases for production, packaging, warehouse or maintenance drives. Note shift coverage and plant-specific safety induction so interview panels and joining teams know floor expectations.",
   },
   {
     q: "Is a bulk hiring checklist the same as a recruitment tracker?",
-    a: "No. A checklist covers planning activities, while a tracker records candidate progress.",
+    a: "No. The checklist plans what must happen; a tracker records individual candidate status. Use both—plan with the checklist, then monitor applications to joinings in your ATS or spreadsheet.",
   },
 ] as const;
 

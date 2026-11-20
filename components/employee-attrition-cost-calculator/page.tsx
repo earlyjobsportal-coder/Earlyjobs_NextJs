@@ -80,17 +80,13 @@ export function EmployeeAttritionCostCalculatorPage() {
             EarlyJobs · Employer tools
           </p>
           <h1 className="mt-4 max-w-3xl text-[2.35rem] leading-[1.05] font-semibold tracking-[-0.045em] text-neutral-950 sm:text-[3.15rem]">
-            Understand What Employee Attrition Really Costs
+            Employee Attrition Cost Calculator
           </h1>
           <p className="mt-5 max-w-2xl text-[15px] leading-7 text-neutral-600">
-            Employee attrition affects more than headcount. When an employee leaves, employers may
-            incur replacement recruitment expenses, temporary staffing costs, training costs and
-            productivity losses during the vacancy period.
-          </p>
-          <p className="mt-4 max-w-2xl text-[15px] leading-7 text-neutral-600">
-            These expenses can be difficult to evaluate when they are recorded across different
-            departments. The EarlyJobs Employee Attrition Cost Calculator helps employers estimate
-            the financial impact of employee departures using transparent assumptions.
+            The EarlyJobs Employee Attrition Cost Calculator is a free employer tool that combines
+            replacement recruiting, training, and vacancy assumptions to estimate what departures may
+            cost — so HR and plant leaders in India can discuss retention and hiring speed with
+            finance using transparent inputs, not guesswork.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <SolidLink href="#calculator">Calculate Attrition Cost</SolidLink>
@@ -142,9 +138,11 @@ export function EmployeeAttritionCostCalculatorPage() {
             How to Calculate Employee Attrition Cost
           </h2>
           <div className="mt-8 space-y-4">
-            <p className="rounded-xl border border-black/10 bg-white px-4 py-4 font-medium text-neutral-950">
-              Total Attrition Cost = Replacement Recruitment Costs + Training Costs + Vacancy Costs
-              + Other Direct Replacement Expenses
+            <p className="text-[15px] leading-7 text-neutral-600">
+              <code className="block rounded-xl border border-black/10 bg-white px-4 py-4 font-medium text-neutral-950">
+                Total Attrition Cost = Replacement Recruitment Costs + Training Costs + Vacancy Costs
+                + Other Direct Replacement Expenses
+              </code>
             </p>
             <p className="rounded-xl border border-black/10 bg-white px-4 py-4 font-medium text-neutral-950">
               Estimated Period Cost = Average Cost per Departure × Number of Departures
@@ -290,6 +288,19 @@ export function EmployeeAttritionCostCalculatorPage() {
           <div className="mt-10 max-w-3xl">
             <EmployeeAttritionCostFaq />
           </div>
+        </div>
+      </section>
+
+      <section className="border-b border-black/10">
+        <div className="page-shell page-section">
+          <h2 className="text-[1.5rem] font-semibold tracking-[-0.03em] sm:text-[1.75rem]">
+            About EarlyJobs
+          </h2>
+          <p className="mt-4 max-w-3xl text-[15px] leading-7 text-neutral-600">
+            EarlyJobs is an India-focused recruitment platform that helps employers hire for
+            manufacturing plants, healthcare staffing, and other high-volume roles — with free
+            attrition and funnel tools and recruiter support when turnover spikes on the line.
+          </p>
         </div>
       </section>
 

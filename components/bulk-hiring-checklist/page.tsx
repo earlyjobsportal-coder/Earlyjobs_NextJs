@@ -91,15 +91,13 @@ export function BulkHiringChecklistPage() {
               EarlyJobs · Hiring resources
             </p>
             <h1 className="mt-4 max-w-xl text-[2.35rem] leading-[1.05] font-semibold tracking-[-0.045em] text-neutral-950 sm:text-[3.15rem]">
-              Plan Large Hiring Drives with Greater Clarity
+              Free Bulk Hiring Checklist for High-Volume Recruitment
             </h1>
             <p className="mt-5 max-w-xl text-[15px] leading-7 text-neutral-600">
-              Bulk hiring requires more coordination than recruiting for a single vacancy. Employers
-              may need to hire dozens of people across different departments, shifts or facilities.
-            </p>
-            <p className="mt-4 max-w-xl text-[15px] leading-7 text-neutral-600">
-              The EarlyJobs Bulk Hiring Checklist helps employers organise the activities involved in
-              planning and executing a high-volume recruitment drive.
+              EarlyJobs provides a free bulk hiring checklist so employers in India can coordinate
+              vacancies, sourcing, interviews and joining across plants or branches. HR and operations
+              teams use it to plan high-volume drives without missing approvals, shift coverage or
+              stage tracking.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <SolidLink href="#checklist">Download the Bulk Hiring Checklist</SolidLink>
@@ -148,13 +146,10 @@ export function BulkHiringChecklistPage() {
           </div>
           <div className="space-y-5 text-[15px] leading-7 text-neutral-600">
             <p>
-              A bulk hiring checklist is a structured planning document used to coordinate
-              recruitment for multiple vacancies. It helps HR teams track the steps required before
-              sourcing begins, during candidate evaluation and after selection.
-            </p>
-            <p>
-              The checklist can be adapted for manufacturing, healthcare, logistics, infrastructure
-              and other workforce-intensive sectors.
+              A bulk hiring checklist is a structured planning document—not a live ATS—that lists what
+              HR must complete before, during and after a high-volume drive. The EarlyJobs version
+              walks Indian employers through six phases from vacancy definition to drive review across
+              manufacturing, healthcare, logistics and infrastructure hiring.
             </p>
           </div>
         </div>
@@ -271,6 +266,23 @@ export function BulkHiringChecklistPage() {
       </section>
 
       <section className="border-b border-black/10">
+        <div className="page-shell page-section">
+          <h2 className="text-[1.5rem] font-semibold tracking-[-0.03em] sm:text-[1.75rem]">
+            About EarlyJobs
+          </h2>
+          <p className="mt-4 max-w-3xl text-[15px] leading-7 text-neutral-600">
+            EarlyJobs is an India-focused recruitment platform at{" "}
+            <a href="https://www.earlyjobs.ai" className="text-brand underline-offset-2 hover:underline">
+              earlyjobs.ai
+            </a>{" "}
+            that helps employers hire for manufacturing plants, healthcare operations and other
+            high-volume roles—combining recruiter networks, employer tools and workflow support for
+            shift-based and multi-site programs.
+          </p>
+        </div>
+      </section>
+
+      <section className="border-b border-black/10 bg-[#f7f8fa]">
         <div className="page-shell page-section">
           <h2 className="text-[1.5rem] font-semibold tracking-[-0.03em] sm:text-[1.75rem]">
             Related hiring resources

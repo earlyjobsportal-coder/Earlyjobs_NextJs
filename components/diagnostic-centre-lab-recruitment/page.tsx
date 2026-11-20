@@ -4,6 +4,7 @@ import { IndustryEnquiryForm } from "@/components/industry-hiring/enquiry-form";
 import { DiagnosticCentreJourney } from "@/components/diagnostic-centre-lab-recruitment/centre-journey";
 import { DiagnosticFaq } from "@/components/diagnostic-centre-lab-recruitment/faq";
 import { DiagnosticHeroVisual } from "@/components/diagnostic-centre-lab-recruitment/hero-visual";
+import { AboutEarlyJobs } from "@/components/seo/about-earlyjobs";
 
 const challenges = [
   "Finding appropriately qualified laboratory personnel.",
@@ -92,16 +93,13 @@ export function DiagnosticCentreLabRecruitmentPage() {
               EarlyJobs · Diagnostic & medical lab
             </p>
             <h1 className="mt-4 max-w-xl text-[2.35rem] leading-[1.05] font-semibold tracking-[-0.045em] text-neutral-950 sm:text-[3.15rem]">
-              Build Reliable Teams for Diagnostic and Laboratory Operations
+              Diagnostic Centre & Lab Recruitment Across India
             </h1>
             <p className="mt-5 max-w-xl text-[15px] leading-7 text-neutral-600">
-              Every diagnostic centre depends on a combination of clinical expertise, technical
-              personnel and operational support. From patient registration to sample collection and
-              laboratory coordination, each role contributes to the overall service experience.
-            </p>
-            <p className="mt-4 max-w-xl text-[15px] leading-7 text-neutral-600">
-              EarlyJobs helps diagnostic and laboratory employers explore entry-level hiring for
-              relevant technical, administrative and support positions.
+              EarlyJobs helps diagnostic chains and medical labs in India recruit phlebotomists, lab
+              assistants, registration staff and shift-lab support. Healthcare HR teams use this page to
+              plan branch-wise hiring, clarify credential expectations and staff early-morning
+              collection without confusing roles with pharma plant manufacturing.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <SolidLink href="#enquiry">Discuss Diagnostic Centre Hiring</SolidLink>
@@ -120,17 +118,15 @@ export function DiagnosticCentreLabRecruitmentPage() {
         <div className="page-shell page-section grid gap-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-16">
           <div>
             <h2 className="max-w-md text-[1.85rem] font-semibold leading-[1.1] tracking-[-0.04em] sm:text-[2.35rem]">
-              Expansion and longer hours raise staffing demand.
+              What Is Unique About Diagnostic and Laboratory Hiring?
             </h2>
           </div>
           <div className="space-y-5 text-[15px] leading-7 text-neutral-600">
             <p>
-              When diagnostic providers expand into new locations or increase operating hours,
-              recruitment becomes an important part of maintaining service capacity.
-            </p>
-            <p>
-              Employers must consider educational qualifications, location, working hours and the
-              responsibilities associated with each position before candidate evaluation begins.
+              Lab hiring blends patient-facing collection, round-the-clock processing and branch
+              coordination—not typical office staffing. Employers need phlebotomy-ready talent, shift-lab
+              coverage and registration staff who keep TAT intact when volumes spike. EarlyJobs aligns
+              sourcing with those clinical operations constraints across Indian metros and tier cities.
             </p>
           </div>
         </div>
@@ -310,6 +306,8 @@ export function DiagnosticCentreLabRecruitmentPage() {
           </div>
         </div>
       </section>
+
+      <AboutEarlyJobs focus="We support diagnostic centres and labs hiring phlebotomy, technician and shift-based lab staff." />
 
       <section className="border-b border-black/10">
         <div className="page-shell page-section">

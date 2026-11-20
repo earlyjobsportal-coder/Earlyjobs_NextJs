@@ -5,19 +5,23 @@ import { useState } from "react";
 const faqs = [
   {
     q: "What is the cost of an unfilled position?",
-    a: "It is the estimated financial impact of a vacancy, based on duration and relevant operational or coverage expenses.",
+    a: "Cost of vacancy estimates the financial impact of leaving a role open — daily lost output or service capacity, overtime, temporary staff, and delayed projects. The EarlyJobs calculator multiplies vacancy days by your daily impact estimate and adds coverage costs you enter.",
   },
   {
     q: "Is vacancy cost the same as cost per hire?",
-    a: "No. Vacancy cost concerns the impact of an open position, while cost per hire measures recruitment spending per completed hire.",
+    a: "No. Vacancy cost is about money lost while the seat is empty; cost per hire measures recruitment spending to fill it. Leaders need both: high vacancy cost justifies faster hiring spend, while cost per hire shows whether sourcing is efficient.",
   },
   {
     q: "Can the calculator be used for manufacturing?",
-    a: "Yes. Employers can enter plant-specific assumptions and expenses.",
+    a: "Yes. Plant and operations teams can model unfilled operator, maintenance, or QC roles using line-specific daily impact and shift overtime. Use conservative assumptions you can explain to plant heads rather than industry averages you cannot verify.",
   },
   {
     q: "Does the calculator predict exact losses?",
-    a: "No. It produces estimates based on the information supplied by the user.",
+    a: "No. It produces estimates from your inputs for planning and prioritisation, not statutory reporting. Revisit assumptions when production targets, customer SLAs, or staffing models change.",
+  },
+  {
+    q: "Is the Vacancy Cost Calculator free?",
+    a: "Yes. This vacancy cost tool is free on EarlyJobs. Pair it with the Recruiting ROI or recruitment funnel calculators when building a case to shorten time-to-fill for critical roles.",
   },
 ] as const;
 

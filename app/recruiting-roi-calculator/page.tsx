@@ -8,15 +8,15 @@ export const metadata: Metadata = pageMetadata({
   path: "/recruiting-roi-calculator",
   title: "Recruiting ROI Calculator | EarlyJobs",
   description:
-    "Use our Recruiting ROI Calculator to estimate the return on investment of your hiring campaigns and recruiting tools, factoring in time saved, cost per hire, and revenue impact.",
+    "Free Recruiting ROI Calculator — estimate hiring program returns from time-to-fill, vacancy cost, and cost per hire. Model ROI for leadership in minutes.",
   ogTitle: "Recruiting ROI Calculator | EarlyJobs",
   ogDescription:
-    "Convert time-to-fill, vacancy cost, and cost per hire into a stakeholder-ready recruiting ROI estimate.",
+    "Free Recruiting ROI Calculator — estimate hiring program returns from time-to-fill, vacancy cost, and cost per hire. Model ROI for leadership in minutes.",
   image: "/images/logo.png",
   imageAlt: "EarlyJobs Recruiting ROI Calculator",
   twitterTitle: "Recruiting ROI Calculator",
   twitterDescription:
-    "Estimate hiring investment ROI from time saved, cost per hire, and vacancy impact.",
+    "Free tool: estimate recruiting ROI from time-to-fill, vacancy cost, and cost per hire — ready for leadership reviews.",
   twitterCard: "summary",
 });
 

@@ -5,19 +5,19 @@ import { useState } from "react";
 const faqs = [
   {
     q: "Can EarlyJobs support warehouse staff recruitment?",
-    a: "Employers can share requirements for pickers, packers, inventory assistants and other relevant roles.",
+    a: "EarlyJobs helps logistics and fulfilment employers assess hiring for pickers, packers, inventory assistants and dispatch coordinators. Share DC locations, shift patterns and peak-season volumes so sourcing matches floor reality.",
   },
   {
     q: "Can companies discuss bulk warehouse hiring?",
-    a: "Yes. Hiring volumes, locations and joining timelines can be assessed.",
+    a: "Yes. Employers can outline multi-shift headcount, seasonal spikes and facility clusters for assessment. Clear pick-rate and mobility expectations help align candidates before interview scheduling.",
   },
   {
     q: "What information is needed to start warehouse recruitment?",
-    a: "Role descriptions, vacancy numbers, facility locations, shift patterns, compensation and eligibility criteria.",
+    a: "Start with role descriptions, vacancy counts, facility addresses, shift rotation, compensation bands and physical job requirements. EarlyJobs uses this to scope sourcing—not to set operational SLAs for the warehouse.",
   },
   {
     q: "Does EarlyJobs provide forklift certification?",
-    a: "Certification or equipment training should not be assumed. Employers must ensure workers meet applicable requirements.",
+    a: "Equipment certification and MHE authorisation remain employer responsibilities. Recruitment should not be read as guaranteeing licensed forklift or reach-truck operation until the employer completes training.",
   },
 ] as const;
 

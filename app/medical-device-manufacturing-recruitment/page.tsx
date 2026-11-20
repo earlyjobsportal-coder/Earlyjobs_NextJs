@@ -6,17 +6,17 @@ import schema from "@/schema/medical-device-manufacturing-recruitment.jsonld.jso
 
 export const metadata: Metadata = pageMetadata({
   path: "/medical-device-manufacturing-recruitment",
-  title: "Medical Device Manufacturing Recruitment India | EarlyJobs",
+  title: "Medical Device Plant Recruitment India | EarlyJobs",
   description:
-    "Explore recruitment for medical device manufacturing, including assembly trainees, production operators, quality support and plant administration roles.",
-  ogTitle: "Medical Device Manufacturing Recruitment India | EarlyJobs",
+    "Hire precision assembly, packaging and quality-documentation staff for medical device manufacturing plants in India through EarlyJobs.",
+  ogTitle: "Medical Device Plant Recruitment India | EarlyJobs",
   ogDescription:
-    "Explore recruitment for medical device manufacturing, including assembly trainees, production operators, quality support and plant administration roles.",
+    "Hire precision assembly, packaging and quality-documentation staff for medical device manufacturing plants in India through EarlyJobs.",
   image: "/images/logo.png",
   imageAlt: "EarlyJobs medical device manufacturing recruitment",
   twitterTitle: "Medical Device Manufacturing Recruitment India",
   twitterDescription:
-    "Medical device factory hiring — assembly, packaging, quality support and plant admin roles.",
+    "Medical device plant hiring — precision assembly, packaging and quality docs.",
   twitterCard: "summary",
 });
 

@@ -6,7 +6,7 @@
       "@id": "https://www.earlyjobs.ai/recruiting-roi-calculator#webpage",
       "url": "https://www.earlyjobs.ai/recruiting-roi-calculator",
       "name": "Recruiting ROI Calculator | EarlyJobs",
-      "description": "Use our Recruiting ROI Calculator to estimate the return on investment of your hiring campaigns and recruiting tools, factoring in time saved, cost per hire, and revenue impact.",
+      "description": "Free Recruiting ROI Calculator — estimate hiring program returns from time-to-fill, vacancy cost, and cost per hire. Model ROI for leadership in minutes.",
       "isPartOf": {
         "@id": "https://www.earlyjobs.ai/#website"
       },
@@ -21,7 +21,10 @@
       },
       "speakable": {
         "@type": "SpeakableSpecification",
-        "cssSelector": ["h1", "h2"]
+        "cssSelector": [
+          "h1",
+          "h2"
+        ]
       },
       "inLanguage": "en-IN",
       "dateModified": "2026-11-20"
@@ -45,7 +48,7 @@
       ]
     },
     {
-      "@type": "WebApplication",
+      "@type": "SoftwareApplication",
       "@id": "https://www.earlyjobs.ai/recruiting-roi-calculator#tool",
       "name": "Recruiting ROI Calculator",
       "applicationCategory": "BusinessApplication",
@@ -58,7 +61,7 @@
       "offers": {
         "@type": "Offer",
         "price": "0",
-        "priceCurrency": "USD"
+        "priceCurrency": "INR"
       }
     },
     {
@@ -71,7 +74,7 @@
           "name": "What inputs does the ROI calculator need?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Typically: number of hires per year, average time-to-fill, daily cost of unfilled roles, and recruiting cost per hire. These inputs are usually available in HR dashboards or finance reports."
+            "text": "Enter annual open positions, average days to fill, estimated daily cost of an unfilled role, current cost per hire, expected improvement percentage from your initiative, and annual program investment. HR and finance teams in India usually pull time-to-fill and headcount from ATS or payroll reports, and vacancy cost from operations estimates."
           }
         },
         {
@@ -79,7 +82,7 @@
           "name": "Can the calculator include quality-of-hire?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "This simple model focuses on time and cost. For quality-of-hire metrics (like performance ratings), you’d need a more advanced model. However, improving hiring speed and cost often indirectly improves quality by allowing better candidates to stay engaged."
+            "text": "This model focuses on time and direct recruiting cost, not performance ratings or ramp productivity. Those need separate assumptions. Faster, clearer hiring often supports quality indirectly because strong candidates stay engaged, but treat quality gains as a qualitative benefit unless you have your own data to model them."
           }
         },
         {
@@ -87,7 +90,15 @@
           "name": "How accurate is the ROI estimate?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "It provides an estimate based on your inputs. It’s most useful for relative comparisons (e.g. project A yields higher ROI than B), not a precise forecast. Always treat it as a directional guide and update with real data over time."
+            "text": "Results are directional estimates from your inputs — best for comparing scenarios (automation vs. agency spend, pilot vs. baseline) rather than forecasting to the rupee. Update assumptions when hiring volume, salaries, or vacancy cost changes so leadership sees a current business case."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is the Recruiting ROI Calculator free?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. The EarlyJobs Recruiting ROI Calculator is free to use in your browser with no signup. You can adjust inputs instantly, share the methodology with finance, and combine the output with other free EarlyJobs tools such as cost-per-hire or vacancy-cost calculators."
           }
         }
       ]

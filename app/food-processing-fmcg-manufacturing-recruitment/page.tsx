@@ -6,17 +6,17 @@ import schema from "@/schema/food-processing-fmcg-manufacturing-recruitment.json
 
 export const metadata: Metadata = pageMetadata({
   path: "/food-processing-fmcg-manufacturing-recruitment",
-  title: "Food Processing & FMCG Recruitment India | EarlyJobs",
+  title: "Food & FMCG Plant Recruitment India | EarlyJobs",
   description:
-    "Explore recruitment for food processing plants and FMCG manufacturing facilities. Hire production trainees, packaging staff and warehouse associates.",
-  ogTitle: "Food Processing & FMCG Recruitment India | EarlyJobs",
+    "Hire hygiene-aware production and packaging staff for food processing and FMCG plants in India, including seasonal volume planning with EarlyJobs.",
+  ogTitle: "Food & FMCG Plant Recruitment India | EarlyJobs",
   ogDescription:
-    "Explore recruitment for food processing plants and FMCG manufacturing facilities. Hire production trainees, packaging staff and warehouse associates.",
+    "Hire hygiene-aware production and packaging staff for food processing and FMCG plants in India, including seasonal volume planning with EarlyJobs.",
   image: "/images/logo.png",
   imageAlt: "EarlyJobs food processing and FMCG manufacturing recruitment",
   twitterTitle: "Food Processing & FMCG Recruitment India",
   twitterDescription:
-    "Entry-level food and FMCG plant hiring — production, packaging, quality and warehouse.",
+    "Food and FMCG plant hiring — production, packaging and seasonal spikes across India.",
   twitterCard: "summary",
 });
 

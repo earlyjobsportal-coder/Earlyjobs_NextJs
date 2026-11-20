@@ -4,6 +4,7 @@ import { IndustryEnquiryForm } from "@/components/industry-hiring/enquiry-form";
 import { SolarFaq } from "@/components/solar-renewable-energy-recruitment/faq";
 import { SolarHeroVisual } from "@/components/solar-renewable-energy-recruitment/hero-visual";
 import { SolarLocationFlow } from "@/components/solar-renewable-energy-recruitment/location-flow";
+import { AboutEarlyJobs } from "@/components/seo/about-earlyjobs";
 
 const considerations = [
   "Candidate willingness to work at project locations.",
@@ -58,19 +59,19 @@ const process = [
 
 const related = [
   {
+    href: "/construction-infrastructure-recruitment",
+    title: "Construction Workforce Recruitment",
+    body: "Explore multi-site project hiring for infrastructure and EPC employers.",
+  },
+  {
     href: "/electronics-manufacturing-recruitment",
-    title: "Industrial Recruitment",
-    body: "See how industrial employers structure entry-level plant and project workforce hiring.",
+    title: "Electronics Manufacturing Recruitment",
+    body: "See EMS and assembly hiring for industrial employers expanding capacity.",
   },
   {
-    href: "/ai-recruiting-automation-manufacturing",
-    title: "Manufacturing Recruitment",
-    body: "Explore manufacturing hiring workflows for multi-site production staffing.",
-  },
-  {
-    href: "/resources/manpower-requisition-template",
-    title: "Workforce Requirement Template",
-    body: "Document vacancies, locations and joining timelines before sourcing begins.",
+    href: "/resources/90-day-workforce-hiring-plan",
+    title: "90-Day Workforce Hiring Plan",
+    body: "Phase project manpower, joining dates and locations before sourcing.",
   },
 ] as const;
 
@@ -92,16 +93,13 @@ export function SolarRenewableEnergyRecruitmentPage() {
               EarlyJobs · Solar & renewable
             </p>
             <h1 className="mt-4 max-w-xl text-[2.35rem] leading-[1.05] font-semibold tracking-[-0.045em] text-neutral-950 sm:text-[3.15rem]">
-              The Workforce Behind Every Solar Project
+              Solar & Renewable Energy Recruitment Across India
             </h1>
             <p className="mt-5 max-w-xl text-[15px] leading-7 text-neutral-600">
-              Solar energy projects require more than panels, electrical systems and installation
-              equipment. They need people who can support project execution, work across locations
-              and contribute to installation, operations and maintenance activities.
-            </p>
-            <p className="mt-4 max-w-xl text-[15px] leading-7 text-neutral-600">
-              EarlyJobs helps employers explore entry-level recruitment for solar, renewable energy
-              and related project workforce requirements.
+              EarlyJobs helps solar EPCs, developers and O&M teams in India recruit technicians,
+              installation helpers and multi-site project staff. HR and project leaders use this page
+              to plan location-based hiring, share mobilisation timelines and align candidates with
+              field execution—not plant-only manufacturing roles.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <SolidLink href="#enquiry">Discuss Your Solar Workforce Requirements</SolidLink>
@@ -120,15 +118,15 @@ export function SolarRenewableEnergyRecruitmentPage() {
         <div className="page-shell page-section grid gap-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-16">
           <div>
             <h2 className="max-w-md text-[1.85rem] font-semibold leading-[1.1] tracking-[-0.04em] sm:text-[2.35rem]">
-              Workforce planning as projects expand.
+              What Is Unique About Solar and Renewable Hiring?
             </h2>
           </div>
           <div className="space-y-5 text-[15px] leading-7 text-neutral-600">
             <p>
-              As renewable energy companies expand into new project sites, workforce planning becomes
-              a critical operational responsibility. From installation support to project
-              administration, hiring should reflect the location, technical requirements and timeline
-              of each project.
+              Solar hiring follows project geography, not a single plant gate. Employers staff multiple
+              sites, chase commissioning dates and need technicians comfortable with travel, height work
+              and site safety. EarlyJobs aligns sourcing with those multi-location, deadline-driven
+              project realities across India&apos;s renewable belts.
             </p>
           </div>
         </div>
@@ -310,6 +308,8 @@ export function SolarRenewableEnergyRecruitmentPage() {
           </div>
         </div>
       </section>
+
+      <AboutEarlyJobs focus="We support solar and renewable employers hiring technicians and project-site workforce." />
 
       <section className="border-b border-black/10">
         <div className="page-shell page-section">

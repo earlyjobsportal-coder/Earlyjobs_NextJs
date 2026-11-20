@@ -5,8 +5,8 @@
       "@type": "WebPage",
       "@id": "https://www.earlyjobs.ai/battery-manufacturing-recruitment#webpage",
       "url": "https://www.earlyjobs.ai/battery-manufacturing-recruitment",
-      "name": "Battery Manufacturing Recruitment in India | EarlyJobs",
-      "description": "Explore entry-level recruitment for battery manufacturing plants, including production trainees, assembly operators, quality assistants and warehouse staff.",
+      "name": "Battery Cell Plant Recruitment India | EarlyJobs",
+      "description": "Hire cell assembly, electrode and dry-room operators for battery manufacturing plants in India. EarlyJobs supports entry-level plant workforce planning.",
       "isPartOf": {
         "@id": "https://www.earlyjobs.ai/#website"
       },
@@ -18,7 +18,10 @@
       },
       "speakable": {
         "@type": "SpeakableSpecification",
-        "cssSelector": ["h1", "h2"]
+        "cssSelector": [
+          "h1",
+          "h2"
+        ]
       },
       "inLanguage": "en-IN",
       "dateModified": "2026-11-20"
@@ -51,7 +54,7 @@
           "name": "Can EarlyJobs support battery manufacturing recruitment?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Employers can discuss suitable entry-level production, assembly and support requirements for recruitment assessment."
+            "text": "EarlyJobs helps cell and pack plant employers assess hiring for electrode, assembly and dry-room support roles—not vehicle trim lines. Share facility type, humidity-controlled areas and shift volumes for accurate sourcing."
           }
         },
         {
@@ -59,7 +62,7 @@
           "name": "Which qualifications are relevant?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Requirements vary by position and may include ITI, diploma, engineering or employer-approved training."
+            "text": "Entry-level roles may consider ITI, diploma or science backgrounds depending on the station. Positions in electrode coating, cell assembly or dry rooms often need employer-led moisture-control and electrical safety training before start."
           }
         },
         {
@@ -67,7 +70,7 @@
           "name": "Can battery manufacturers discuss bulk hiring?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Yes. Employers can share expected vacancies, locations and joining timelines."
+            "text": "Yes. Employers can share line ramp schedules, clean-room staffing needs and joining targets across giga-factory phases. Separating cell, module and pack vacancies avoids mismatched candidate pools."
           }
         },
         {
@@ -75,7 +78,7 @@
           "name": "Who is responsible for battery safety training?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "The employer must ensure personnel receive the necessary training, authorization and supervision."
+            "text": "Employers must provide training, authorization and supervision for chemical handling, high-voltage zones and dry-room protocols. EarlyJobs does not replace plant safety compliance or technical sign-off."
           }
         }
       ]

@@ -6,17 +6,17 @@ import schema from "@/schema/ai-recruiting-automation-manufacturing.jsonld.json"
 
 export const metadata: Metadata = pageMetadata({
   path: "/ai-recruiting-automation-manufacturing",
-  title: "AI Recruiting Automation for Manufacturing Hiring | EarlyJobs",
+  title: "AI Recruiting Automation for Manufacturing | EarlyJobs",
   description:
-    "Explore AI-driven recruiting workflows for manufacturing hiring teams, coordinating candidate engagement, scheduling, and handoffs across plants to fill plant jobs faster.",
-  ogTitle: "AI Recruiting Automation for Manufacturing Hiring | EarlyJobs",
+    "Automate plant hiring with EarlyJobs AI workflows. Match shift skills, route certifications, and coordinate multi-site manufacturing recruitment faster.",
+  ogTitle: "AI Recruiting Automation for Manufacturing | EarlyJobs",
   ogDescription:
-    "Coordinate plant-level hiring with AI workflows for candidate engagement, shift matching, and multi-site handoffs — so factories fill roles faster.",
+    "Automate plant hiring with EarlyJobs AI workflows. Match shift skills, route certifications, and coordinate multi-site manufacturing recruitment.",
   image: "/images/logo.png",
   imageAlt: "EarlyJobs AI recruiting automation for manufacturing hiring",
-  twitterTitle: "AI Recruiting Automation for Manufacturing Hiring",
+  twitterTitle: "AI Recruiting Automation for Manufacturing",
   twitterDescription:
-    "Coordinate candidate engagement, scheduling, and handoffs across plants to fill manufacturing roles faster.",
+    "Automate shift-based plant hiring — skills matching, certification routing, and multi-site coordination with EarlyJobs.",
   twitterCard: "summary",
 });
 

@@ -5,15 +5,19 @@ import { useState } from "react";
 const faqs = [
   {
     q: "What is manufacturing recruitment automation?",
-    a: "It’s the use of AI-assisted workflows to support recurring industrial hiring tasks, such as candidate screening, shift matching, and interview scheduling, all integrated across a factory operation.",
+    a: "Manufacturing recruitment automation uses AI-assisted workflows to run repeatable industrial hiring steps — intake across plants, shift-preference surveys, certification flags, and interview scheduling — while recruiters decide who advances. For Indian factories and staffing partners, it reduces time spent chasing mismatched shift or location fits during ramp-ups and seasonal peaks.",
   },
   {
     q: "Can AI handle multiple plant locations?",
-    a: "Yes. When properly configured, the system treats each location’s requirements distinctly while applying shared rules. It can route candidates to the right plant or flag conflicts if, for example, one candidate qualifies for roles at two plants.",
+    a: "Yes, when workflows are configured per site. Each plant can keep its own shift patterns, certification rules, and hiring manager calendars while sharing common messaging and compliance standards. The system routes candidates to the right location, avoids duplicate outreach, and alerts recruiters when one applicant qualifies for roles at more than one facility.",
   },
   {
     q: "Do I need an ATS to use these workflows?",
-    a: "A database of candidates is helpful, but the core need is a workflow engine. Many ATS platforms offer workflow modules. The key is configuring the workflow logic around manufacturing-specific events (e.g. shift availability).",
+    a: "A candidate database helps, but the core need is a workflow engine that reacts to manufacturing events — shift changes, new headcount, certification gaps. Many ATS products include workflow modules. EarlyJobs can complement your stack by coordinating outreach and handoffs; the important part is logic built around plant-specific hiring steps.",
+  },
+  {
+    q: "How is manufacturing recruiting automation priced?",
+    a: "Pricing depends on hiring volume, number of plants, and which workflow steps you automate. EarlyJobs typically scopes automation alongside recruitment support rather than a one-size calculator. Contact the team for a quote aligned to your shift hiring and certification requirements — this page itself is free to read and share.",
   },
 ] as const;
 
