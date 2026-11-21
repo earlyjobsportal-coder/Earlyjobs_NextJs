@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { useParams, useRouter } from "next/navigation";
 import { blogService, Blog } from "@/components/legacy/services/blogsapi";
@@ -22,21 +22,26 @@ import Header from "../../components/pages/header";
 import Footer from "../../components/pages/footer";
 import type { PublicBlog } from "@/lib/public-blogs";
 import { toast } from "sonner";
+import { BlogReaderPrompt } from "@/components/legacy/blogs/reader-prompt";
 
-export default function BlogDetailPage({ initialBlog = null }: { initialBlog?: PublicBlog | null }) {
+export default function BlogDetailPage({
+  initialBlog = null,
+  relatedBlogs: initialRelated = [],
+}: {
+  initialBlog?: PublicBlog | null;
+  relatedBlogs?: PublicBlog[];
+}) {
   const params = useParams();
   const router = useRouter();
   const slug = params?.slug as string;
   const [blog, setBlog] = useState<Blog | null>((initialBlog as Blog | null) ?? null);
-  const [relatedBlogs, setRelatedBlogs] = useState<Blog[]>([]);
+  const [relatedBlogs, setRelatedBlogs] = useState<Blog[]>(initialRelated as Blog[]);
   const [loading, setLoading] = useState(!initialBlog);
   const [error, setError] = useState<string | null>(null);
   const [liking, setLiking] = useState(false);
+  const midRef = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
-    if (initialBlog?.tags && initialBlog.tags.length > 0) {
-      fetchRelatedBlogs(initialBlog.tags[0], initialBlog._id);
-    }
     if (initialBlog || !slug) return;
     fetchBlog();
   }, [slug, initialBlog]);
@@ -274,10 +279,13 @@ export default function BlogDetailPage({ initialBlog = null }: { initialBlog?: P
               )}
 
               {/* Content */}
-              <div
-                className="prose prose-lg max-w-none prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-orange-600 prose-strong:text-gray-900 prose-ul:text-gray-700 prose-ol:text-gray-700 prose-li:text-gray-700"
-                dangerouslySetInnerHTML={{ __html: blog.content }}
-              />
+              <div className="relative">
+                <div
+                  className="prose prose-lg max-w-none prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-orange-600 prose-strong:text-gray-900 prose-ul:text-gray-700 prose-ol:text-gray-700 prose-li:text-gray-700"
+                  dangerouslySetInnerHTML={{ __html: blog.content }}
+                />
+                <span ref={midRef} aria-hidden className="pointer-events-none absolute top-1/4 left-0 h-px w-px" />
+              </div>
             </CardContent>
           </Card>
 
@@ -320,6 +328,7 @@ export default function BlogDetailPage({ initialBlog = null }: { initialBlog?: P
         </div>
       </div>
       <Footer />
+      <BlogReaderPrompt slug={blog.slug} midRef={midRef} />
     </>
   );
 }
