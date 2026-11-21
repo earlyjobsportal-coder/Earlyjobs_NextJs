@@ -1,0 +1,156 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://www.earlyjobs.ai/resources/interview-scheduling-template#webpage",
+      "url": "https://www.earlyjobs.ai/resources/interview-scheduling-template",
+      "name": "Free Interview Scheduling Template for Recruiters | EarlyJobs",
+      "description": "Download an interview scheduling template to organize candidate interviews, interviewer availability, locations and recruitment status across hiring teams.",
+      "isPartOf": {
+        "@id": "https://www.earlyjobs.ai/#website"
+      },
+      "about": {
+        "@id": "https://www.earlyjobs.ai/#organization"
+      },
+      "breadcrumb": {
+        "@id": "https://www.earlyjobs.ai/resources/interview-scheduling-template#breadcrumb"
+      },
+      "mainEntity": {
+        "@id": "https://www.earlyjobs.ai/resources/interview-scheduling-template#resource"
+      },
+      "speakable": {
+        "@type": "SpeakableSpecification",
+        "cssSelector": ["h1", "h2"]
+      },
+      "inLanguage": "en-IN",
+      "dateModified": "2026-11-21"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://www.earlyjobs.ai/resources/interview-scheduling-template#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.earlyjobs.ai/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Resources",
+          "item": "https://www.earlyjobs.ai/resources"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Interview Scheduling Template",
+          "item": "https://www.earlyjobs.ai/resources/interview-scheduling-template"
+        }
+      ]
+    },
+    {
+      "@type": "CreativeWork",
+      "@id": "https://www.earlyjobs.ai/resources/interview-scheduling-template#resource",
+      "name": "EarlyJobs Interview Scheduling Template",
+      "description": "Structured interview scheduling template for recording candidate appointments, interviewer details, format, location and recruitment status.",
+      "provider": {
+        "@id": "https://www.earlyjobs.ai/#organization"
+      },
+      "url": "https://www.earlyjobs.ai/resources/interview-scheduling-template",
+      "encodingFormat": [
+        "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://www.earlyjobs.ai/resources/interview-scheduling-template#faq",
+      "url": "https://www.earlyjobs.ai/resources/interview-scheduling-template",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is an interview scheduling template?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "It is a structured document used to plan and track candidate interview appointments, including date, time, interviewer, format, location and status."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can the template support bulk hiring?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. It can be adapted for multiple candidates, roles and interviewers when columns and status definitions stay consistent."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does the template automatically send invitations?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. Automated invitations require separately implemented functionality. The template organises scheduling details only."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can employers use it for virtual interviews?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. The format can include approved meeting details and time zones for telephone or video interviews."
+          }
+        }
+      ]
+    },
+    {
+      "@type": "HowTo",
+      "@id": "https://www.earlyjobs.ai/resources/interview-scheduling-template#howto",
+      "name": "How to use an interview scheduling template",
+      "description": "Structured workflow for planning candidate interviews, confirming attendance and recording follow-up ownership.",
+      "step": [
+        {
+          "@type": "HowToStep",
+          "position": 1,
+          "name": "Collect shortlisted candidates",
+          "text": "Confirm which candidates are eligible to proceed."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 2,
+          "name": "Identify interviewer availability",
+          "text": "Coordinate with hiring managers or technical evaluators."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 3,
+          "name": "Assign interview slots",
+          "text": "Avoid overlapping appointments and unrealistic scheduling gaps."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 4,
+          "name": "Communicate instructions",
+          "text": "Share the date, time, format and relevant reporting details."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 5,
+          "name": "Track confirmation",
+          "text": "Record whether the candidate has confirmed attendance."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 6,
+          "name": "Update the status",
+          "text": "Mark completed, rescheduled or cancelled interviews."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 7,
+          "name": "Record follow-up ownership",
+          "text": "Identify who will communicate the next recruitment step."
+        }
+      ]
+    }
+  ]
+}

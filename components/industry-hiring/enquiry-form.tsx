@@ -23,7 +23,9 @@ type IndustryEnquiryFormProps = {
     | "food"
     | "construction"
     | "medical"
-    | "semiconductor";
+    | "semiconductor"
+    | "wind"
+    | "textile";
 };
 
 export function IndustryEnquiryForm({
@@ -142,7 +144,7 @@ export function IndustryEnquiryForm({
           <input name="phone" type="tel" autoComplete="tel" className={fieldClass} />
         </label>
         <label className="block text-[12px] font-medium text-neutral-700">
-          {extraFields === "solar" || extraFields === "construction"
+          {extraFields === "solar" || extraFields === "construction" || extraFields === "wind" || extraFields === "textile"
             ? "Project location"
             : extraFields === "diagnostic"
               ? "Branch / centre location"
@@ -155,25 +157,29 @@ export function IndustryEnquiryForm({
             placeholder={
               extraFields === "electronics"
                 ? "e.g. Sriperumbudur, TN"
-                : extraFields === "solar"
-                  ? "e.g. Bikaner, RJ"
-                  : extraFields === "automotive"
-                    ? "e.g. Chennai, TN"
-                    : extraFields === "diagnostic"
-                      ? "e.g. Pune, MH — multiple branches welcome"
-                      : extraFields === "warehouse"
-                        ? "e.g. Bhiwandi, MH — multi-DC welcome"
-                        : extraFields === "battery"
-                          ? "e.g. Sanand, GJ — multi-plant welcome"
-                          : extraFields === "food"
-                            ? "e.g. Nashik, MH"
-                            : extraFields === "construction"
-                              ? "e.g. Nagpur, MH — multi-site welcome"
-                              : extraFields === "medical"
-                                ? "e.g. Bengaluru, KA — facility-specific"
-                                : extraFields === "semiconductor"
-                                  ? "e.g. Greater Noida, UP — facility-specific"
-                                  : "e.g. Hyderabad, TS"
+                  : extraFields === "solar"
+                    ? "e.g. Bikaner, RJ"
+                    : extraFields === "automotive"
+                      ? "e.g. Chennai, TN"
+                      : extraFields === "diagnostic"
+                        ? "e.g. Pune, MH — multiple branches welcome"
+                        : extraFields === "warehouse"
+                          ? "e.g. Bhiwandi, MH — multi-DC welcome"
+                          : extraFields === "battery"
+                            ? "e.g. Sanand, GJ — multi-plant welcome"
+                            : extraFields === "food"
+                              ? "e.g. Nashik, MH"
+                              : extraFields === "construction"
+                                ? "e.g. Nagpur, MH — multi-site welcome"
+                                : extraFields === "medical"
+                                  ? "e.g. Bengaluru, KA — facility-specific"
+                                  : extraFields === "semiconductor"
+                                    ? "e.g. Greater Noida, UP — facility-specific"
+                                    : extraFields === "wind"
+                                      ? "e.g. Kutch, GJ — multi-site wind farm welcome"
+                                      : extraFields === "textile"
+                                        ? "e.g. Tirupur, TN — multi-facility welcome"
+                                        : "e.g. Hyderabad, TS"
             }
             className={fieldClass}
           />
@@ -187,16 +193,20 @@ export function IndustryEnquiryForm({
         extraFields === "food" ||
         extraFields === "construction" ||
         extraFields === "medical" ||
-        extraFields === "semiconductor" ? (
+        extraFields === "semiconductor" ||
+        extraFields === "wind" ||
+        extraFields === "textile" ? (
           <>
             {extraFields === "automotive" ||
             extraFields === "diagnostic" ||
             extraFields === "warehouse" ||
             extraFields === "battery" ||
             extraFields === "food" ||
-            extraFields === "construction" ||
-            extraFields === "medical" ||
-            extraFields === "semiconductor" ? (
+              extraFields === "construction" ||
+              extraFields === "medical" ||
+              extraFields === "semiconductor" ||
+              extraFields === "wind" ||
+              extraFields === "textile" ? (
               <label className="block text-[12px] font-medium text-neutral-700">
                 {extraFields === "battery" ||
                 extraFields === "food" ||
@@ -221,9 +231,13 @@ export function IndustryEnquiryForm({
                               ? "e.g. Site support, trades, equipment, admin"
                               : extraFields === "medical"
                                 ? "e.g. Assembly, packaging, quality, materials"
-                                : extraFields === "semiconductor"
-                                  ? "e.g. Production trainee, assembly, junior technician"
-                                  : "e.g. Assembly operator, quality trainee"
+                : extraFields === "semiconductor"
+                  ? "e.g. Production trainee, assembly, junior technician"
+                  : extraFields === "wind"
+                    ? "e.g. Turbine technician, site assistant, electrical trainee"
+                    : extraFields === "textile"
+                      ? "e.g. Sewing operator, quality assistant, packing associate"
+                      : "e.g. Assembly operator, quality trainee"
                   }
                   className={fieldClass}
                 />
@@ -263,11 +277,15 @@ export function IndustryEnquiryForm({
                             ? "e.g. 80 production trainees across shifts"
                             : extraFields === "food"
                               ? "e.g. 40 packaging associates"
-                              : extraFields === "medical"
-                                ? "e.g. 35 assembly trainees"
-                                : extraFields === "semiconductor"
-                                  ? "e.g. 60 production trainees / phased facility hire"
-                                  : "e.g. 40 assembly operators"
+                    : extraFields === "medical"
+                      ? "e.g. 35 assembly trainees"
+                      : extraFields === "semiconductor"
+                        ? "e.g. 60 production trainees / phased facility hire"
+                        : extraFields === "wind"
+                          ? "e.g. 40 turbine technicians / phased site hire"
+                          : extraFields === "textile"
+                            ? "e.g. 60 sewing operators / phased line hire"
+                            : "e.g. 40 assembly operators"
                   }
                   className={fieldClass}
                 />
