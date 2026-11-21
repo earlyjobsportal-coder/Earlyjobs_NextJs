@@ -1,9 +1,9 @@
 "use client";
 
-import { useState, useEffect, useRef, Suspense } from "react";
+import { useState, useEffect, useMemo, Suspense, useTransition } from "react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
-import { blogService, Blog } from "@/components/legacy/services/blogsapi";
+import type { Blog } from "@/components/legacy/services/blogsapi";
 import type { PublicBlogList } from "@/lib/public-blogs";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -18,103 +18,48 @@ import Footer from "../components/pages/footer";
 function BlogsContent({ initial }: { initial?: PublicBlogList | null }) {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const skipFirstFetch = useRef(Boolean(initial?.blogs));
-  const [blogs, setBlogs] = useState<Blog[]>((initial?.blogs as Blog[] | undefined) ?? []);
-  const [loading, setLoading] = useState(!initial?.blogs);
-  const [error, setError] = useState<string | null>(null);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(initial?.pagination.totalPages ?? 1);
-  const [totalResults, setTotalResults] = useState(initial?.pagination.totalResults ?? 0);
-  const [searchTerm, setSearchTerm] = useState("");
-  const [selectedTag, setSelectedTag] = useState("");
-  const [allTags, setAllTags] = useState<string[]>(() => {
+  const [isPending, startTransition] = useTransition();
+  const urlSearch = searchParams.get("search") || "";
+  const selectedTag = searchParams.get("tag") || "";
+  const currentPage = Math.max(1, parseInt(searchParams.get("page") || "1", 10) || 1);
+  const [searchTerm, setSearchTerm] = useState(urlSearch);
+  const blogs = (initial?.blogs as Blog[] | undefined) ?? [];
+  const totalPages = initial?.pagination.totalPages ?? 1;
+  const totalResults = initial?.pagination.totalResults ?? 0;
+  const error = initial ? null : "Failed to load blogs";
+  const allTags = useMemo(() => {
     const tags = new Set<string>();
     initial?.blogs.forEach((blog) => blog.tags?.forEach((tag) => tags.add(tag)));
     return Array.from(tags);
-  });
-  const itemsPerPage = 12;
+  }, [initial]);
 
   useEffect(() => {
-    const page = parseInt(searchParams.get("page") || "1", 10);
-    const tag = searchParams.get("tag") || "";
-    const search = searchParams.get("search") || "";
-    
-    setCurrentPage(page);
-    setSelectedTag(tag);
-    setSearchTerm(search);
-  }, [searchParams]);
+    setSearchTerm(urlSearch);
+  }, [urlSearch]);
 
-  useEffect(() => {
-    if (skipFirstFetch.current) {
-      skipFirstFetch.current = false;
-      return;
-    }
-    fetchBlogs();
-  }, [currentPage, selectedTag, searchTerm]);
-
-  const fetchBlogs = async () => {
-    try {
-      setLoading(true);
-      setError(null);
-      
-      const params: any = {
-        page: currentPage,
-        limit: itemsPerPage,
-        status: "published", // Only show published blogs
-      };
-
-      if (selectedTag) {
-        params.tag = selectedTag;
-      }
-
-      if (searchTerm) {
-        params.search = searchTerm;
-      }
-
-      const response = await blogService.getBlogs(params);
-      
-      if (response.success && response.data) {
-        setBlogs(response.data.blogs);
-        setTotalPages(response.data.pagination.totalPages);
-        setTotalResults(response.data.pagination.totalResults);
-        
-        // Extract unique tags from all blogs
-        const tags = new Set<string>();
-        response.data.blogs.forEach((blog) => {
-          blog.tags?.forEach((tag) => tags.add(tag));
-        });
-        setAllTags(Array.from(tags));
-      }
-    } catch (err: any) {
-      setError(err?.message || "Failed to load blogs");
-      console.error("Error fetching blogs:", err);
-    } finally {
-      setLoading(false);
-    }
+  const pushFilters = (next: { search?: string; tag?: string; page?: number }) => {
+    const params = new URLSearchParams();
+    const search = next.search ?? searchTerm;
+    const tag = next.tag ?? selectedTag;
+    const page = next.page ?? 1;
+    if (search) params.set("search", search);
+    if (tag) params.set("tag", tag);
+    params.set("page", String(page));
+    startTransition(() => {
+      router.push(`/blogs?${params.toString()}`);
+    });
   };
 
   const handleSearch = () => {
-    const params = new URLSearchParams();
-    if (searchTerm) params.set("search", searchTerm);
-    if (selectedTag) params.set("tag", selectedTag);
-    params.set("page", "1");
-    router.push(`/blogs?${params.toString()}`);
+    pushFilters({ search: searchTerm, page: 1 });
   };
 
   const handleTagFilter = (tag: string) => {
-    const params = new URLSearchParams();
-    if (searchTerm) params.set("search", searchTerm);
-    params.set("tag", tag);
-    params.set("page", "1");
-    router.push(`/blogs?${params.toString()}`);
+    pushFilters({ tag, page: 1 });
   };
 
   const handlePageChange = (page: number) => {
-    const params = new URLSearchParams();
-    if (searchTerm) params.set("search", searchTerm);
-    if (selectedTag) params.set("tag", selectedTag);
-    params.set("page", page.toString());
-    router.push(`/blogs?${params.toString()}`);
+    pushFilters({ page });
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
@@ -198,31 +143,31 @@ function BlogsContent({ initial }: { initial?: PublicBlogList | null }) {
           </div>
 
           {/* Results Count */}
-          {!loading && (
+          {!isPending && (
             <div className="mb-6 text-gray-600">
               Showing {blogs.length} of {totalResults} blogs
             </div>
           )}
 
           {/* Loading State */}
-          {loading && (
+          {isPending && (
             <div className="flex justify-center items-center py-20">
               <Loader2 className="h-8 w-8 animate-spin text-orange-500" />
             </div>
           )}
 
           {/* Error State */}
-          {error && !loading && (
+          {error && !isPending && (
             <div className="text-center py-20">
               <p className="text-red-500 text-lg mb-4">{error}</p>
-              <Button onClick={fetchBlogs} variant="outline">
+              <Button onClick={() => startTransition(() => router.refresh())} variant="outline">
                 Try Again
               </Button>
             </div>
           )}
 
           {/* Blog Grid */}
-          {!loading && !error && (
+          {!isPending && !error && (
             <>
               {blogs.length === 0 ? (
                 <div className="text-center py-20">
@@ -230,8 +175,7 @@ function BlogsContent({ initial }: { initial?: PublicBlogList | null }) {
                   <Button
                     onClick={() => {
                       setSearchTerm("");
-                      setSelectedTag("");
-                      router.push("/blogs");
+                      startTransition(() => router.push("/blogs"));
                     }}
                     variant="outline"
                   >
