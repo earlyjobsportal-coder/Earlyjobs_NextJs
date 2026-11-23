@@ -1,5 +1,6 @@
 import { City, State } from "country-state-city";
 import type { PublicJobDetail } from "@/lib/public-jobs";
+import { jobHref } from "@/lib/job-path";
 
 const NON_PLACE = new Set([
   "remote",
@@ -65,8 +66,8 @@ function employmentType(type: string) {
   return null;
 }
 
-function resolvePlace(city: string, location: string) {
-  let regionFromText = "";
+function resolvePlace(city: string, location: string, regionHint?: string) {
+  let regionFromText = (regionHint || "").trim();
   let fallback = "";
   let match: { locality: string; region: string | null } | null = null;
 
@@ -123,14 +124,19 @@ export function jobDescriptionHtml(html: string) {
   return `<p>${trimmed}</p>`;
 }
 
-/** Expiry is always 1 month after the original post date. */
-export function jobValidThrough(datePosted: string) {
-  const posted = new Date(datePosted);
-  if (Number.isNaN(posted.getTime())) return null;
-  const expires = new Date(posted);
-  expires.setUTCMonth(expires.getUTCMonth() + 1);
-  return expires;
+/**
+ * Prefer the API expiry. Do not invent / extend validThrough locally.
+ * Returns null when the API did not provide a usable date.
+ */
+export function jobValidThrough(job: Pick<PublicJobDetail, "validThrough" | "datePosted">) {
+  if (job.validThrough) {
+    const expires = new Date(job.validThrough);
+    if (!Number.isNaN(expires.getTime())) return expires;
+  }
+  return null;
 }
+
+const SITE_BASE = (process.env.NEXT_PUBLIC_BASE_URL || "https://www.earlyjobs.ai").replace(/\/+$/, "");
 
 /** JobPosting only when the vacancy is active and the required visible fields exist. */
 export function jobPostingSchema(job: PublicJobDetail, descriptionHtml: string) {
@@ -139,11 +145,12 @@ export function jobPostingSchema(job: PublicJobDetail, descriptionHtml: string) 
   const posted = new Date(job.datePosted);
   if (Number.isNaN(posted.getTime())) return null;
 
-  const expires = jobValidThrough(job.datePosted);
-  if (!expires) return null;
+  const expires = jobValidThrough(job);
+  // Drop schema when the posting is past its real expiry.
+  if (expires && expires.getTime() <= Date.now()) return null;
 
   const unit = salaryUnit(job.salaryMode);
-  const place = resolvePlace(job.city, job.location);
+  const place = resolvePlace(job.city, job.location, job.region);
   const remote = /remote/i.test(job.mode);
   const type = employmentType(job.type);
   const logo = job.logoUrl && /^https?:\/\//i.test(job.logoUrl) ? job.logoUrl : "";
@@ -154,13 +161,18 @@ export function jobPostingSchema(job: PublicJobDetail, descriptionHtml: string) 
     return `https://${raw}`;
   })();
 
+  // Google JobPosting.title must be the role only — never SEO display title.
+  const schemaTitle = (job.baseTitle || "").trim() || job.title;
+  const canonicalUrl =
+    (job.url && /^https?:\/\//i.test(job.url) ? job.url : "") || `${SITE_BASE}${jobHref(job)}`;
+
   const data: Record<string, unknown> = {
     "@context": "https://schema.org",
     "@type": "JobPosting",
-    title: job.title,
+    title: schemaTitle,
     description,
     datePosted: posted.toISOString(),
-    validThrough: expires.toISOString(),
+    url: canonicalUrl,
     hiringOrganization: {
       "@type": "Organization",
       name: job.company,
@@ -175,9 +187,11 @@ export function jobPostingSchema(job: PublicJobDetail, descriptionHtml: string) 
     directApply: !job.isExternal,
   };
 
+  if (expires) data.validThrough = expires.toISOString();
+
   if (type) data.employmentType = type;
   if (place.locality) {
-    data.jobLocation = jobLocation(place.locality, place.region, {
+    data.jobLocation = jobLocation(place.locality, place.region || job.region, {
       street: job.street,
       area: job.area,
       pincode: job.pincode,
@@ -195,17 +209,45 @@ export function jobPostingSchema(job: PublicJobDetail, descriptionHtml: string) 
   } else if (job.maxExperience === 0) {
     data.experienceRequirements = "no requirements";
   }
-  if (unit && job.minSalary && job.maxSalary && job.minSalary > 0 && job.maxSalary > 0) {
+
+  const hasMin = job.minSalary != null && job.minSalary > 0;
+  const hasMax = job.maxSalary != null && job.maxSalary > 0;
+  if (unit && (hasMin || hasMax)) {
+    const value: Record<string, unknown> = {
+      "@type": "QuantitativeValue",
+      unitText: unit,
+    };
+    if (hasMin && hasMax) {
+      value.minValue = job.minSalary;
+      value.maxValue = job.maxSalary;
+    } else if (hasMin) {
+      value.value = job.minSalary;
+    } else {
+      value.value = job.maxSalary;
+    }
     data.baseSalary = {
       "@type": "MonetaryAmount",
       currency: "INR",
-      value: {
-        "@type": "QuantitativeValue",
-        minValue: job.minSalary,
-        maxValue: job.maxSalary,
-        unitText: unit,
-      },
+      value,
     };
+  }
+
+  if (job.industry) data.industry = job.industry;
+  if (job.occupationalCategory) data.occupationalCategory = job.occupationalCategory;
+
+  const education = job.educationRequirements.filter(Boolean);
+  if (education.length) {
+    data.educationRequirements =
+      education.length === 1 && /^no requirements$/i.test(education[0])
+        ? "no requirements"
+        : education.map((credentialCategory) =>
+            /^no requirements$/i.test(credentialCategory)
+              ? "no requirements"
+              : {
+                  "@type": "EducationalOccupationalCredential",
+                  credentialCategory,
+                },
+          );
   }
 
   return data;
