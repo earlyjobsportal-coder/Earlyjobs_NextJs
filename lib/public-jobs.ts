@@ -259,12 +259,16 @@ function jobsUrl(page: number, filters?: JobQuery) {
 export type PublicJobDetail = {
   jobId: string;
   title: string;
+  /** Clean role title for JobPosting JSON-LD (no locality / SEO wrappers). */
+  baseTitle: string;
   description: string;
   company: string;
   companyWebsite: string;
   logoUrl?: string;
   location: string;
   category: string;
+  industry: string;
+  occupationalCategory: string;
   type: string;
   mode: string;
   experience: string;
@@ -274,11 +278,14 @@ export type PublicJobDetail = {
   salary: string;
   skills: string[];
   qualification: string[];
+  educationRequirements: string[];
   keywords: JobKeyword[];
   hiringNeed: string;
   shift: string;
   companyName: string;
   city: string;
+  /** State / region for PostalAddress.addressRegion */
+  region: string;
   street: string;
   area: string;
   pincode: string;
@@ -288,6 +295,10 @@ export type PublicJobDetail = {
   isActive: boolean;
   isExternal: boolean;
   datePosted: string;
+  /** ISO expiry from API — used for JobPosting.validThrough */
+  validThrough: string | null;
+  /** Canonical public job URL when provided by API */
+  url: string;
   minSalary: number | null;
   maxSalary: number | null;
   salaryMode: string;
@@ -307,13 +318,17 @@ export type RelatedJob = {
 
 type PublicJobRecord = {
   title?: string;
+  base_title?: string;
   description?: string;
   location?: string;
   category?: string;
+  industry?: string;
+  occupational_category?: string;
   job_id?: string;
   company_name?: string;
   brand_name?: string;
   city?: string;
+  address_region?: string;
   commission_type?: string;
   company_logo_url?: string;
   company_website?: string;
@@ -331,12 +346,15 @@ type PublicJobRecord = {
   no_of_openings?: number;
   skills?: string[] | string;
   qualification?: string[] | string;
+  education_requirements?: string[] | string;
   keywords?: { keyword?: string; isShared?: boolean }[] | string[];
   hiring_need?: string;
   shift_timings?: string;
   isActive?: boolean;
   isExternal?: boolean;
   created_at?: string;
+  valid_through?: string;
+  url?: string;
   related_jobs?: {
     title?: string;
     company_name?: string;
@@ -418,15 +436,28 @@ export async function getPublicJob(jobId: string): Promise<PublicJobDetail | nul
 
   const companyWebsite = (job.company_website || job.companyWebsite || "").trim();
 
+  const educationRequirements = asStringList(
+    job.education_requirements ?? job.qualification,
+  );
+  const validThroughRaw = (job.valid_through || "").trim();
+  const validThroughDate = validThroughRaw ? new Date(validThroughRaw) : null;
+  const validThrough =
+    validThroughDate && !Number.isNaN(validThroughDate.getTime())
+      ? validThroughDate.toISOString()
+      : null;
+
   return {
     jobId: job.job_id,
     title: job.title,
+    baseTitle: (job.base_title || "").trim() || job.title,
     description: job.description ?? "",
     company: job.brand_name || job.company_name || "",
     companyWebsite,
     logoUrl: job.company_logo_url,
     location: job.location || "",
-    category: job.category || "",
+    category: job.category || job.industry || "",
+    industry: (job.industry || job.category || "").trim(),
+    occupationalCategory: (job.occupational_category || "").trim(),
     type: job.employment_type || "",
     mode: job.work_type ? formatWorkType(job.work_type) : "",
     experience: formatExperience(minExperience, maxExperience),
@@ -439,12 +470,14 @@ export async function getPublicJob(jobId: string): Promise<PublicJobDetail | nul
       job.salary_mode || "",
     ),
     skills: asStringList(job.skills),
-    qualification: asStringList(job.qualification),
+    qualification: educationRequirements,
+    educationRequirements,
     keywords: keywordLabels(job.keywords),
     hiringNeed: job.hiring_need || "",
     shift: job.shift_timings || "",
     companyName: job.company_name || job.brand_name || "",
     city: job.city || "Remote",
+    region: (job.address_region || "").trim(),
     street: (job.street || "").trim(),
     area: (job.area || "").trim(),
     pincode: (job.pincode || "").trim(),
@@ -458,6 +491,8 @@ export async function getPublicJob(jobId: string): Promise<PublicJobDetail | nul
     isActive: job.isActive !== false,
     isExternal: job.isExternal === true,
     datePosted: job.created_at || "",
+    validThrough,
+    url: (job.url || "").trim(),
     minSalary: typeof job.min_salary === "number" ? job.min_salary : null,
     maxSalary: typeof job.max_salary === "number" ? job.max_salary : null,
     salaryMode: job.salary_mode || "",
