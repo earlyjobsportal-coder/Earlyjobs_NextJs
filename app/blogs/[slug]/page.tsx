@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import BlogDetailPage from "@/components/legacy/blogs/[slug]/page";
 import { JsonLd } from "@/components/json-ld";
 import { pageMetadata, SITE_URL } from "@/lib/page-metadata";
-import { getPublishedBlogBySlug, type PublicBlog } from "@/lib/public-blogs";
+import { getPublishedBlogBySlug, getPublishedBlogs, type PublicBlog } from "@/lib/public-blogs";
 
 type BlogRouteProps = { params: Promise<{ slug: string }> };
 
@@ -64,10 +64,16 @@ export default async function Page({ params }: BlogRouteProps) {
   const blog = await getPublishedBlogBySlug(slug);
   if (blog === "missing") notFound();
   const posting = blog === "unavailable" ? null : blogPosting(blog);
+  const tag = blog === "unavailable" ? "" : blog.tags?.[0] || "";
+  const relatedList = tag ? await getPublishedBlogs({ tag }) : null;
+  const related =
+    blog === "unavailable"
+      ? []
+      : (relatedList?.blogs ?? []).filter((item) => item._id !== blog._id).slice(0, 3);
   return (
     <>
       {posting ? <JsonLd data={posting} /> : null}
-      <BlogDetailPage initialBlog={blog === "unavailable" ? null : blog} />
+      <BlogDetailPage initialBlog={blog === "unavailable" ? null : blog} relatedBlogs={related} />
     </>
   );
 }
