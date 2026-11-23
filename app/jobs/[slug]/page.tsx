@@ -4,7 +4,7 @@ import { notFound, redirect } from "next/navigation";
 import { ApplyJob } from "@/components/jobs/apply-job";
 import { JsonLd } from "@/components/json-ld";
 import { CompanyLogo } from "@/components/jobs/company-logo";
-import { jobDescriptionHtml, jobPostingSchema } from "@/lib/job-posting";
+import { cleanJobTitle, jobDescriptionHtml, jobPostingSchema, seoCityLabel } from "@/lib/job-posting";
 import { jobHref, jobSlug } from "@/lib/job-path";
 import { pageMetadata } from "@/lib/page-metadata";
 import { getPublicJob, jobsPageHref, resolveJobIdFromSlug } from "@/lib/public-jobs";
@@ -69,13 +69,6 @@ function sanitizeHtml(html: string) {
     .replace(/javascript:/gi, "");
 }
 
-function plainText(html: string) {
-  return html
-    .replace(/<[^>]+>/g, " ")
-    .replace(/\s+/g, " ")
-    .trim();
-}
-
 export async function generateMetadata({
   params,
   searchParams,
@@ -89,12 +82,9 @@ export async function generateMetadata({
   const jobId = await resolveJobIdFromSlug(slug, hint);
   const job = jobId ? await getPublicJob(jobId) : null;
   if (!job) return { title: { absolute: "Job | EarlyJobs" }, robots: { index: false, follow: false } };
-  const text = plainText(job.description);
-  const role = (job.baseTitle || job.title).trim();
-  const city = job.city && !/^remote$/i.test(job.city) ? job.city : job.location;
-  const metaTitle = city
-    ? `${role} Jobs in ${city} | EarlyJobs`
-    : `${role} Jobs | EarlyJobs`;
+  const role = cleanJobTitle(job.title, job.baseTitle, job.city, seoCityLabel(job));
+  const city = seoCityLabel(job);
+  const metaTitle = city ? `${role} Jobs in ${city} | EarlyJobs` : `${role} Jobs | EarlyJobs`;
   const salaryBit = job.summarySalary ? ` Salary: ${job.summarySalary}.` : "";
   const expBit = job.summaryExperience ? ` Experience: ${job.summaryExperience}.` : "";
   const locationBit = city || job.location || "India";

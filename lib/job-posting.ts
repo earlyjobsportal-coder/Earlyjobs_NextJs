@@ -16,6 +16,35 @@ const NON_PLACE = new Set([
   "tbd",
 ]);
 
+/** Known metro cities used on EarlyJobs job pages → state. */
+const METRO_CITIES = new Map<string, string>([
+  ["bengaluru", "Karnataka"],
+  ["bangalore", "Karnataka"],
+  ["mumbai", "Maharashtra"],
+  ["delhi", "Delhi"],
+  ["delhi ncr", "Delhi"],
+  ["noida", "Uttar Pradesh"],
+  ["gurugram", "Haryana"],
+  ["gurgaon", "Haryana"],
+  ["hyderabad", "Telangana"],
+  ["chennai", "Tamil Nadu"],
+  ["pune", "Maharashtra"],
+  ["kolkata", "West Bengal"],
+  ["ahmedabad", "Gujarat"],
+]);
+
+/** City-default invents — never publish in JobPosting postalCode. */
+const INVENTED_PINS = new Set([
+  "560001",
+  "400001",
+  "110001",
+  "500001",
+  "600001",
+  "411001",
+  "700001",
+  "380001",
+]);
+
 const ALIASES = new Map<string, string>([
   ["bangalore", "Karnataka"],
   ["bombay", "Maharashtra"],
@@ -66,12 +95,87 @@ function employmentType(type: string) {
   return null;
 }
 
-function resolvePlace(city: string, location: string, regionHint?: string) {
-  let regionFromText = (regionHint || "").trim();
-  let fallback = "";
-  let match: { locality: string; region: string | null } | null = null;
+/**
+ * Google JobPosting.title must be the role only.
+ * Strip SEO wrappers even when API base_title is missing.
+ */
+export function cleanJobTitle(
+  title?: string,
+  baseTitle?: string,
+  locality?: string,
+  cityOrRegion?: string,
+) {
+  const explicit = String(baseTitle || "").trim();
+  // Prefer API base title only when it does not still look like an SEO display title.
+  if (explicit && !/\bjobs?\s+in\b/i.test(explicit) && !/\s[-–—]\s/.test(explicit)) {
+    return explicit;
+  }
 
-  for (const source of [city, location]) {
+  let cleaned = String(title || "").trim();
+  if (!cleaned) return "Job";
+
+  cleaned = cleaned
+    .replace(/^walk-in\s+/i, "")
+    .replace(/^hiring\s+/i, "")
+    .replace(/\s+career opportunity\b/i, "")
+    .replace(/\s+vacancy\b/i, "")
+    .replace(/\s+opening\b/i, "")
+    .replace(/\s+required\b/i, "")
+    .replace(/\s+jobs?\b/i, "");
+
+  cleaned = cleaned
+    .replace(/\s+[-–—]\s+.+$/u, "")
+    .replace(/\s+in\s+.+$/i, "");
+
+  if (locality) {
+    const loc = locality.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    cleaned = cleaned.replace(new RegExp(`\\s*[-–—,|/]?\\s*${loc}\\b.*$`, "i"), "");
+  }
+  if (cityOrRegion) {
+    const city = cityOrRegion.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    cleaned = cleaned.replace(new RegExp(`\\s*[-–—,|/]?\\s*${city}\\b.*$`, "i"), "");
+  }
+
+  cleaned = cleaned.replace(/\s{2,}/g, " ").replace(/^[-–—,|/]+|[-–—,|/]+$/g, "").trim();
+  return cleaned || String(title || "Job").trim();
+}
+
+/** Prefer a metro city name (Hyderabad) over a locality for SEO meta. */
+export function seoCityLabel(job: Pick<PublicJobDetail, "title" | "city" | "location" | "region">) {
+  const sources = [job.title, job.location, job.city, job.region].filter(Boolean) as string[];
+  for (const source of sources) {
+    for (const token of source.split(/[,|/]/)) {
+      const label = token.trim();
+      const key = norm(label);
+      if (!key || NON_PLACE.has(key)) continue;
+      if (METRO_CITIES.has(key) || CITIES.has(key) || ALIASES.has(key)) {
+        // Canonical casing for metros
+        if (key === "bangalore") return "Bengaluru";
+        if (key === "gurugram" || key === "gurgaon") return "Gurugram";
+        return label.replace(/\b\w/g, (c) => c.toUpperCase()).replace(/\bNcr\b/i, "NCR");
+      }
+    }
+    // "… Hyderabad" at end of SEO titles
+    const metroHit = source.match(
+      /\b(Bengaluru|Bangalore|Mumbai|Delhi(?:\s*NCR)?|Hyderabad|Chennai|Pune|Kolkata|Ahmedabad|Gurugram|Gurgaon|Noida)\b/i,
+    );
+    if (metroHit) {
+      const raw = metroHit[1];
+      if (/^bangalore$/i.test(raw)) return "Bengaluru";
+      if (/^gurgaon$/i.test(raw)) return "Gurugram";
+      return raw.replace(/\b\w/g, (c) => c.toUpperCase()).replace(/\bNcr\b/i, "NCR");
+    }
+  }
+  const fallback = (job.city || job.location || "").trim();
+  if (fallback && !NON_PLACE.has(norm(fallback))) return fallback;
+  return "";
+}
+
+function findMetroAndRegion(...sources: Array<string | undefined>) {
+  let region = "";
+  let metro = "";
+
+  for (const source of sources) {
     if (!source) continue;
     for (const token of source.split(/[,|/]/)) {
       const label = token.trim();
@@ -79,19 +183,73 @@ function resolvePlace(city: string, location: string, regionHint?: string) {
       if (!key || NON_PLACE.has(key)) continue;
       const state = STATES.get(key);
       if (state) {
-        if (!regionFromText) regionFromText = state;
+        if (!region) region = state;
         continue;
       }
-      if (!match) {
-        if (CITIES.has(key)) match = { locality: label, region: CITIES.get(key) ?? null };
-        else if (ALIASES.has(key)) match = { locality: label, region: ALIASES.get(key) ?? null };
+      if (METRO_CITIES.has(key) || ALIASES.has(key) || CITIES.has(key)) {
+        if (!metro) {
+          metro = key === "bangalore" ? "Bengaluru" : label;
+        }
+        const mapped =
+          METRO_CITIES.get(key) || ALIASES.get(key) || CITIES.get(key) || "";
+        if (mapped && !region) region = mapped;
       }
-      if (!fallback && label.length <= 48 && !/\d/.test(label)) fallback = label;
+    }
+    if (!metro) {
+      const metroHit = source.match(
+        /\b(Bengaluru|Bangalore|Mumbai|Delhi(?:\s*NCR)?|Hyderabad|Chennai|Pune|Kolkata|Ahmedabad|Gurugram|Gurgaon|Noida)\b/i,
+      );
+      if (metroHit) {
+        const raw = metroHit[1];
+        const key = norm(raw.replace(/\s+/g, " "));
+        metro = /^bangalore$/i.test(raw)
+          ? "Bengaluru"
+          : raw.replace(/\b\w/g, (c) => c.toUpperCase()).replace(/\bNcr\b/i, "NCR");
+        if (!region) {
+          region =
+            METRO_CITIES.get(key) ||
+            METRO_CITIES.get(key.replace(/\s+ncr$/, "")) ||
+            "";
+        }
+      }
     }
   }
 
-  if (match) return { locality: match.locality, region: match.region || regionFromText };
-  return { locality: fallback, region: regionFromText };
+  return { metro, region };
+}
+
+function resolvePlace(
+  city: string,
+  location: string,
+  regionHint?: string,
+  title?: string,
+) {
+  const found = findMetroAndRegion(regionHint, title, location, city);
+  const region = (regionHint || "").trim() || found.region;
+
+  // Prefer API city/location area (e.g. Jeedimetla Industrial Area), not SEO title text.
+  let areaLocality = "";
+  for (const source of [city, location]) {
+    if (!source) continue;
+    for (const token of source.split(/[,|/]/)) {
+      const label = token.trim();
+      const key = norm(label);
+      if (!key || NON_PLACE.has(key)) continue;
+      if (STATES.has(key) || METRO_CITIES.has(key) || ALIASES.has(key) || CITIES.has(key)) continue;
+      if (!areaLocality && label.length <= 64 && !/\d{6}/.test(label)) {
+        areaLocality = label;
+      }
+    }
+  }
+
+  const locality = areaLocality || found.metro;
+  return { locality, region };
+}
+
+function verifiedPostalCode(pincode?: string) {
+  const pin = String(pincode || "").trim();
+  if (!pin || INVENTED_PINS.has(pin)) return "";
+  return pin;
 }
 
 function jobLocation(
@@ -101,7 +259,7 @@ function jobLocation(
 ) {
   const streetParts = [extras?.street?.trim(), extras?.area?.trim()].filter(Boolean);
   const streetAddress = streetParts.join(", ");
-  const postalCode = extras?.pincode?.trim() || "";
+  const postalCode = verifiedPostalCode(extras?.pincode);
 
   return {
     "@type": "Place",
@@ -150,7 +308,7 @@ export function jobPostingSchema(job: PublicJobDetail, descriptionHtml: string) 
   if (expires && expires.getTime() <= Date.now()) return null;
 
   const unit = salaryUnit(job.salaryMode);
-  const place = resolvePlace(job.city, job.location, job.region);
+  const place = resolvePlace(job.city, job.location, job.region, job.title);
   const remote = /remote/i.test(job.mode);
   const type = employmentType(job.type);
   const logo = job.logoUrl && /^https?:\/\//i.test(job.logoUrl) ? job.logoUrl : "";
@@ -161,8 +319,7 @@ export function jobPostingSchema(job: PublicJobDetail, descriptionHtml: string) 
     return `https://${raw}`;
   })();
 
-  // Google JobPosting.title must be the role only — never SEO display title.
-  const schemaTitle = (job.baseTitle || "").trim() || job.title;
+  const schemaTitle = cleanJobTitle(job.title, job.baseTitle, job.city, place.locality || seoCityLabel(job));
   const canonicalUrl =
     (job.url && /^https?:\/\//i.test(job.url) ? job.url : "") || `${SITE_BASE}${jobHref(job)}`;
 
