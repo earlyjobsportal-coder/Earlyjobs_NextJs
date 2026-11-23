@@ -33,16 +33,21 @@ const METRO_CITIES = new Map<string, string>([
   ["ahmedabad", "Gujarat"],
 ]);
 
-/** City-default invents — never publish in JobPosting postalCode. */
-const INVENTED_PINS = new Set([
-  "560001",
-  "400001",
-  "110001",
-  "500001",
-  "600001",
-  "411001",
-  "700001",
-  "380001",
+/** City-level default pincodes when a job has no stored pin. */
+const CITY_DEFAULT_PINS = new Map<string, string>([
+  ["bengaluru", "560001"],
+  ["bangalore", "560001"],
+  ["mumbai", "400001"],
+  ["delhi", "110001"],
+  ["delhi ncr", "110001"],
+  ["hyderabad", "500001"],
+  ["chennai", "600001"],
+  ["pune", "411001"],
+  ["kolkata", "700001"],
+  ["ahmedabad", "380001"],
+  ["gurugram", "122001"],
+  ["gurgaon", "122001"],
+  ["noida", "201301"],
 ]);
 
 const ALIASES = new Map<string, string>([
@@ -246,20 +251,44 @@ function resolvePlace(
   return { locality, region };
 }
 
-function verifiedPostalCode(pincode?: string) {
+function resolvePostalCode(
+  pincode: string | undefined,
+  ...placeHints: Array<string | undefined>
+) {
   const pin = String(pincode || "").trim();
-  if (!pin || INVENTED_PINS.has(pin)) return "";
-  return pin;
+  if (pin) return pin;
+  for (const hint of placeHints) {
+    if (!hint) continue;
+    for (const token of hint.split(/[,|/]/)) {
+      const key = norm(token);
+      if (CITY_DEFAULT_PINS.has(key)) return CITY_DEFAULT_PINS.get(key)!;
+    }
+    const metroHit = hint.match(
+      /\b(Bengaluru|Bangalore|Mumbai|Delhi(?:\s*NCR)?|Hyderabad|Chennai|Pune|Kolkata|Ahmedabad|Gurugram|Gurgaon|Noida)\b/i,
+    );
+    if (metroHit) {
+      const key = norm(metroHit[1].replace(/\s+/g, " "));
+      const mapped =
+        CITY_DEFAULT_PINS.get(key) || CITY_DEFAULT_PINS.get(key.replace(/\s+ncr$/, ""));
+      if (mapped) return mapped;
+    }
+  }
+  return "560001";
 }
 
 function jobLocation(
   locality: string,
   region: string,
-  extras?: { street?: string; area?: string; pincode?: string },
+  extras?: { street?: string; area?: string; pincode?: string; title?: string },
 ) {
   const streetParts = [extras?.street?.trim(), extras?.area?.trim()].filter(Boolean);
   const streetAddress = streetParts.join(", ");
-  const postalCode = verifiedPostalCode(extras?.pincode);
+  const postalCode = resolvePostalCode(
+    extras?.pincode,
+    locality,
+    region,
+    extras?.title,
+  );
 
   return {
     "@type": "Place",
@@ -268,7 +297,7 @@ function jobLocation(
       ...(streetAddress ? { streetAddress } : {}),
       addressLocality: locality,
       ...(region ? { addressRegion: region } : {}),
-      ...(postalCode ? { postalCode } : {}),
+      postalCode,
       addressCountry: "IN",
     },
   };
@@ -352,6 +381,7 @@ export function jobPostingSchema(job: PublicJobDetail, descriptionHtml: string) 
       street: job.street,
       area: job.area,
       pincode: job.pincode,
+      title: job.title,
     });
   }
   if (remote) {
