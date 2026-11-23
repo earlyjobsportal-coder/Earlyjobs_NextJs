@@ -128,8 +128,12 @@ export default async function JobPage({
   // Collapse full ObjectIds / ?jid= / mistyped titles down to /jobs/{title}-{shortId}.
   if (slug !== canonical || hint) redirect(`/jobs/${canonical}`);
 
-  const descriptionHtml = jobDescriptionHtml(job.description ? sanitizeHtml(job.description) : "");
-  const posting = jobPostingSchema(job, descriptionHtml);
+  // UI: arranged HTML. Schema: plain prose from job.description only.
+  const descriptionHtml = jobDescriptionHtml(
+    job.descriptionHtml ? sanitizeHtml(job.descriptionHtml) : "",
+    job.description || "",
+  );
+  const posting = jobPostingSchema(job);
   const chips = [job.location, job.type, job.mode, job.experience, job.openings, job.category, job.hiringNeed, job.shift].filter(
     Boolean,
   );

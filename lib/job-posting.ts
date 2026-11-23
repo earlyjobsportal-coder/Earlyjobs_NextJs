@@ -323,11 +323,16 @@ export function jobDescriptionPlain(text: string) {
     .trim();
 }
 
-/** Optional HTML wrapper for on-page rendering only (not for JSON-LD). */
-export function jobDescriptionHtml(html: string) {
-  const plain = jobDescriptionPlain(html);
+/**
+ * Arranged HTML for the job page UI.
+ * Prefer API description_html; fall back to paragraph-wrapping plain text.
+ */
+export function jobDescriptionHtml(arrangedHtml: string, plainFallback = "") {
+  const arranged = String(arrangedHtml || "").trim();
+  if (arranged && /<(?:p|ul|ol|li|h2|h3)\b/i.test(arranged)) return arranged;
+
+  const plain = jobDescriptionPlain(arranged || plainFallback);
   if (!plain) return "";
-  // Escape for safe HTML display; keep as a single paragraph visually.
   const escaped = plain
     .replace(/&/g, "&amp;")
     .replace(/</g, "&lt;")
@@ -351,9 +356,9 @@ export function jobValidThrough(job: Pick<PublicJobDetail, "validThrough" | "dat
 const SITE_BASE = (process.env.NEXT_PUBLIC_BASE_URL || "https://www.earlyjobs.ai").replace(/\/+$/, "");
 
 /** JobPosting only when the vacancy is active and the required visible fields exist. */
-export function jobPostingSchema(job: PublicJobDetail, descriptionHtml: string) {
+export function jobPostingSchema(job: PublicJobDetail, _descriptionHtml?: string) {
   // JSON-LD description must stay plain-paragraph text (no <p>/<ul>/etc).
-  const description = jobDescriptionPlain(descriptionHtml || job.description);
+  const description = jobDescriptionPlain(job.description);
   if (!job.isActive || !job.title || !job.datePosted || !description || !job.company) return null;
   const posted = new Date(job.datePosted);
   if (Number.isNaN(posted.getTime())) return null;

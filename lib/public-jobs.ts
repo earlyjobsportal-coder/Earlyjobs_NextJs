@@ -261,7 +261,10 @@ export type PublicJobDetail = {
   title: string;
   /** Clean role title for JobPosting JSON-LD (no locality / SEO wrappers). */
   baseTitle: string;
+  /** Plain prose for JobPosting JSON-LD */
   description: string;
+  /** Arranged HTML for on-page rendering */
+  descriptionHtml: string;
   company: string;
   companyWebsite: string;
   logoUrl?: string;
@@ -320,6 +323,7 @@ type PublicJobRecord = {
   title?: string;
   base_title?: string;
   description?: string;
+  description_html?: string;
   location?: string;
   category?: string;
   industry?: string;
@@ -451,6 +455,7 @@ export async function getPublicJob(jobId: string): Promise<PublicJobDetail | nul
     title: job.title,
     baseTitle: (job.base_title || "").trim() || job.title,
     description: job.description ?? "",
+    descriptionHtml: (job.description_html || "").trim(),
     company: job.brand_name || job.company_name || "",
     companyWebsite,
     logoUrl: job.company_logo_url,
