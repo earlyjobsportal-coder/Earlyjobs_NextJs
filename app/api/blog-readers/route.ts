@@ -18,8 +18,9 @@ export async function POST(request: Request) {
   const phone = String(body.phone ?? "").trim();
   const email = String(body.email ?? "").trim();
   const slug = String(body.slug ?? "").trim();
+  const intent = body.intent === "job" || body.intent === "hiring" ? body.intent : "";
 
-  if (!name || !phoneCode || !phone || !email || !slug) {
+  if (!name || !phoneCode || !phone || !email || !slug || !intent) {
     return NextResponse.json({ ok: false, error: "Missing required fields." }, { status: 400 });
   }
   if (!isValidEmail(email)) {
@@ -37,7 +38,7 @@ export async function POST(request: Request) {
     response = await fetch(LEAD_ENDPOINT, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ name, phoneCode, phone, email, slug }),
+      body: JSON.stringify({ name, phoneCode, phone, email, slug, intent }),
     });
   } catch {
     return NextResponse.json({ ok: false, error: "Could not save your details." }, { status: 502 });

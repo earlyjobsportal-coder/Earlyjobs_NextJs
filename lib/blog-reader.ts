@@ -1,11 +1,14 @@
 export const BLOG_READER_SAVED_KEY = "earlyjobs.blogReaderSaved";
 
+export type BlogReaderIntent = "job" | "hiring";
+
 export type BlogReaderPayload = {
   name: string;
   phoneCode: string;
   phone: string;
   email: string;
   slug: string;
+  intent: BlogReaderIntent;
 };
 
 export function hasSavedBlogReader() {
