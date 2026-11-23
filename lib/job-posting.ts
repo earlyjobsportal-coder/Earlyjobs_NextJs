@@ -429,15 +429,10 @@ export function arrangeJobDescriptionForUi(job: PublicJobDetail) {
     if (!body) continue;
     usedTitles.add(hit.title);
 
-    // Prefer structured field lists when available (avoids broken comma-splits).
+    // Prefer structured skills list when available.
     if (hit.title === "Skills" && job.skills?.length) {
       parts.push("<h2>Skills</h2>");
       parts.push(uiList(job.skills));
-      continue;
-    }
-    if (hit.title === "Requirements / Qualifications" && job.qualification?.length) {
-      parts.push("<h2>Requirements / Qualifications</h2>");
-      parts.push(uiList(job.qualification));
       continue;
     }
 
@@ -450,10 +445,10 @@ export function arrangeJobDescriptionForUi(job: PublicJobDetail) {
     if (hit.title === "Experience" || hit.title === "Working hours / Shift") {
       parts.push(`<p>${escapeUiHtml(body.replace(/[.]+$/g, ""))}</p>`);
     } else if (hit.title === "Skills" || hit.title === "Benefits") {
-      // These leads usually join short phrases safely.
       const items = splitProseList(body);
       parts.push(items.length > 1 ? uiList(items) : `<p>${escapeUiHtml(body)}</p>`);
     } else {
+      // Responsibilities / Requirements: full prose paragraph under a heading.
       parts.push(`<p>${escapeUiHtml(body)}</p>`);
     }
   }
@@ -462,10 +457,6 @@ export function arrangeJobDescriptionForUi(job: PublicJobDetail) {
   if (!usedTitles.has("Skills") && job.skills?.length) {
     parts.push("<h2>Skills</h2>");
     parts.push(uiList(job.skills));
-  }
-  if (!usedTitles.has("Requirements / Qualifications") && job.qualification?.length) {
-    parts.push("<h2>Requirements / Qualifications</h2>");
-    parts.push(uiList(job.qualification));
   }
   if (!usedTitles.has("Experience") && (job.summaryExperience || job.experience)) {
     parts.push("<h3>Experience</h3>");
