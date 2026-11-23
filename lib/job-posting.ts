@@ -323,22 +323,174 @@ export function jobDescriptionPlain(text: string) {
     .trim();
 }
 
-/**
- * Arranged HTML for the job page UI.
- * Prefer API description_html; fall back to paragraph-wrapping plain text.
- */
-export function jobDescriptionHtml(arrangedHtml: string, plainFallback = "") {
-  const arranged = String(arrangedHtml || "").trim();
-  if (arranged && /<(?:p|ul|ol|li|h2|h3)\b/i.test(arranged)) return arranged;
-
-  const plain = jobDescriptionPlain(arranged || plainFallback);
-  if (!plain) return "";
-  const escaped = plain
+function escapeUiHtml(text: string) {
+  return text
     .replace(/&/g, "&amp;")
     .replace(/</g, "&lt;")
     .replace(/>/g, "&gt;")
     .replace(/"/g, "&quot;");
-  return `<p>${escaped}</p>`;
+}
+
+function uiParagraphs(text: string) {
+  const plain = jobDescriptionPlain(text);
+  if (!plain) return "";
+  const sentences = plain.match(/[^.!?]+[.!?]+(?:\s+|$)|[^.!?]+$/g) || [plain];
+  const chunks: string[] = [];
+  let buf: string[] = [];
+  for (const sentence of sentences) {
+    const s = sentence.trim();
+    if (!s) continue;
+    buf.push(s);
+    if (buf.length >= 2) {
+      chunks.push(buf.join(" "));
+      buf = [];
+    }
+  }
+  if (buf.length) chunks.push(buf.join(" "));
+  return chunks.map((chunk) => `<p>${escapeUiHtml(chunk)}</p>`).join("\n");
+}
+
+function uiList(items: string[]) {
+  const clean = items.map((item) => item.replace(/[.]+$/g, "").trim()).filter(Boolean);
+  if (!clean.length) return "";
+  return `<ul>\n${clean.map((item) => `  <li>${escapeUiHtml(item)}</li>`).join("\n")}\n</ul>`;
+}
+
+/** Split "a, b, and c" / "a, b and c" prose into list items. */
+function splitProseList(text: string) {
+  const raw = text.trim().replace(/[.]+$/g, "");
+  if (!raw) return [] as string[];
+  const normalized = raw.replace(/\s+,/g, ",").replace(/,\s+/g, ", ");
+  const andSplit = normalized.split(/\s+,?\s+and\s+/i);
+  if (andSplit.length > 1) {
+    const head = andSplit.slice(0, -1).join(", ");
+    const tail = andSplit[andSplit.length - 1];
+    return [...head.split(/,\s+/).map((s) => s.trim()).filter(Boolean), tail.trim()].filter(Boolean);
+  }
+  return normalized.split(/,\s+/).map((s) => s.trim()).filter(Boolean);
+}
+
+const UI_SECTION_MARKERS: Array<{ title: string; pattern: RegExp }> = [
+  { title: "Responsibilities", pattern: /\bKey responsibilities include\s+/i },
+  { title: "Requirements / Qualifications", pattern: /\bRequirements include\s+/i },
+  { title: "Skills", pattern: /\bPreferred skills include\s+/i },
+  { title: "Experience", pattern: /\bExperience required:\s*/i },
+  { title: "Working hours / Shift", pattern: /\bWorking hours:\s*/i },
+  { title: "Benefits", pattern: /\bBenefits include\s+/i },
+];
+
+/**
+ * Build arranged UI HTML from plain Flipkart-style prose + job fields.
+ * Works even when API description_html is missing.
+ */
+export function arrangeJobDescriptionForUi(job: PublicJobDetail) {
+  const fromApi = String(job.descriptionHtml || "").trim();
+  if (fromApi && /<(?:ul|h2|h3)\b/i.test(fromApi)) return fromApi;
+
+  const plain = jobDescriptionPlain(job.description);
+  const parts: string[] = [];
+
+  // Start section parsing at the first structured block (avoid early
+  // "Experience required:" lines that belong in the overview).
+  const sectionWindowStart = (() => {
+    const keys = [
+      plain.search(/\bKey responsibilities include\s+/i),
+      plain.search(/\bRequirements include\s+/i),
+      plain.search(/\bPreferred skills include\s+/i),
+      plain.search(/\bBenefits include\s+/i),
+    ].filter((index) => index >= 0);
+    return keys.length ? Math.min(...keys) : -1;
+  })();
+
+  type Hit = { title: string; start: number; bodyStart: number };
+  const hits: Hit[] = [];
+  const windowText = sectionWindowStart >= 0 ? plain.slice(sectionWindowStart) : "";
+  for (const marker of UI_SECTION_MARKERS) {
+    const match = marker.pattern.exec(windowText);
+    if (!match || match.index == null) continue;
+    const absoluteStart = sectionWindowStart + match.index;
+    hits.push({
+      title: marker.title,
+      start: absoluteStart,
+      bodyStart: absoluteStart + match[0].length,
+    });
+  }
+  hits.sort((a, b) => a.start - b.start);
+
+  const overview =
+    hits.length > 0 ? plain.slice(0, hits[0].start).trim() : plain;
+  if (overview) parts.push(uiParagraphs(overview));
+
+  const usedTitles = new Set<string>();
+  for (let i = 0; i < hits.length; i += 1) {
+    const hit = hits[i];
+    const end = i + 1 < hits.length ? hits[i + 1].start : plain.length;
+    const body = plain.slice(hit.bodyStart, end).trim();
+    if (!body) continue;
+    usedTitles.add(hit.title);
+
+    // Prefer structured field lists when available (avoids broken comma-splits).
+    if (hit.title === "Skills" && job.skills?.length) {
+      parts.push("<h2>Skills</h2>");
+      parts.push(uiList(job.skills));
+      continue;
+    }
+    if (hit.title === "Requirements / Qualifications" && job.qualification?.length) {
+      parts.push("<h2>Requirements / Qualifications</h2>");
+      parts.push(uiList(job.qualification));
+      continue;
+    }
+
+    const headingTag =
+      hit.title === "Experience" || hit.title === "Working hours / Shift" ? "h3" : "h2";
+    parts.push(`<${headingTag}>${hit.title}</${headingTag}>`);
+
+    // Prose-derived sections: keep as paragraph(s). Comma-splitting breaks
+    // items like "install, service and repair AC units".
+    if (hit.title === "Experience" || hit.title === "Working hours / Shift") {
+      parts.push(`<p>${escapeUiHtml(body.replace(/[.]+$/g, ""))}</p>`);
+    } else if (hit.title === "Skills" || hit.title === "Benefits") {
+      // These leads usually join short phrases safely.
+      const items = splitProseList(body);
+      parts.push(items.length > 1 ? uiList(items) : `<p>${escapeUiHtml(body)}</p>`);
+    } else {
+      parts.push(`<p>${escapeUiHtml(body)}</p>`);
+    }
+  }
+
+  // Fill gaps from structured job fields when prose sections were missing.
+  if (!usedTitles.has("Skills") && job.skills?.length) {
+    parts.push("<h2>Skills</h2>");
+    parts.push(uiList(job.skills));
+  }
+  if (!usedTitles.has("Requirements / Qualifications") && job.qualification?.length) {
+    parts.push("<h2>Requirements / Qualifications</h2>");
+    parts.push(uiList(job.qualification));
+  }
+  if (!usedTitles.has("Experience") && (job.summaryExperience || job.experience)) {
+    parts.push("<h3>Experience</h3>");
+    parts.push(`<p>${escapeUiHtml(job.summaryExperience || job.experience)}</p>`);
+  }
+  if (!usedTitles.has("Working hours / Shift") && job.shift) {
+    parts.push("<h3>Working hours / Shift</h3>");
+    parts.push(`<p>${escapeUiHtml(job.shift)}</p>`);
+  }
+
+  return parts.filter(Boolean).join("\n");
+}
+
+/**
+ * Arranged HTML for the job page UI.
+ * Prefer API description_html; otherwise rebuild sections from plain prose.
+ */
+export function jobDescriptionHtml(arrangedHtml: string, plainFallback = "") {
+  const arranged = String(arrangedHtml || "").trim();
+  if (arranged && /<(?:ul|h2|h3)\b/i.test(arranged)) return arranged;
+
+  const plain = jobDescriptionPlain(arranged || plainFallback);
+  if (!plain) return "";
+  // Last-resort single paragraph if no section markers exist.
+  return uiParagraphs(plain);
 }
 
 /**
