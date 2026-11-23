@@ -23,6 +23,7 @@ import Footer from "../../components/pages/footer";
 import type { PublicBlog } from "@/lib/public-blogs";
 import { toast } from "sonner";
 import { BlogReaderPrompt } from "@/components/legacy/blogs/reader-prompt";
+import { blogContentHtml } from "@/lib/blog-content";
 
 export default function BlogDetailPage({
   initialBlog = null,
@@ -281,8 +282,8 @@ export default function BlogDetailPage({
               {/* Content */}
               <div className="relative">
                 <div
-                  className="prose prose-lg max-w-none prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-orange-600 prose-strong:text-gray-900 prose-ul:text-gray-700 prose-ol:text-gray-700 prose-li:text-gray-700"
-                  dangerouslySetInnerHTML={{ __html: blog.content }}
+                  className="blog-body max-w-none text-[17px] leading-7 text-gray-700"
+                  dangerouslySetInnerHTML={{ __html: blogContentHtml(blog.content) }}
                 />
                 <span ref={midRef} aria-hidden className="pointer-events-none absolute top-1/4 left-0 h-px w-px" />
               </div>
