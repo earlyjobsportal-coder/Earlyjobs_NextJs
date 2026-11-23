@@ -90,29 +90,18 @@ export async function generateMetadata({
   const job = jobId ? await getPublicJob(jobId) : null;
   if (!job) return { title: { absolute: "Job | EarlyJobs" }, robots: { index: false, follow: false } };
   const text = plainText(job.description);
-  const role = (job.baseTitle || job.title).trim();
-  const city = job.city && !/^remote$/i.test(job.city) ? job.city : job.location;
-  const metaTitle = city
-    ? `${role} Jobs in ${city} | EarlyJobs`
-    : `${role} Jobs | EarlyJobs`;
-  const salaryBit = job.summarySalary ? ` Salary: ${job.summarySalary}.` : "";
-  const expBit = job.summaryExperience ? ` Experience: ${job.summaryExperience}.` : "";
-  const locationBit = city || job.location || "India";
-  const description =
-    `Apply for ${role} jobs in ${locationBit}.${salaryBit}${expBit} Explore job opportunities and apply online on EarlyJobs.`.slice(
-      0,
-      160,
-    );
-  const ogTitle = city ? `${role} Jobs in ${city}` : role;
+  const description = text
+    ? text.slice(0, 160).trim()
+    : `${job.title}${job.company ? ` at ${job.company}` : ""}${job.location ? ` in ${job.location}` : ""}.`;
   return pageMetadata({
     path: jobHref(job),
-    title: metaTitle,
+    title: `${job.title} | EarlyJobs`,
     description,
-    ogTitle,
+    ogTitle: job.title,
     ogDescription: description,
     image: job.logoUrl || "/images/logo.png",
-    imageAlt: job.company || role,
-    twitterTitle: ogTitle,
+    imageAlt: job.company || job.title,
+    twitterTitle: job.title,
     twitterDescription: description,
     twitterCard: job.logoUrl ? "summary_large_image" : "summary",
     index: job.isActive,
