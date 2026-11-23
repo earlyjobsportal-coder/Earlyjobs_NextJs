@@ -303,12 +303,37 @@ function jobLocation(
   };
 }
 
-/** Paragraph markup Google requires, using the same HTML the page renders. */
-export function jobDescriptionHtml(html: string) {
-  const trimmed = html.trim();
+/** Plain prose for JobPosting JSON-LD — no HTML tags. */
+export function jobDescriptionPlain(text: string) {
+  const trimmed = String(text || "").trim();
   if (!trimmed) return "";
-  if (/<(p|ul|ol|br|li)\b/i.test(trimmed) || trimmed.includes("\n")) return trimmed;
-  return `<p>${trimmed}</p>`;
+  return trimmed
+    .replace(/<\s*br\s*\/?\s*>/gi, " ")
+    .replace(/<\/\s*(?:p|h1|h2|h3|li|div)\s*>/gi, " ")
+    .replace(/<\s*(?:p|h1|h2|h3|li|div)[^>]*>/gi, " ")
+    .replace(/<[^>]+>/g, " ")
+    .replace(/&nbsp;/gi, " ")
+    .replace(/&amp;/gi, "&")
+    .replace(/&lt;/gi, "<")
+    .replace(/&gt;/gi, ">")
+    .replace(/&quot;/gi, '"')
+    .replace(/&#39;/gi, "'")
+    .replace(/\s+/g, " ")
+    .replace(/\s+([.,;:!?])/g, "$1")
+    .trim();
+}
+
+/** Optional HTML wrapper for on-page rendering only (not for JSON-LD). */
+export function jobDescriptionHtml(html: string) {
+  const plain = jobDescriptionPlain(html);
+  if (!plain) return "";
+  // Escape for safe HTML display; keep as a single paragraph visually.
+  const escaped = plain
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+  return `<p>${escaped}</p>`;
 }
 
 /**
@@ -327,7 +352,8 @@ const SITE_BASE = (process.env.NEXT_PUBLIC_BASE_URL || "https://www.earlyjobs.ai
 
 /** JobPosting only when the vacancy is active and the required visible fields exist. */
 export function jobPostingSchema(job: PublicJobDetail, descriptionHtml: string) {
-  const description = jobDescriptionHtml(descriptionHtml);
+  // JSON-LD description must stay plain-paragraph text (no <p>/<ul>/etc).
+  const description = jobDescriptionPlain(descriptionHtml || job.description);
   if (!job.isActive || !job.title || !job.datePosted || !description || !job.company) return null;
   const posted = new Date(job.datePosted);
   if (Number.isNaN(posted.getTime())) return null;
