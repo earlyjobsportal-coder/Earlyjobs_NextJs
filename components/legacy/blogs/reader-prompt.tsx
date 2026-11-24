@@ -3,7 +3,7 @@
 import { useEffect, useId, useState, type FormEvent, type RefObject } from "react";
 import { EnquiryPhoneField } from "@/components/contact/phone-field";
 import { isValidEmail } from "@/lib/contact";
-import { hasSavedBlogReader, markBlogReaderSaved, saveBlogReader } from "@/lib/blog-reader";
+import { hasSavedBlogReader, markBlogReaderSaved, saveBlogReader, type BlogReaderIntent } from "@/lib/blog-reader";
 
 export function BlogReaderPrompt({
   slug,
@@ -20,6 +20,7 @@ export function BlogReaderPrompt({
   const [phoneCode, setPhoneCode] = useState("+91");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
+  const [intent, setIntent] = useState<BlogReaderIntent | "">("");
   const [error, setError] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
 
@@ -53,6 +54,10 @@ export function BlogReaderPrompt({
     event.preventDefault();
     const trimmedName = name.trim();
     const trimmedEmail = email.trim();
+    if (intent !== "job" && intent !== "hiring") {
+      setError("Select whether you are looking for a job or hiring.");
+      return;
+    }
     if (!trimmedName) {
       setError("Enter your name.");
       return;
@@ -75,6 +80,7 @@ export function BlogReaderPrompt({
         phone,
         email: trimmedEmail,
         slug,
+        intent,
       });
       markBlogReaderSaved();
       setEligible(false);
@@ -105,9 +111,42 @@ export function BlogReaderPrompt({
           </span>
         </button>
         <h2 id={`${formId}-title`} className="pr-8 text-lg font-semibold text-neutral-950">
-          Are you looking for a job?
+          Looking for a job, or hiring?
         </h2>
         <form className="mt-4 space-y-3" onSubmit={onSubmit}>
+          <fieldset>
+            <legend className="sr-only">Looking for a job, or hiring?</legend>
+            <div className="grid grid-cols-2 gap-2">
+              {(
+                [
+                  ["job", "Looking for a job"],
+                  ["hiring", "Hiring"],
+                ] as const
+              ).map(([value, label]) => {
+                const selected = intent === value;
+                return (
+                  <label
+                    key={value}
+                    className={`flex h-11 cursor-pointer items-center justify-center rounded-xl border px-2 text-center text-sm font-medium ${
+                      selected
+                        ? "border-orange-500 bg-orange-50 text-orange-700"
+                        : "border-black/10 bg-[#fafafa] text-neutral-600 hover:border-neutral-300"
+                    }`}
+                  >
+                    <input
+                      type="radio"
+                      name="intent"
+                      value={value}
+                      checked={selected}
+                      onChange={() => setIntent(value)}
+                      className="sr-only"
+                    />
+                    {label}
+                  </label>
+                );
+              })}
+            </div>
+          </fieldset>
           <label className="block text-sm font-medium text-gray-700" htmlFor={`${formId}-name`}>
             Name
             <input
