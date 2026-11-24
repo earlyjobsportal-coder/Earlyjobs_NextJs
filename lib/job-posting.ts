@@ -232,14 +232,19 @@ function resolvePlace(
   const found = findMetroAndRegion(regionHint, title, location, city);
   const region = (regionHint || "").trim() || found.region;
 
+  const looksLikeFullAddress = (value: string) =>
+    value.length > 40 || /,/.test(value) || /^\d+\b/.test(value) || /\d{6}/.test(value);
+
   // Prefer API city/location area (e.g. Jeedimetla Industrial Area), not SEO title text.
+  // Never treat house numbers / full street lines as addressLocality.
   let areaLocality = "";
   for (const source of [city, location]) {
-    if (!source) continue;
+    if (!source || looksLikeFullAddress(source)) continue;
     for (const token of source.split(/[,|/]/)) {
       const label = token.trim();
       const key = norm(label);
       if (!key || NON_PLACE.has(key)) continue;
+      if (/^\d+$/.test(key) || /^\d+\b/.test(label)) continue;
       if (STATES.has(key) || METRO_CITIES.has(key) || ALIASES.has(key) || CITIES.has(key)) continue;
       if (!areaLocality && label.length <= 64 && !/\d{6}/.test(label)) {
         areaLocality = label;
@@ -247,7 +252,11 @@ function resolvePlace(
     }
   }
 
-  const locality = areaLocality || found.metro;
+  // Metro city wins over a suspicious area token when the raw city was a full address.
+  const locality =
+    (looksLikeFullAddress(city) || looksLikeFullAddress(location)
+      ? found.metro || areaLocality
+      : areaLocality || found.metro) || found.metro;
   return { locality, region };
 }
 
@@ -562,12 +571,18 @@ export function jobPostingSchema(job: PublicJobDetail, _descriptionHtml?: string
     data.jobLocationType = "TELECOMMUTE";
     data.applicantLocationRequirements = { "@type": "Country", name: "India" };
   }
-  if (job.minExperience > 0) {
+  const monthsOfExperience =
+    job.monthsOfExperience != null && !Number.isNaN(job.monthsOfExperience)
+      ? Math.round(job.monthsOfExperience)
+      : job.minExperience > 0
+        ? Math.round(job.minExperience * 12)
+        : null;
+  if (monthsOfExperience != null && monthsOfExperience > 0) {
     data.experienceRequirements = {
       "@type": "OccupationalExperienceRequirements",
-      monthsOfExperience: Math.round(job.minExperience * 12),
+      monthsOfExperience,
     };
-  } else if (job.maxExperience === 0) {
+  } else if (job.maxExperience === 0 || monthsOfExperience === 0) {
     data.experienceRequirements = "no requirements";
   }
 

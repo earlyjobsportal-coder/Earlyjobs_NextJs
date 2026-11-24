@@ -277,6 +277,8 @@ export type PublicJobDetail = {
   experience: string;
   minExperience: number;
   maxExperience: number;
+  /** Exact months for JobPosting.experienceRequirements (preferred over years*12). */
+  monthsOfExperience: number | null;
   openings: string;
   salary: string;
   skills: string[];
@@ -347,6 +349,7 @@ type PublicJobRecord = {
   salary_mode?: string;
   min_experience?: number;
   max_experience?: number;
+  months_of_experience?: number;
   no_of_openings?: number;
   skills?: string[] | string;
   qualification?: string[] | string;
@@ -437,6 +440,10 @@ export async function getPublicJob(jobId: string): Promise<PublicJobDetail | nul
 
   const minExperience = job.min_experience ?? 0;
   const maxExperience = job.max_experience ?? minExperience;
+  const monthsOfExperience =
+    typeof job.months_of_experience === "number" && !Number.isNaN(job.months_of_experience)
+      ? job.months_of_experience
+      : null;
 
   const companyWebsite = (job.company_website || job.companyWebsite || "").trim();
 
@@ -468,6 +475,7 @@ export async function getPublicJob(jobId: string): Promise<PublicJobDetail | nul
     experience: formatExperience(minExperience, maxExperience),
     minExperience,
     maxExperience,
+    monthsOfExperience,
     openings: formatOpenings(job.no_of_openings ?? 0),
     salary: formatSalary(
       typeof job.min_salary === "number" ? job.min_salary : Number.NaN,
