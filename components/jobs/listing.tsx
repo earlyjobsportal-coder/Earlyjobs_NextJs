@@ -36,8 +36,8 @@ export function JobListingCard({ job }: { job: JobListing }) {
             {job.title}
           </h2>
           <p className="mt-2 flex flex-wrap gap-1.5 lg:flex-nowrap lg:overflow-hidden">
-            {details.map((detail) => (
-              <span key={detail} className={meta}>
+            {details.map((detail, index) => (
+              <span key={`${index}-${detail}`} className={meta}>
                 {detail}
               </span>
             ))}

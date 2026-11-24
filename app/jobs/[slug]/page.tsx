@@ -164,8 +164,11 @@ export default async function JobPage({
           <ApplyJob jobId={job.jobId} title={job.title} open={job.isActive} external={job.isExternal} />
         </div>
         <p className="mt-4 flex flex-wrap gap-1.5">
-          {chips.map((chip) => (
-            <span key={chip} className="rounded-full bg-neutral-100 px-2.5 py-1 text-[11px] font-medium text-neutral-700">
+          {chips.map((chip, index) => (
+            <span
+              key={`${index}-${chip}`}
+              className="rounded-full bg-neutral-100 px-2.5 py-1 text-[11px] font-medium text-neutral-700"
+            >
               {chip}
             </span>
           ))}
