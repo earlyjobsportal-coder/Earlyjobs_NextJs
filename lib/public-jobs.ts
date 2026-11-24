@@ -456,6 +456,10 @@ export async function getPublicJob(jobId: string): Promise<PublicJobDetail | nul
     validThroughDate && !Number.isNaN(validThroughDate.getTime())
       ? validThroughDate.toISOString()
       : null;
+  const expiredByDate =
+    validThroughDate != null &&
+    !Number.isNaN(validThroughDate.getTime()) &&
+    validThroughDate.getTime() <= Date.now();
 
   return {
     jobId: job.job_id,
@@ -501,7 +505,8 @@ export async function getPublicJob(jobId: string): Promise<PublicJobDetail | nul
       job.salary_mode || "",
     ),
     updates: job.commission_type === "percentage" ? "linkedin" : "instagram",
-    isActive: job.isActive !== false,
+    // Past validThrough → inactive (no JobPosting schema / noindex / apply closed).
+    isActive: job.isActive !== false && !expiredByDate,
     isExternal: job.isExternal === true,
     datePosted: job.created_at || "",
     validThrough,
