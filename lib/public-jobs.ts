@@ -1,3 +1,4 @@
+import { cache } from "react";
 import type { JobListing } from "@/components/jobs/listing";
 import { expandJobShortId, isPublicJobId, jobHref, jobShortId, parseJobShortId } from "@/lib/job-path";
 import { portalApiUrl } from "@/lib/portal-api";
@@ -425,7 +426,7 @@ function keywordLabels(keywords: PublicJobRecord["keywords"]): JobKeyword[] {
   return labels;
 }
 
-export async function getPublicJob(jobId: string): Promise<PublicJobDetail | null> {
+export const getPublicJob = cache(async function getPublicJob(jobId: string): Promise<PublicJobDetail | null> {
   if (!isPublicJobId(jobId)) return null;
 
   const response = await fetch(`${JOBS_ENDPOINT}/${jobId}`, {
@@ -516,7 +517,7 @@ export async function getPublicJob(jobId: string): Promise<PublicJobDetail | nul
     salaryMode: job.salary_mode || "",
     related: relatedJobs(job.related_jobs),
   };
-}
+});
 
 export async function getPublishedJobs(page = 1, filters?: JobQuery): Promise<PublishedJobsPage> {
   const response = await fetch(jobsUrl(page, filters), {
@@ -581,25 +582,30 @@ async function mapPool<T, R>(items: T[], limit: number, worker: (item: T) => Pro
   return results;
 }
 
+async function fetchPublishedJobsPage(page: number) {
+  const url = new URL(JOBS_ENDPOINT);
+  url.searchParams.set("status", "published");
+  url.searchParams.set("page", String(page));
+  url.searchParams.set("pageSize", "100");
+  url.searchParams.set("limit", "100");
+  const response = await fetch(url, {
+    headers: { Accept: "*/*" },
+    // Short-id reverse lookup used to be no-store and scanned every page on each click.
+    next: { revalidate: 60 },
+  });
+  if (!response.ok) return null;
+  return (await response.json()) as JobsResponse & {
+    data?: { jobs?: PublicJob[] };
+  };
+}
+
 async function listPublishedJobRefs() {
   const refs: { jobId: string; title: string; createdAt?: string }[] = [];
   let page = 1;
   let totalPages = 1;
   while (page <= totalPages && page <= 20) {
-    const url = new URL(JOBS_ENDPOINT);
-    url.searchParams.set("status", "published");
-    url.searchParams.set("page", String(page));
-    url.searchParams.set("pageSize", "100");
-    url.searchParams.set("limit", "100");
-    const response = await fetch(url, {
-      headers: { Accept: "*/*" },
-      // Keep reverse-lookup fresh so soft nav / bookmarks don't miss newly published jobs.
-      cache: "no-store",
-    });
-    if (!response.ok) break;
-    const body = (await response.json()) as JobsResponse & {
-      data?: { jobs?: PublicJob[] };
-    };
+    const body = await fetchPublishedJobsPage(page);
+    if (!body) break;
     totalPages = body.totalPages || 1;
     for (const job of body.data?.jobs ?? []) {
       const jobId = job.jobId || job._id;
@@ -611,8 +617,30 @@ async function listPublishedJobRefs() {
   return refs;
 }
 
+/** Resolve an opaque short id without downloading every published page when possible. */
+async function findJobIdByShortIds(candidates: Set<string>) {
+  if (!candidates.size) return null;
+  let page = 1;
+  let totalPages = 1;
+  while (page <= totalPages && page <= 20) {
+    const body = await fetchPublishedJobsPage(page);
+    if (!body) break;
+    totalPages = body.totalPages || 1;
+    for (const job of body.data?.jobs ?? []) {
+      const jobId = job.jobId || job._id;
+      if (!jobId) continue;
+      if (candidates.has(jobShortId(jobId))) return jobId;
+    }
+    page += 1;
+  }
+  return null;
+}
+
 /** Resolve /jobs/{title}-{shortId} back to the API job id. */
-export async function resolveJobIdFromSlug(slug: string, jid?: string | null): Promise<string | null> {
+export const resolveJobIdFromSlug = cache(async function resolveJobIdFromSlug(
+  slug: string,
+  jid?: string | null,
+): Promise<string | null> {
   const directJid = jid?.trim() ?? "";
   if (directJid && isPublicJobId(directJid)) return directJid;
 
@@ -631,16 +659,11 @@ export async function resolveJobIdFromSlug(slug: string, jid?: string | null): P
   if (trailing8) candidates.add(trailing8);
 
   try {
-    const refs = await listPublishedJobRefs();
-    for (const candidate of candidates) {
-      const match = refs.find((job) => jobShortId(job.jobId) === candidate);
-      if (match?.jobId) return match.jobId;
-    }
-    return null;
+    return await findJobIdByShortIds(candidates);
   } catch {
     return null;
   }
-}
+});
 
 export async function listPublishedJobPaths(): Promise<{ path: string; lastModified?: Date }[]> {
   const paths: { path: string; lastModified?: Date; jobId: string }[] = [];

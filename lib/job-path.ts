@@ -24,6 +24,11 @@ export function jobHref(job: { title: string; jobId: string }) {
   return `/jobs/${jobSlug(job)}`;
 }
 
+/** Soft-nav helper: short path + jid so the detail page skips the published-list scan. */
+export function jobNavHref(job: { title: string; jobId: string }) {
+  return `${jobHref(job)}?jid=${encodeURIComponent(job.jobId)}`;
+}
+
 /** Extract the short id / legacy token from a /jobs/{title}-{id} slug. */
 export function parseJobShortId(slug: string) {
   const value = slug.trim();

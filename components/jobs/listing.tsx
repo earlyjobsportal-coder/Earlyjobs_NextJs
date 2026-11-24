@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { jobHref } from "@/lib/job-path";
+import { jobNavHref } from "@/lib/job-path";
 
 export type JobListing = {
   id: string;
@@ -21,7 +21,7 @@ export type JobListing = {
 const meta = "max-w-full truncate rounded-full bg-neutral-100 px-2.5 py-1 text-[11px] font-medium text-neutral-700 lg:max-w-56";
 
 export function JobListingCard({ job }: { job: JobListing }) {
-  const href = jobHref(job);
+  const href = jobNavHref(job);
   const details = [job.location, job.type, job.mode, job.experience, job.openings];
 
   return (

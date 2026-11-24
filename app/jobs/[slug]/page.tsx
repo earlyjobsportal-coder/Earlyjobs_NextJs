@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
 import { ApplyJob } from "@/components/jobs/apply-job";
+import { CleanJobUrl } from "@/components/jobs/clean-job-url";
 import { JsonLd } from "@/components/json-ld";
 import { CompanyLogo } from "@/components/jobs/company-logo";
 import {
@@ -10,7 +11,7 @@ import {
   jobPostingSchema,
   seoCityLabel,
 } from "@/lib/job-posting";
-import { jobHref, jobSlug } from "@/lib/job-path";
+import { jobHref, jobNavHref, jobSlug } from "@/lib/job-path";
 import { pageMetadata } from "@/lib/page-metadata";
 import { getPublicJob, jobsPageHref, resolveJobIdFromSlug } from "@/lib/public-jobs";
 
@@ -130,8 +131,11 @@ export default async function JobPage({
   if (!job) notFound();
 
   const canonical = jobSlug(job);
-  // Collapse full ObjectIds / ?jid= / mistyped titles down to /jobs/{title}-{shortId}.
-  if (slug !== canonical || hint) redirect(`/jobs/${canonical}`);
+  // Only rewrite mistyped/legacy path segments. Keep ?jid= for this request so we
+  // don't pay for another published-list scan; CleanJobUrl strips it in the browser.
+  if (slug !== canonical) {
+    redirect(hint ? `/jobs/${canonical}?jid=${encodeURIComponent(hint)}` : `/jobs/${canonical}`);
+  }
 
   // UI: arranged sections. Schema: plain prose from job.description only.
   const descriptionHtml = sanitizeHtml(arrangeJobDescriptionForUi(job));
@@ -142,6 +146,7 @@ export default async function JobPage({
 
   return (
     <main className="mx-auto w-full max-w-6xl px-4 py-8 sm:px-6">
+      <CleanJobUrl path={`/jobs/${canonical}`} />
       {posting ? <JsonLd data={posting} /> : null}
       <div className="grid items-start gap-4 lg:grid-cols-[minmax(0,1fr)_17rem]">
       <article className="rounded-2xl bg-white p-5 shadow-[0_10px_40px_rgba(23,23,23,0.06)] ring-1 ring-black/[0.05] sm:p-6">
@@ -236,7 +241,7 @@ export default async function JobPage({
             {job.related.map((item) => (
               <li key={item.jobId}>
                 <Link
-                  href={jobHref(item)}
+                  href={jobNavHref(item)}
                   prefetch={false}
                   className="flex h-[70px] cursor-pointer items-center gap-2.5 overflow-hidden rounded-xl px-2.5 py-2 ring-1 ring-black/[0.06] transition-colors hover:bg-neutral-50"
                 >
