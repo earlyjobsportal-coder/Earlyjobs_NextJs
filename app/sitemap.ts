@@ -3,7 +3,9 @@ import { listFranchiseCities } from "@/lib/franchise-cities";
 import { listPublishedBlogPaths } from "@/lib/public-blogs";
 import { listPublishedJobPaths } from "@/lib/public-jobs";
 
-export const revalidate = 3600;
+// Do not prerender at build time — crawling all published jobs exceeds Vercel's 60s
+// static generation timeout and fails the production build.
+export const dynamic = "force-dynamic";
 
 const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://www.earlyjobs.ai";
 
@@ -52,8 +54,26 @@ function entry(path: string, lastModified?: Date): MetadataRoute.Sitemap[number]
   };
 }
 
+async function withTimeout<T>(promise: Promise<T>, ms: number, fallback: T): Promise<T> {
+  let timer: ReturnType<typeof setTimeout> | undefined;
+  try {
+    return await Promise.race([
+      promise,
+      new Promise<T>((resolve) => {
+        timer = setTimeout(() => resolve(fallback), ms);
+      }),
+    ]);
+  } finally {
+    if (timer) clearTimeout(timer);
+  }
+}
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const [jobs, blogs] = await Promise.all([listPublishedJobPaths(), listPublishedBlogPaths()]);
+  // Cap remote crawls so /sitemap.xml stays responsive even if the portal is slow.
+  const [jobs, blogs] = await Promise.all([
+    withTimeout(listPublishedJobPaths(), 20_000, []),
+    withTimeout(listPublishedBlogPaths(), 10_000, []),
+  ]);
   return [
     ...routes.map((path) => entry(path, path.startsWith("/franchise") ? franchiseUpdated : undefined)),
     ...listFranchiseCities().map((city) => entry(city.path, franchiseUpdated)),

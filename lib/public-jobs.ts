@@ -598,21 +598,33 @@ async function fetchPublishedJobsPage(page: number) {
   };
 }
 
-/** Sequential crawl for sitemap only — never used on per-request slug resolve. */
+/** Crawl published jobs for sitemap — parallel pages, capped. Never used on slug resolve. */
 async function listPublishedJobRefs() {
+  const first = await fetchPublishedJobsPage(1);
+  if (!first) return [];
+
   const refs: { jobId: string; title: string; createdAt?: string }[] = [];
-  let page = 1;
-  let totalPages = 1;
-  while (page <= totalPages && page <= CRAWL_MAX_PAGES) {
-    const body = await fetchPublishedJobsPage(page);
-    if (!body) break;
-    totalPages = body.totalPages || 1;
+  const pushPage = (body: NonNullable<Awaited<ReturnType<typeof fetchPublishedJobsPage>>>) => {
     for (const job of body.data?.jobs ?? []) {
       const jobId = job.jobId || job._id;
       if (!jobId || !job.title) continue;
       refs.push({ jobId, title: job.title, createdAt: job.createdAt });
     }
-    page += 1;
+  };
+
+  pushPage(first);
+  const totalPages = Math.min(first.totalPages || 1, CRAWL_MAX_PAGES);
+  if (totalPages <= 1) return refs;
+
+  // Fetch remaining pages in small parallel batches (sitemap only).
+  for (let start = 2; start <= totalPages; start += 4) {
+    const batch = Array.from({ length: Math.min(4, totalPages - start + 1) }, (_, i) =>
+      fetchPublishedJobsPage(start + i),
+    );
+    const pages = await Promise.all(batch);
+    for (const body of pages) {
+      if (body) pushPage(body);
+    }
   }
   return refs;
 }
