@@ -1,6 +1,8 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  // Sitemap / franchise static generation can exceed the default 60s on Vercel.
+  staticPageGenerationTimeout: 180,
   async redirects() {
     return [
       {
