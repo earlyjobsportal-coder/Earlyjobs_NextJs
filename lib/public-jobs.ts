@@ -553,45 +553,44 @@ export async function getPublishedJobs(page = 1, filters?: JobQuery): Promise<Pu
   };
 }
 
-/** The public list does not include isActive. Closed jobs are noindex, so confirm each one. */
-async function publishedJobIsClosed(jobId: string): Promise<boolean> {
-  try {
-    const response = await fetch(`${JOBS_ENDPOINT}/${jobId}`, {
-      headers: { Accept: "*/*" },
-      next: { revalidate: 3600 },
-    });
-    if (!response.ok) return false;
-    const body = (await response.json()) as { data?: { isActive?: boolean } };
-    return body.data?.isActive === false;
-  } catch {
-    return false;
-  }
-}
+/** Sitemap / legacy fallback list page size — keep modest to avoid API storms. */
+const CRAWL_PAGE_SIZE = 50;
+const CRAWL_MAX_PAGES = 20;
 
-async function mapPool<T, R>(items: T[], limit: number, worker: (item: T) => Promise<R>) {
-  const results = new Array<R>(items.length);
-  let cursor = 0;
-  async function run() {
-    while (cursor < items.length) {
-      const index = cursor;
-      cursor += 1;
-      results[index] = await worker(items[index]);
-    }
+/**
+ * Detail lookup by ObjectId, ej id, full slug, or trailing 8-char shortId.
+ * Backend `findPublishedJobPostingByPublicRef` already supports these.
+ */
+async function fetchJobIdByPublicRef(ref: string): Promise<string | null> {
+  const value = ref.trim();
+  if (!value) return null;
+  try {
+    const response = await fetch(`${JOBS_ENDPOINT}/${encodeURIComponent(value)}`, {
+      headers: { Accept: "*/*" },
+      next: { revalidate: 60 },
+    });
+    if (!response.ok) return null;
+    const body = (await response.json()) as {
+      status?: string;
+      data?: { job_id?: string; jobId?: string };
+    };
+    if (body.status !== "success") return null;
+    const id = body.data?.job_id || body.data?.jobId;
+    return typeof id === "string" && id.trim() ? id.trim() : null;
+  } catch {
+    return null;
   }
-  await Promise.all(Array.from({ length: Math.min(limit, items.length) }, () => run()));
-  return results;
 }
 
 async function fetchPublishedJobsPage(page: number) {
   const url = new URL(JOBS_ENDPOINT);
   url.searchParams.set("status", "published");
   url.searchParams.set("page", String(page));
-  url.searchParams.set("pageSize", "100");
-  url.searchParams.set("limit", "100");
+  url.searchParams.set("pageSize", String(CRAWL_PAGE_SIZE));
+  url.searchParams.set("limit", String(CRAWL_PAGE_SIZE));
   const response = await fetch(url, {
     headers: { Accept: "*/*" },
-    // Short-id reverse lookup used to be no-store and scanned every page on each click.
-    next: { revalidate: 60 },
+    next: { revalidate: 300 },
   });
   if (!response.ok) return null;
   return (await response.json()) as JobsResponse & {
@@ -599,11 +598,12 @@ async function fetchPublishedJobsPage(page: number) {
   };
 }
 
+/** Sequential crawl for sitemap only — never used on per-request slug resolve. */
 async function listPublishedJobRefs() {
   const refs: { jobId: string; title: string; createdAt?: string }[] = [];
   let page = 1;
   let totalPages = 1;
-  while (page <= totalPages && page <= 20) {
+  while (page <= totalPages && page <= CRAWL_MAX_PAGES) {
     const body = await fetchPublishedJobsPage(page);
     if (!body) break;
     totalPages = body.totalPages || 1;
@@ -617,12 +617,15 @@ async function listPublishedJobRefs() {
   return refs;
 }
 
-/** Resolve an opaque short id without downloading every published page when possible. */
+/**
+ * Legacy fallback: scan published list for hashed short ids (old ej jobs).
+ * Sequential + capped — only after direct detail lookup fails.
+ */
 async function findJobIdByShortIds(candidates: Set<string>) {
   if (!candidates.size) return null;
   let page = 1;
   let totalPages = 1;
-  while (page <= totalPages && page <= 20) {
+  while (page <= totalPages && page <= CRAWL_MAX_PAGES) {
     const body = await fetchPublishedJobsPage(page);
     if (!body) break;
     totalPages = body.totalPages || 1;
@@ -658,6 +661,14 @@ export const resolveJobIdFromSlug = cache(async function resolveJobIdFromSlug(
   const trailing8 = slug.toLowerCase().match(/-([a-z0-9]{8})$/)?.[1];
   if (trailing8) candidates.add(trailing8);
 
+  // Fast path: one detail request (slug or shortId) — no list paging.
+  const refsToTry = [slug, ...candidates];
+  for (const ref of refsToTry) {
+    const id = await fetchJobIdByPublicRef(ref);
+    if (id) return id;
+  }
+
+  // Legacy ej listings only — rare fallback.
   try {
     return await findJobIdByShortIds(candidates);
   } catch {
@@ -666,20 +677,19 @@ export const resolveJobIdFromSlug = cache(async function resolveJobIdFromSlug(
 });
 
 export async function listPublishedJobPaths(): Promise<{ path: string; lastModified?: Date }[]> {
-  const paths: { path: string; lastModified?: Date; jobId: string }[] = [];
+  const paths: { path: string; lastModified?: Date }[] = [];
   try {
+    // Trust published list filter — do NOT N+1 detail every job (was 24-way parallel storm).
     const refs = await listPublishedJobRefs();
     for (const job of refs) {
       const lastModified = job.createdAt ? new Date(job.createdAt) : undefined;
       paths.push({
-        jobId: job.jobId,
         path: jobHref({ title: job.title, jobId: job.jobId }),
         lastModified: lastModified && !Number.isNaN(lastModified.getTime()) ? lastModified : undefined,
       });
     }
-    const closed = await mapPool(paths, 24, (job) => publishedJobIsClosed(job.jobId));
-    return paths.filter((_, index) => !closed[index]).map(({ path, lastModified }) => ({ path, lastModified }));
+    return paths;
   } catch {
-    return paths.map(({ path, lastModified }) => ({ path, lastModified }));
+    return paths;
   }
 }
