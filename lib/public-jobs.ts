@@ -1,6 +1,6 @@
 import { cache } from "react";
 import type { JobListing } from "@/components/jobs/listing";
-import { expandJobShortId, isPublicJobId, jobHref, jobShortId, parseJobShortId } from "@/lib/job-path";
+import { expandJobShortId, isPublicJobId, jobHref, parseJobShortId } from "@/lib/job-path";
 import { portalApiUrl } from "@/lib/portal-api";
 
 const JOBS_ENDPOINT = portalApiUrl("/public/jobs");
@@ -553,13 +553,14 @@ export async function getPublishedJobs(page = 1, filters?: JobQuery): Promise<Pu
   };
 }
 
-/** Sitemap / legacy fallback list page size — keep modest to avoid API storms. */
+/** Sitemap list page size — sequential only; keep modest to avoid API storms. */
 const CRAWL_PAGE_SIZE = 50;
-const CRAWL_MAX_PAGES = 20;
+const CRAWL_MAX_PAGES = 10;
 
 /**
  * Detail lookup by ObjectId, ej id, full slug, or trailing 8-char shortId.
  * Backend `findPublishedJobPostingByPublicRef` already supports these.
+ * Never falls back to paging the published list (that was storming earlyjob-api).
  */
 async function fetchJobIdByPublicRef(ref: string): Promise<string | null> {
   const value = ref.trim();
@@ -590,7 +591,7 @@ async function fetchPublishedJobsPage(page: number) {
   url.searchParams.set("limit", String(CRAWL_PAGE_SIZE));
   const response = await fetch(url, {
     headers: { Accept: "*/*" },
-    next: { revalidate: 300 },
+    next: { revalidate: 600 },
   });
   if (!response.ok) return null;
   return (await response.json()) as JobsResponse & {
@@ -598,43 +599,9 @@ async function fetchPublishedJobsPage(page: number) {
   };
 }
 
-/** Crawl published jobs for sitemap — parallel pages, capped. Never used on slug resolve. */
+/** Sitemap crawl only — sequential pages, never parallel, never used on slug resolve. */
 async function listPublishedJobRefs() {
-  const first = await fetchPublishedJobsPage(1);
-  if (!first) return [];
-
   const refs: { jobId: string; title: string; createdAt?: string }[] = [];
-  const pushPage = (body: NonNullable<Awaited<ReturnType<typeof fetchPublishedJobsPage>>>) => {
-    for (const job of body.data?.jobs ?? []) {
-      const jobId = job.jobId || job._id;
-      if (!jobId || !job.title) continue;
-      refs.push({ jobId, title: job.title, createdAt: job.createdAt });
-    }
-  };
-
-  pushPage(first);
-  const totalPages = Math.min(first.totalPages || 1, CRAWL_MAX_PAGES);
-  if (totalPages <= 1) return refs;
-
-  // Fetch remaining pages in small parallel batches (sitemap only).
-  for (let start = 2; start <= totalPages; start += 4) {
-    const batch = Array.from({ length: Math.min(4, totalPages - start + 1) }, (_, i) =>
-      fetchPublishedJobsPage(start + i),
-    );
-    const pages = await Promise.all(batch);
-    for (const body of pages) {
-      if (body) pushPage(body);
-    }
-  }
-  return refs;
-}
-
-/**
- * Legacy fallback: scan published list for hashed short ids (old ej jobs).
- * Sequential + capped — only after direct detail lookup fails.
- */
-async function findJobIdByShortIds(candidates: Set<string>) {
-  if (!candidates.size) return null;
   let page = 1;
   let totalPages = 1;
   while (page <= totalPages && page <= CRAWL_MAX_PAGES) {
@@ -643,12 +610,12 @@ async function findJobIdByShortIds(candidates: Set<string>) {
     totalPages = body.totalPages || 1;
     for (const job of body.data?.jobs ?? []) {
       const jobId = job.jobId || job._id;
-      if (!jobId) continue;
-      if (candidates.has(jobShortId(jobId))) return jobId;
+      if (!jobId || !job.title) continue;
+      refs.push({ jobId, title: job.title, createdAt: job.createdAt });
     }
     page += 1;
   }
-  return null;
+  return refs;
 }
 
 /** Resolve /jobs/{title}-{shortId} back to the API job id. */
@@ -673,19 +640,14 @@ export const resolveJobIdFromSlug = cache(async function resolveJobIdFromSlug(
   const trailing8 = slug.toLowerCase().match(/-([a-z0-9]{8})$/)?.[1];
   if (trailing8) candidates.add(trailing8);
 
-  // Fast path: one detail request (slug or shortId) — no list paging.
+  // Detail lookup only. Dead/expired slugs return null — do NOT page the published list.
   const refsToTry = [slug, ...candidates];
   for (const ref of refsToTry) {
     const id = await fetchJobIdByPublicRef(ref);
     if (id) return id;
   }
 
-  // Legacy ej listings only — rare fallback.
-  try {
-    return await findJobIdByShortIds(candidates);
-  } catch {
-    return null;
-  }
+  return null;
 });
 
 export async function listPublishedJobPaths(): Promise<{ path: string; lastModified?: Date }[]> {
