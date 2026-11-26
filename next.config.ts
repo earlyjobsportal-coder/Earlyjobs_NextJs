@@ -3,6 +3,28 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   // Sitemap / franchise static generation can exceed the default 60s on Vercel.
   staticPageGenerationTimeout: 180,
+  async headers() {
+    return [
+      {
+        source: "/sitemap.xml",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, s-maxage=3600, stale-while-revalidate=86400",
+          },
+        ],
+      },
+      {
+        source: "/jobs/:path*",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, s-maxage=600, stale-while-revalidate=3600",
+          },
+        ],
+      },
+    ];
+  },
   async redirects() {
     return [
       {
