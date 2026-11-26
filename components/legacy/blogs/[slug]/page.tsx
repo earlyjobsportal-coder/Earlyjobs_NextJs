@@ -21,9 +21,50 @@ import Navbar from "../../components/pages/navbar";
 import Header from "../../components/pages/header";
 import Footer from "../../components/pages/footer";
 import type { PublicBlog } from "@/lib/public-blogs";
+import { portalApiBase } from "@/lib/portal-api";
 import { toast } from "sonner";
 import { BlogReaderPrompt } from "@/components/legacy/blogs/reader-prompt";
 import { blogContentHtml } from "@/lib/blog-content";
+
+const BLOG_VISITOR_ID_KEY = "earlyjobs.blogVisitorId";
+const LIKED_BLOGS_KEY = "earlyjobs.likedBlogs";
+
+function getBlogVisitorId() {
+  try {
+    let id = window.localStorage.getItem(BLOG_VISITOR_ID_KEY);
+    if (!id) {
+      id = crypto.randomUUID();
+      window.localStorage.setItem(BLOG_VISITOR_ID_KEY, id);
+    }
+    return id;
+  } catch {
+    return crypto.randomUUID();
+  }
+}
+
+function hasLikedBlog(blogId: string) {
+  try {
+    const raw = window.localStorage.getItem(LIKED_BLOGS_KEY);
+    const liked: string[] = raw ? JSON.parse(raw) : [];
+    return Array.isArray(liked) && liked.includes(blogId);
+  } catch {
+    return false;
+  }
+}
+
+function markBlogLiked(blogId: string) {
+  try {
+    const raw = window.localStorage.getItem(LIKED_BLOGS_KEY);
+    const liked: string[] = raw ? JSON.parse(raw) : [];
+    const next = Array.isArray(liked) ? liked : [];
+    if (!next.includes(blogId)) {
+      next.push(blogId);
+      window.localStorage.setItem(LIKED_BLOGS_KEY, JSON.stringify(next));
+    }
+  } catch {
+    // ignore storage failures; backend still enforces one like
+  }
+}
 
 export default function BlogDetailPage({
   initialBlog = null,
@@ -40,12 +81,49 @@ export default function BlogDetailPage({
   const [loading, setLoading] = useState(!initialBlog);
   const [error, setError] = useState<string | null>(null);
   const [liking, setLiking] = useState(false);
+  const [alreadyLiked, setAlreadyLiked] = useState(false);
   const midRef = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
     if (initialBlog || !slug) return;
     fetchBlog();
   }, [slug, initialBlog]);
+
+  // SSR can serve a stale like count; sync likes/views from the live API after mount.
+  useEffect(() => {
+    if (!slug || !initialBlog?._id) return;
+    let cancelled = false;
+    (async () => {
+      try {
+        const response = await fetch(
+          `${portalApiBase()}/blogs/slug/${encodeURIComponent(slug)}`,
+        );
+        if (!response.ok || cancelled) return;
+        const result = await response.json();
+        const fresh = result?.data?.blog;
+        if (!fresh || cancelled) return;
+        setBlog((prev) =>
+          prev
+            ? {
+                ...prev,
+                likes: typeof fresh.likes === "number" ? fresh.likes : prev.likes,
+                views: typeof fresh.views === "number" ? fresh.views : prev.views,
+              }
+            : prev,
+        );
+      } catch {
+        // keep SSR payload
+      }
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, [slug, initialBlog?._id]);
+
+  useEffect(() => {
+    if (!blog?._id) return;
+    setAlreadyLiked(hasLikedBlog(blog._id));
+  }, [blog?._id]);
 
   const fetchBlog = async () => {
     try {
@@ -56,11 +134,7 @@ export default function BlogDetailPage({
       if (response.success && response.data?.blog) {
         const blogData = response.data.blog;
         setBlog(blogData);
-        
-        // Fetch related blogs (same tags)
-        if (blogData.tags && blogData.tags.length > 0) {
-          fetchRelatedBlogs(blogData.tags[0], blogData._id);
-        }
+        await fetchRelatedBlogs(blogData.tags?.[0] || "", blogData._id);
       } else {
         setError("Blog not found");
       }
@@ -74,32 +148,46 @@ export default function BlogDetailPage({
 
   const fetchRelatedBlogs = async (tag: string, excludeId: string) => {
     try {
-      const response = await blogService.getBlogs({
-        tag,
-        limit: 3,
-        status: "published",
-      });
-      
-      if (response.success && response.data) {
-        const filtered = response.data.blogs.filter(
-          (b) => b._id !== excludeId
-        );
-        setRelatedBlogs(filtered.slice(0, 3));
-      }
+      const [taggedResponse, latestResponse] = await Promise.all([
+        tag
+          ? blogService.getBlogs({ tag, limit: 6, status: "published" })
+          : Promise.resolve(null),
+        blogService.getBlogs({ limit: 6, status: "published" }),
+      ]);
+
+      const byTag =
+        taggedResponse?.success && taggedResponse.data
+          ? taggedResponse.data.blogs.filter((b) => b._id !== excludeId)
+          : [];
+      const byLatest =
+        latestResponse?.success && latestResponse.data
+          ? latestResponse.data.blogs.filter(
+              (b) => b._id !== excludeId && !byTag.some((related) => related._id === b._id),
+            )
+          : [];
+
+      setRelatedBlogs([...byTag, ...byLatest].slice(0, 3));
     } catch (err) {
       console.error("Error fetching related blogs:", err);
     }
   };
 
   const handleLike = async () => {
-    if (!blog) return;
+    if (!blog || alreadyLiked || liking) return;
     
     try {
       setLiking(true);
-      const response = await blogService.likeBlog(blog._id);
+      const visitorId = getBlogVisitorId();
+      const response = await blogService.likeBlog(blog._id, visitorId);
       if (response.success) {
         setBlog({ ...blog, likes: response.data.likes });
-        toast.success("Blog liked!");
+        markBlogLiked(blog._id);
+        setAlreadyLiked(true);
+        if (response.data.alreadyLiked) {
+          toast.message("You already liked this blog");
+        } else {
+          toast.success("Blog liked!");
+        }
       }
     } catch (err: any) {
       toast.error(err?.message || "Failed to like blog");
@@ -199,11 +287,11 @@ export default function BlogDetailPage({
 
           {/* Featured Image */}
           {blog.featuredImage && (
-            <div className="relative w-full h-64 md:h-96 mb-8 rounded-2xl overflow-hidden bg-gray-200">
+            <div className="mb-8 w-full overflow-hidden rounded-2xl bg-gray-100 md:bg-transparent">
               <img
                 src={blog.featuredImage}
                 alt={blog.title}
-                                className="h-full w-full object-cover"
+                className="mx-auto h-auto w-full max-h-[220px] object-contain sm:max-h-[320px] md:max-h-none"
               />
             </div>
           )}
@@ -251,11 +339,14 @@ export default function BlogDetailPage({
             <div className="flex gap-4">
               <Button
                 onClick={handleLike}
-                disabled={liking}
+                disabled={liking || alreadyLiked}
                 variant="outline"
                 className="flex items-center gap-2"
+                aria-pressed={alreadyLiked}
               >
-                <Heart className={`h-5 w-5 ${liking ? "animate-pulse" : ""}`} />
+                <Heart
+                  className={`h-5 w-5 ${liking ? "animate-pulse" : ""} ${alreadyLiked ? "fill-orange-500 text-orange-500" : ""}`}
+                />
                 {blog.likes || 0}
               </Button>
               <Button
@@ -290,27 +381,25 @@ export default function BlogDetailPage({
             </CardContent>
           </Card>
 
-          {/* Related Blogs */}
+          {/* Related Blogs — auto-filled for every post, including future publishes */}
           {relatedBlogs.length > 0 && (
-            <div className="mt-12">
+            <div className="mt-12 w-full">
               <h2 className="text-2xl font-bold text-gray-900 mb-6">Related Blogs</h2>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="grid w-full grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 md:gap-6">
                 {relatedBlogs.map((relatedBlog) => (
                   <Card
                     key={relatedBlog._id}
-                    className="relative cursor-pointer hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border-2 border-gray-100 hover:border-orange-200"
+                    className="relative overflow-hidden border border-gray-100 hover:border-orange-200 cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
                   >
-                    {relatedBlog.featuredImage && (
-                      <div className="relative w-full h-32 overflow-hidden bg-gray-200">
-                        <img
-                          src={relatedBlog.featuredImage}
-                          alt={relatedBlog.title}
-                          className="h-full w-full object-cover"
-                        />
-                      </div>
-                    )}
+                    <div className="relative aspect-[16/10] w-full overflow-hidden bg-gray-100">
+                      <img
+                        src={relatedBlog.featuredImage || "/images/logo.png"}
+                        alt={relatedBlog.title}
+                        className="h-full w-full object-cover"
+                      />
+                    </div>
                     <CardContent className="p-4">
-                      <h3 className="font-bold text-gray-900 mb-2 line-clamp-2 hover:text-orange-600 transition-colors">
+                      <h3 className="mb-2 font-bold text-gray-900 line-clamp-2 transition-colors hover:text-orange-600">
                         <Link href={`/blogs/${relatedBlog.slug}`} className="after:absolute after:inset-0">
                           {relatedBlog.title}
                         </Link>

@@ -167,13 +167,14 @@ export const blogService = {
 
 
   // Like Blog
-  likeBlog: async (id: string) => {
+  likeBlog: async (id: string, visitorId: string) => {
     try {
       const response = await fetch(`${BACKEND_URL_2_0}/blogs/${id}/like`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
+        body: JSON.stringify({ visitorId }),
       });
       const result = await response.json();
       if (!response.ok) {

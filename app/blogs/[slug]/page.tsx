@@ -64,12 +64,17 @@ export default async function Page({ params }: BlogRouteProps) {
   const blog = await getPublishedBlogBySlug(slug);
   if (blog === "missing") notFound();
   const posting = blog === "unavailable" ? null : blogPosting(blog);
+  const excludeId = blog === "unavailable" ? "" : blog._id;
   const tag = blog === "unavailable" ? "" : blog.tags?.[0] || "";
-  const relatedList = tag ? await getPublishedBlogs({ tag }) : null;
-  const related =
-    blog === "unavailable"
-      ? []
-      : (relatedList?.blogs ?? []).filter((item) => item._id !== blog._id).slice(0, 3);
+  const [relatedByTag, latest] = await Promise.all([
+    tag ? getPublishedBlogs({ tag }) : Promise.resolve(null),
+    getPublishedBlogs({}),
+  ]);
+  const byTag = (relatedByTag?.blogs ?? []).filter((item) => item._id !== excludeId);
+  const byLatest = (latest?.blogs ?? []).filter(
+    (item) => item._id !== excludeId && !byTag.some((related) => related._id === item._id),
+  );
+  const related = blog === "unavailable" ? [] : [...byTag, ...byLatest].slice(0, 3);
   return (
     <>
       {posting ? <JsonLd data={posting} /> : null}
