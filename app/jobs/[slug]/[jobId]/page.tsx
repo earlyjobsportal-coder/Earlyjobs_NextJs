@@ -3,6 +3,8 @@ import { jobHref } from "@/lib/job-path";
 import { getPublicJob } from "@/lib/public-jobs";
 
 /** Old /jobs/{slug}/{jobId} URLs redirect to /jobs/{title}-{shortId}. */
+export const revalidate = 600;
+
 export default async function LegacyJobPage({
   params,
 }: {
