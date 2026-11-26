@@ -15,8 +15,10 @@ import { jobHref, jobNavHref, jobSlug } from "@/lib/job-path";
 import { pageMetadata } from "@/lib/page-metadata";
 import { getPublicJob, jobsPageHref, resolveJobIdFromSlug } from "@/lib/public-jobs";
 
-// Soft navigations must not reuse a cached not-found from a failed reverse-lookup.
-export const dynamic = "force-dynamic";
+// Cache HTML at the edge so crawler storms don't re-run the function every hit.
+// Job data still refreshes via fetch revalidate (see getPublicJob).
+export const revalidate = 600;
+export const dynamicParams = true;
 
 function LinkedInIcon() {
   return (
@@ -77,15 +79,13 @@ function sanitizeHtml(html: string) {
 
 export async function generateMetadata({
   params,
-  searchParams,
 }: {
   params: Promise<{ slug: string }>;
-  searchParams: Promise<{ jid?: string | string[] }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const { jid } = await searchParams;
-  const hint = (Array.isArray(jid) ? jid[0] : jid) ?? null;
-  const jobId = await resolveJobIdFromSlug(slug, hint);
+  // Avoid searchParams here — reading them opts the route into force-dynamic and
+  // burns Fluid CPU on every Googlebot hit. Slug/shortId resolve is enough.
+  const jobId = await resolveJobIdFromSlug(slug);
   const job = jobId ? await getPublicJob(jobId) : null;
   if (!job) return { title: { absolute: "Job | EarlyJobs" }, robots: { index: false, follow: false } };
   const role = cleanJobTitle(job.title, job.baseTitle, job.city, seoCityLabel(job));
@@ -118,23 +118,18 @@ export async function generateMetadata({
 
 export default async function JobPage({
   params,
-  searchParams,
 }: {
   params: Promise<{ slug: string }>;
-  searchParams: Promise<{ jid?: string | string[] }>;
 }) {
   const { slug } = await params;
-  const { jid } = await searchParams;
-  const hint = (Array.isArray(jid) ? jid[0] : jid) ?? null;
-  const jobId = await resolveJobIdFromSlug(slug, hint);
+  const jobId = await resolveJobIdFromSlug(slug);
   const job = jobId ? await getPublicJob(jobId) : null;
   if (!job) notFound();
 
   const canonical = jobSlug(job);
-  // Only rewrite mistyped/legacy path segments. Keep ?jid= for this request so we
-  // don't pay for another published-list scan; CleanJobUrl strips it in the browser.
+  // Only rewrite mistyped/legacy path segments. CleanJobUrl strips leftover ?jid=.
   if (slug !== canonical) {
-    redirect(hint ? `/jobs/${canonical}?jid=${encodeURIComponent(hint)}` : `/jobs/${canonical}`);
+    redirect(`/jobs/${canonical}`);
   }
 
   // UI: arranged sections. Schema: plain prose from job.description only.

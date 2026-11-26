@@ -431,7 +431,7 @@ export const getPublicJob = cache(async function getPublicJob(jobId: string): Pr
 
   const response = await fetch(`${JOBS_ENDPOINT}/${jobId}`, {
     headers: { Accept: "*/*" },
-    next: { revalidate: 60 },
+    next: { revalidate: 600 },
   });
   if (!response.ok) return null;
 
@@ -568,7 +568,7 @@ async function fetchJobIdByPublicRef(ref: string): Promise<string | null> {
   try {
     const response = await fetch(`${JOBS_ENDPOINT}/${encodeURIComponent(value)}`, {
       headers: { Accept: "*/*" },
-      next: { revalidate: 60 },
+      next: { revalidate: 600 },
     });
     if (!response.ok) return null;
     const body = (await response.json()) as {

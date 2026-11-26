@@ -3,9 +3,9 @@ import { listFranchiseCities } from "@/lib/franchise-cities";
 import { listPublishedBlogPaths } from "@/lib/public-blogs";
 import { listPublishedJobPaths } from "@/lib/public-jobs";
 
-// Do not prerender at build time — crawling all published jobs exceeds Vercel's 60s
-// static generation timeout and fails the production build.
-export const dynamic = "force-dynamic";
+// ISR: rebuild at most hourly. force-dynamic made every bot hit re-crawl jobs/blogs
+// and drove Fluid Active CPU. First request after expiry regenerates; CDN serves cache.
+export const revalidate = 3600;
 
 const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://www.earlyjobs.ai";
 
