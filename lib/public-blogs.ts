@@ -71,8 +71,9 @@ export async function getPublishedBlogBySlug(
   slug: string,
 ): Promise<PublicBlog | "missing" | "unavailable"> {
   try {
+    // Likes/views change often — do not serve a stale cached count after a like + refresh.
     const response = await fetch(`${BACKEND_URL}/blogs/slug/${encodeURIComponent(slug)}`, {
-      next: { revalidate: 300 },
+      cache: "no-store",
     });
     if (response.status === 404) return "missing";
     if (!response.ok) return "unavailable";
