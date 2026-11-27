@@ -45,6 +45,8 @@ export async function generateMetadata({ params }: BlogRouteProps): Promise<Meta
   }
   const title = blog.seoTitle || `${blog.title} | EarlyJobs`;
   const description = blog.seoDescription || blog.excerpt || blog.title;
+  const hasFeatured = Boolean(blog.featuredImage);
+  // Meta only — on-page image layout is unchanged.
   return pageMetadata({
     path: `/blogs/${blog.slug}`,
     title,
@@ -53,9 +55,11 @@ export async function generateMetadata({ params }: BlogRouteProps): Promise<Meta
     ogDescription: description,
     image: blog.featuredImage || "/images/logo.png",
     imageAlt: blog.title,
+    imageWidth: hasFeatured ? 1920 : 1000,
+    imageHeight: hasFeatured ? 1080 : 650,
     twitterTitle: title,
     twitterDescription: description,
-    twitterCard: blog.featuredImage ? "summary_large_image" : "summary",
+    twitterCard: hasFeatured ? "summary_large_image" : "summary",
   });
 }
 
