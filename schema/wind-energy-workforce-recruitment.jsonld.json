@@ -1,0 +1,87 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://www.earlyjobs.ai/wind-energy-workforce-recruitment#webpage",
+      "url": "https://www.earlyjobs.ai/wind-energy-workforce-recruitment",
+      "name": "Wind Energy Workforce Recruitment India | EarlyJobs",
+      "description": "Explore recruitment for wind energy projects, including qualified turbine technicians, electrical support, site coordination and renewable energy operations staff.",
+      "isPartOf": {
+        "@id": "https://www.earlyjobs.ai/#website"
+      },
+      "about": {
+        "@id": "https://www.earlyjobs.ai/#organization"
+      },
+      "breadcrumb": {
+        "@id": "https://www.earlyjobs.ai/wind-energy-workforce-recruitment#breadcrumb"
+      },
+      "speakable": {
+        "@type": "SpeakableSpecification",
+        "cssSelector": [
+          "h1",
+          "h2"
+        ]
+      },
+      "inLanguage": "en-IN",
+      "dateModified": "2026-11-20"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://www.earlyjobs.ai/wind-energy-workforce-recruitment#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.earlyjobs.ai/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Wind Energy Workforce Recruitment",
+          "item": "https://www.earlyjobs.ai/wind-energy-workforce-recruitment"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://www.earlyjobs.ai/wind-energy-workforce-recruitment#faq",
+      "url": "https://www.earlyjobs.ai/wind-energy-workforce-recruitment",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Can EarlyJobs support wind energy recruitment?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Employers can discuss suitable project support, junior technical and administrative vacancies for assessment. Share project locations, turbine counts and joining windows so sourcing aligns with site execution."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can fresh diploma holders work in wind energy?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Some entry-level roles may consider diploma holders, depending on the position and training requirements. Turbine climbing, high-voltage work and other safety-critical tasks require appropriate competence, training and authorization before assignment."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can employers discuss hiring across wind farm locations?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Location-specific requirements can be shared for assessment. Multi-site wind farm and O&M hiring can be planned around headcount, mobility expectations and regional candidate availability."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Who handles turbine safety certifications?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Employers must ensure personnel meet applicable training, authorization and safety requirements. EarlyJobs does not replace statutory certification, PPE authorisation or legal compliance for turbine and high-voltage work."
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -15,6 +15,10 @@ export type PageMetadataInput = {
   ogDescription: string;
   image: string;
   imageAlt: string;
+  /** Emitted as og:image:width when set. */
+  imageWidth?: number;
+  /** Emitted as og:image:height when set. */
+  imageHeight?: number;
   twitterTitle: string;
   twitterDescription: string;
   index?: boolean;
@@ -33,6 +37,14 @@ export function pageMetadata(input: PageMetadataInput): Metadata {
   const canonical = input.path === "/" ? "/" : input.path;
   const image = socialImage(input.image);
   const logo = image === LOGO_PATH;
+  const width = input.imageWidth ?? (logo ? 1000 : undefined);
+  const height = input.imageHeight ?? (logo ? 650 : undefined);
+  const sizedImage = {
+    url: image,
+    alt: input.imageAlt,
+    ...(typeof width === "number" ? { width } : {}),
+    ...(typeof height === "number" ? { height } : {}),
+  };
   return {
     metadataBase: new URL(SITE_URL),
     title: { absolute: input.title },
@@ -45,19 +57,13 @@ export function pageMetadata(input: PageMetadataInput): Metadata {
       locale: "en_IN",
       title: input.ogTitle,
       description: input.ogDescription,
-      images: [
-        {
-          url: image,
-          alt: input.imageAlt,
-          ...(logo ? { width: 1000, height: 650 } : {}),
-        },
-      ],
+      images: [sizedImage],
     },
     twitter: {
       card: input.twitterCard ?? (logo ? "summary" : "summary_large_image"),
       title: input.twitterTitle,
       description: input.twitterDescription,
-      images: [image],
+      images: [sizedImage],
     },
     robots: {
       index: input.index ?? true,

@@ -1,0 +1,113 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://www.earlyjobs.ai/tools/interview-scorecard-generator#webpage",
+      "url": "https://www.earlyjobs.ai/tools/interview-scorecard-generator",
+      "name": "Free Interview Scorecard Generator for Employers | EarlyJobs",
+      "description": "Create structured interview scorecards with job-specific evaluation criteria, rating scales and interviewer notes. Free editable employer template.",
+      "isPartOf": {
+        "@id": "https://www.earlyjobs.ai/#website"
+      },
+      "about": {
+        "@id": "https://www.earlyjobs.ai/#organization"
+      },
+      "breadcrumb": {
+        "@id": "https://www.earlyjobs.ai/tools/interview-scorecard-generator#breadcrumb"
+      },
+      "mainEntity": {
+        "@id": "https://www.earlyjobs.ai/tools/interview-scorecard-generator#tool"
+      },
+      "speakable": {
+        "@type": "SpeakableSpecification",
+        "cssSelector": [
+          "h1",
+          "h2"
+        ]
+      },
+      "inLanguage": "en-IN",
+      "dateModified": "2026-11-20"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://www.earlyjobs.ai/tools/interview-scorecard-generator#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.earlyjobs.ai/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Tools",
+          "item": "https://www.earlyjobs.ai/tools/interview-scorecard-generator"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Interview Scorecard Generator",
+          "item": "https://www.earlyjobs.ai/tools/interview-scorecard-generator"
+        }
+      ]
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://www.earlyjobs.ai/tools/interview-scorecard-generator#tool",
+      "name": "EarlyJobs Interview Scorecard Generator",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Web",
+      "description": "Interactive tool that lets employers build editable interview scorecards with role-specific criteria, rating scales and interviewer notes.",
+      "provider": {
+        "@id": "https://www.earlyjobs.ai/#organization"
+      },
+      "url": "https://www.earlyjobs.ai/tools/interview-scorecard-generator",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "INR"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://www.earlyjobs.ai/tools/interview-scorecard-generator#faq",
+      "url": "https://www.earlyjobs.ai/tools/interview-scorecard-generator",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is an interview scorecard?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "It is a structured form for evaluating candidates against predefined job-related criteria, typically including candidate information, evaluation categories, a rating scale, evidence notes and an overall recommendation."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can interview scorecards be customized?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Employers should adapt evaluation criteria to each role using the generator, adding or removing competencies and adjusting the rating scale as needed."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Should interviewers use the same scorecard?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "For comparable candidates applying to the same position, consistent criteria can improve evaluation clarity and make it easier to compare candidates fairly."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does a high score guarantee candidate suitability?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. Employers should consider the complete selection process and mandatory requirements rather than relying on a numerical score alone."
+          }
+        }
+      ]
+    }
+  ]
+}

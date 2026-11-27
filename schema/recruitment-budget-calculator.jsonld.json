@@ -1,0 +1,113 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://www.earlyjobs.ai/tools/recruitment-budget-calculator#webpage",
+      "url": "https://www.earlyjobs.ai/tools/recruitment-budget-calculator",
+      "name": "Free Recruitment Budget Calculator for Employers | EarlyJobs",
+      "description": "Estimate recruitment budgets using planned hires, advertising costs, agency expenses, assessments and internal recruiting costs. Free employer planning tool.",
+      "isPartOf": {
+        "@id": "https://www.earlyjobs.ai/#website"
+      },
+      "about": {
+        "@id": "https://www.earlyjobs.ai/#organization"
+      },
+      "breadcrumb": {
+        "@id": "https://www.earlyjobs.ai/tools/recruitment-budget-calculator#breadcrumb"
+      },
+      "mainEntity": {
+        "@id": "https://www.earlyjobs.ai/tools/recruitment-budget-calculator#tool"
+      },
+      "speakable": {
+        "@type": "SpeakableSpecification",
+        "cssSelector": [
+          "h1",
+          "h2"
+        ]
+      },
+      "inLanguage": "en-IN",
+      "dateModified": "2026-11-20"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://www.earlyjobs.ai/tools/recruitment-budget-calculator#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.earlyjobs.ai/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Tools",
+          "item": "https://www.earlyjobs.ai/tools/recruitment-budget-calculator"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Recruitment Budget Calculator",
+          "item": "https://www.earlyjobs.ai/tools/recruitment-budget-calculator"
+        }
+      ]
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://www.earlyjobs.ai/tools/recruitment-budget-calculator#tool",
+      "name": "EarlyJobs Recruitment Budget Calculator",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Web",
+      "description": "Interactive calculator that estimates total recruitment budget and planned cost per hire from planned hires, advertising, agency, internal recruiting, assessment and other expenses in Indian rupees.",
+      "provider": {
+        "@id": "https://www.earlyjobs.ai/#organization"
+      },
+      "url": "https://www.earlyjobs.ai/tools/recruitment-budget-calculator",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "INR"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://www.earlyjobs.ai/tools/recruitment-budget-calculator#faq",
+      "url": "https://www.earlyjobs.ai/tools/recruitment-budget-calculator",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What should a recruitment budget include?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Relevant internal recruiting costs, external sourcing expenses, assessments and other approved hiring expenditures. Employee compensation after joining is usually tracked separately."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is recruitment budget the same as payroll budget?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. Recruitment spending and ongoing employee compensation are generally planned separately."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can the calculator support bulk hiring?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Employers can enter planned headcount and relevant recruitment cost assumptions to model bulk hiring budgets."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does the calculator estimate EarlyJobs fees?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. It models user-provided recruitment expenses and does not represent a commercial quotation or EarlyJobs pricing."
+          }
+        }
+      ]
+    }
+  ]
+}
