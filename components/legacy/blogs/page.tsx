@@ -10,7 +10,7 @@ import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Search, Calendar, Eye, Heart, ChevronLeft, ChevronRight, Loader2 } from "lucide-react";
+import { Search, X, Calendar, Eye, Heart, ChevronLeft, ChevronRight, Loader2 } from "lucide-react";
 import Navbar from "../components/pages/navbar";
 import Header from "../components/pages/header";
 import Footer from "../components/pages/footer";
@@ -52,6 +52,11 @@ function BlogsContent({ initial }: { initial?: PublicBlogList | null }) {
 
   const handleSearch = () => {
     pushFilters({ search: searchTerm, page: 1 });
+  };
+
+  const handleClearSearch = () => {
+    setSearchTerm("");
+    pushFilters({ search: "", page: 1 });
   };
 
   const handleTagFilter = (tag: string) => {
@@ -105,8 +110,18 @@ function BlogsContent({ initial }: { initial?: PublicBlogList | null }) {
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                   onKeyDown={(e) => e.key === "Enter" && handleSearch()}
-                  className="pl-12 h-12 rounded-xl border-2 border-gray-200 focus:border-orange-500"
+                  className="pl-12 pr-10 h-12 rounded-xl border-2 border-gray-200 focus:border-orange-500"
                 />
+                {searchTerm && (
+                  <button
+                    type="button"
+                    onClick={handleClearSearch}
+                    aria-label="Clear search"
+                    className="absolute right-3 top-1/2 -translate-y-1/2 rounded-full p-1 text-gray-400 hover:bg-gray-100 hover:text-gray-600"
+                  >
+                    <X className="h-4 w-4" />
+                  </button>
+                )}
               </div>
               <Button
                 onClick={handleSearch}
@@ -118,28 +133,57 @@ function BlogsContent({ initial }: { initial?: PublicBlogList | null }) {
 
             {/* Tags Filter */}
             {allTags.length > 0 && (
-              <div className="flex flex-wrap gap-2">
-                <Button
-                  variant={selectedTag === "" ? "default" : "outline"}
-                  size="sm"
-                  onClick={() => handleTagFilter("")}
-                  className={selectedTag === "" ? "bg-orange-500 text-white" : ""}
-                >
-                  All
-                </Button>
-                {allTags.map((tag) => (
-                  <Button
-                    key={tag}
-                    variant={selectedTag === tag ? "default" : "outline"}
-                    size="sm"
-                    onClick={() => handleTagFilter(tag)}
-                    className={selectedTag === tag ? "bg-orange-500 text-white" : ""}
-                  >
-                    {tag}
-                  </Button>
-                ))}
-              </div>
-            )}
+  <div className="space-y-2">
+    <p className="text-sm font-medium text-gray-500">Filter by topic</p>
+    <div className="flex flex-wrap items-center gap-2">
+      <button
+        type="button"
+        onClick={() => handleTagFilter("")}
+        className={`rounded-full px-3 py-1.5 text-sm font-medium transition-colors ${
+          selectedTag === ""
+            ? "bg-orange-500 text-white"
+            : "bg-white text-gray-700 ring-1 ring-gray-200 hover:ring-orange-300 hover:text-orange-600"
+        }`}
+      >
+        All
+      </button>
+
+      {allTags.slice(0, 8).map((tag) => (
+        <button
+          type="button"
+          key={tag}
+          onClick={() => handleTagFilter(tag)}
+          className={`max-w-[12rem] truncate rounded-full px-3 py-1.5 text-sm font-medium transition-colors ${
+            selectedTag === tag
+              ? "bg-orange-500 text-white"
+              : "bg-white text-gray-700 ring-1 ring-gray-200 hover:ring-orange-300 hover:text-orange-600"
+          }`}
+          title={tag.charAt(0).toUpperCase() + tag.slice(1).toLowerCase()}
+        >
+          {tag.charAt(0).toUpperCase() + tag.slice(1).toLowerCase()}
+        </button>
+      ))}
+
+      {allTags.length > 8 && (
+        <Select
+          value={allTags.slice(8).includes(selectedTag) ? selectedTag : ""}
+          onValueChange={(value) => handleTagFilter(value || "")}
+        >
+          <SelectTrigger className="h-9 w-fit gap-1 rounded-full border-gray-200 px-3 text-sm justify-center">
+            <SelectValue placeholder="More topics" />
+          </SelectTrigger>
+          <SelectContent>
+            {allTags.slice(8).map((tag) => (
+              <SelectItem key={tag} value={tag}>
+                {tag.charAt(0).toUpperCase() + tag.slice(1).toLowerCase()}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+      )}
+    </div>
+  </div>
+)}
           </div>
 
           {/* Results Count */}

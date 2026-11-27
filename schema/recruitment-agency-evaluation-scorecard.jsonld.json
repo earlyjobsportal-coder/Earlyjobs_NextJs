@@ -1,0 +1,150 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://www.earlyjobs.ai/resources/recruitment-agency-evaluation-scorecard#webpage",
+      "url": "https://www.earlyjobs.ai/resources/recruitment-agency-evaluation-scorecard",
+      "name": "Recruitment Agency Evaluation Scorecard | EarlyJobs",
+      "description": "Compare recruitment agencies using a structured scorecard covering role expertise, sourcing approach, communication, costs and recruitment reporting.",
+      "isPartOf": {
+        "@id": "https://www.earlyjobs.ai/#website"
+      },
+      "about": {
+        "@id": "https://www.earlyjobs.ai/#organization"
+      },
+      "breadcrumb": {
+        "@id": "https://www.earlyjobs.ai/resources/recruitment-agency-evaluation-scorecard#breadcrumb"
+      },
+      "mainEntity": {
+        "@id": "https://www.earlyjobs.ai/resources/recruitment-agency-evaluation-scorecard#resource"
+      },
+      "speakable": {
+        "@type": "SpeakableSpecification",
+        "cssSelector": ["h1", "h2"]
+      },
+      "inLanguage": "en-IN",
+      "dateModified": "2026-11-21"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://www.earlyjobs.ai/resources/recruitment-agency-evaluation-scorecard#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.earlyjobs.ai/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Resources",
+          "item": "https://www.earlyjobs.ai/resources"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Recruitment Agency Evaluation Scorecard",
+          "item": "https://www.earlyjobs.ai/resources/recruitment-agency-evaluation-scorecard"
+        }
+      ]
+    },
+    {
+      "@type": "CreativeWork",
+      "@id": "https://www.earlyjobs.ai/resources/recruitment-agency-evaluation-scorecard#resource",
+      "name": "EarlyJobs Recruitment Agency Evaluation Scorecard",
+      "description": "Structured vendor evaluation scorecard for comparing recruitment agencies on experience, sourcing, process, communication, commercial terms and compliance.",
+      "provider": {
+        "@id": "https://www.earlyjobs.ai/#organization"
+      },
+      "url": "https://www.earlyjobs.ai/resources/recruitment-agency-evaluation-scorecard",
+      "encodingFormat": [
+        "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://www.earlyjobs.ai/resources/recruitment-agency-evaluation-scorecard#faq",
+      "url": "https://www.earlyjobs.ai/resources/recruitment-agency-evaluation-scorecard",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How should employers evaluate recruitment agencies?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Use consistent criteria covering relevant experience, sourcing, process, communication, costs and compliance."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can agencies be compared using weighted scores?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Weighted criteria can support comparison when scoring rules are clearly defined and weights total 100%."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Should price be the main selection factor?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Not necessarily. Employers should consider service suitability, process quality and contractual responsibilities."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can the scorecard support bulk recruitment vendor selection?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Employers can adapt the criteria to high-volume or multi-location hiring requirements."
+          }
+        }
+      ]
+    },
+    {
+      "@type": "HowTo",
+      "@id": "https://www.earlyjobs.ai/resources/recruitment-agency-evaluation-scorecard#howto",
+      "name": "How to use a recruitment agency evaluation scorecard",
+      "description": "Structured workflow for comparing recruitment providers using weighted criteria and due diligence.",
+      "step": [
+        {
+          "@type": "HowToStep",
+          "position": 1,
+          "name": "Define your hiring needs",
+          "text": "Document role categories, hiring volumes, locations and expected timelines."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 2,
+          "name": "Select evaluation criteria",
+          "text": "Choose the factors most relevant to the organization."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 3,
+          "name": "Assign weights",
+          "text": "For example, role expertise may carry more weight than presentation quality."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 4,
+          "name": "Score each provider",
+          "text": "Use a consistent rating scale with supporting notes."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 5,
+          "name": "Compare results",
+          "text": "Review weighted scores alongside commercial and operational considerations."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 6,
+          "name": "Complete due diligence",
+          "text": "Verify relevant claims, references, legal terms and responsibilities before signing."
+        }
+      ]
+    }
+  ]
+}

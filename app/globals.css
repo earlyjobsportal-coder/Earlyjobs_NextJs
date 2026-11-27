@@ -85,6 +85,14 @@ html.snap-release:has(.snap-section) {
   margin-top: 1rem;
 }
 
+.blog-body p {
+  margin: 0;
+}
+
+.blog-body p + p {
+  margin-top: 0.65rem;
+}
+
 .blog-body h1,
 .blog-body h2,
 .blog-body h3 {
@@ -123,6 +131,22 @@ html.snap-release:has(.snap-section) {
   color: var(--brand);
   text-decoration: underline;
   text-underline-offset: 2px;
+}
+
+.blog-body img {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  margin-inline: auto;
+  object-fit: contain;
+}
+
+@media (max-width: 767px) {
+  .blog-body img {
+    max-width: 90%;
+    max-height: 220px;
+  }
 }
 
 @keyframes hero-pop {
